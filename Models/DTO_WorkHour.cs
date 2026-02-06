@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebApplication6.Captions;
+
 
 namespace WebApplication6.Models
 {

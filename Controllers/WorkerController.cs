@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WebApplication6.Models;
+using WebApplication6.Captions;
 
 namespace WebApplication6.Controllers
 {
