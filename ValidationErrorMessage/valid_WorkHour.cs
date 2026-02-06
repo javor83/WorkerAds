@@ -1,5 +1,8 @@
-﻿namespace WebApplication6.Models
+﻿namespace WebApplication6.ValidationErrorMessage
 {
+    /// <summary>
+    /// валидации при работните часове
+    /// </summary>
     public class valid_WorkHour
     {
         public const string Required_WorkHour = "Полето \"{0}\" e задължително";

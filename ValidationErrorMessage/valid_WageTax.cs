@@ -1,5 +1,8 @@
-﻿namespace WebApplication6.Models
+﻿namespace WebApplication6.ValidationErrorMessage
 {
+    /// <summary>
+    /// съощеиня в атрибутите за начина на таксуване - ден/линеен метър и т.н
+    /// </summary>
     public class valid_WageTax
     {
         public const string CapitalLetter = "Полето \"{0}\" започва с главна буква";

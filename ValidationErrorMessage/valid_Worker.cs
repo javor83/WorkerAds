@@ -1,5 +1,8 @@
-﻿namespace WebApplication6.Models
+﻿namespace WebApplication6.ValidationErrorMessage
 {
+    /// <summary>
+    /// съобщения за грешка при работа с Работници
+    /// </summary>
     public class valid_Worker
     {
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.ComponentModel.DataAnnotations;
 using WebApplication6.Captions;
-
+using WebApplication6.ValidationErrorMessage;
 
 namespace WebApplication6.Models
 {

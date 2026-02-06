@@ -1,7 +1,7 @@
-﻿namespace WebApplication6.Models
+﻿namespace WebApplication6.ValidationErrorMessage
 {
     /// <summary>
-    /// съобщенията за грешка при WorkCategory
+    /// съобщенията за грешка при работната категория
     /// </summary>
     public class valid_WorkCategory
     {
