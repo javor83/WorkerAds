@@ -2,13 +2,13 @@
 
 namespace WebApplication6.AppAttributes
 {
+    /// <summary>
+    /// валидация на файловете по тип - примерно jpeg;jpg;png 
+    /// </summary>
+    /// <param name="list"></param>
     public class UploadFileAttribute : ValidationAttribute
     {
-        /// <summary>
-        /// валидация на файловете по тип - примерно jpeg;jpg;png 
-        /// </summary>
-        /// <param name="list"></param>
-        /// 
+        
 
         private readonly string mime_type = null;
         private readonly long max_bytes = 0;
