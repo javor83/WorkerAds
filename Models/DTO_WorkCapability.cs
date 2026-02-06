@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication6.Models
 {
+    /// <summary>
+    /// клас за способностите на работниците
+    /// </summary>
     public class DTO_WorkCapability
     {
         //не е задължително за попълване

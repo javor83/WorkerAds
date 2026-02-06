@@ -1,5 +1,8 @@
 ﻿namespace WebApplication6.Models
 {
+    /// <summary>
+    /// улеснение за качване на изображение
+    /// </summary>
     public static class ExtensionImageUpload
     {
 
@@ -10,9 +13,10 @@
 
             using (var x = File.OpenWrite(save_as))
             {
+                
                 using (var input_stream = sender.OpenReadStream())
                 {
-                    input_stream.CopyTo(x);
+                    input_stream.CopyTo(x
                 }
             }
 

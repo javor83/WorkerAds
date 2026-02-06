@@ -2,6 +2,9 @@
 
 namespace WebApplication6.Models
 {
+    /// <summary>
+    /// клас за актуализация на работниците
+    /// </summary>
     public class DTO_UpdateWorker
     {
         public required int? ID { get; set; }
