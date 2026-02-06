@@ -21,18 +21,7 @@ namespace WebApplication6.Models
             sender.AddTransient<IServiceAdsPerson, ServiceAdsPerson>();
             sender.AddTransient<IServiceCapability, ServiceCapability>();
         }
-        //**************************************************************************************************************************
-        /// <summary>
-        /// показва само името на контролера
-        /// </summary>
-        /// <param name="con_name"></param>
-        /// <returns></returns>
-        public static string Navigate(this string con_name)
-        {
-
-            string result = con_name.Substring(0, con_name.IndexOf("Controller"));
-            return result;
-        }
+       
         
         //**************************************************************************************************************************
 

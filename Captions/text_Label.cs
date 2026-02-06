@@ -1,4 +1,4 @@
-﻿namespace WebApplication6.Models
+﻿namespace WebApplication6.Captions
 {
     /// <summary>
     /// съобщения на началната страница, общи
@@ -13,29 +13,14 @@
 
         //********************************
         public const string Delete = "Изтрий";
-      
+
         public const string Edit = "Редакция";
         public const string Create = "Създай";
-      
+
         public const string Save = "Съхрани";
         public const string Cancel = "Отказ";
         public const string SuccessApply = "Промените са приложени успешно !";
         public const string TempData_ok = "ok";
-      
+
     }
-
-   
-
-
-  
-
-
-  
-
-   
-    
- 
-
-  
-
 }

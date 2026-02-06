@@ -2,6 +2,9 @@
 
 namespace WebApplication6.Models
 {
+    /// <summary>
+    /// помощни методи за стринговете
+    /// </summary>
     public static class ExtensionString
     {
         /// <summary>
@@ -45,6 +48,20 @@ namespace WebApplication6.Models
             }
             return result;
         }
+
+        //**************************************************************************************************************************
+        /// <summary>
+        /// показва само името на контролера
+        /// </summary>
+        /// <param name="con_name"></param>
+        /// <returns></returns>
+        public static string Navigate(this string con_name)
+        {
+
+            string result = con_name.Substring(0, con_name.IndexOf("Controller"));
+            return result;
+        }
+
         //**************************************************************************
         /// <summary>
         /// снимката на работника в изгледа
