@@ -1,4 +1,6 @@
-﻿namespace WebApplication6.Models
+﻿using WebApplication6.ExtensionMethods;
+
+namespace WebApplication6.Models
 {
     /// <summary>
     /// описва какво може всеки работник

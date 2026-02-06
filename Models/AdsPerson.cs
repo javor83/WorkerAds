@@ -1,5 +1,6 @@
 ﻿using Humanizer.DateTimeHumanizeStrategy;
 using Microsoft.Data.SqlClient.DataClassification;
+using WebApplication6.ExtensionMethods;
 
 namespace WebApplication6.Models
 {
@@ -37,7 +38,7 @@ namespace WebApplication6.Models
         /// <returns></returns>
         public string FullName()
         {
-            return ToFullName.FullName(this.FName,this.LName);
+            return this.FName.IncludeLastName(this.LName);
         }
         //********************************************************************************************
         /// <summary>

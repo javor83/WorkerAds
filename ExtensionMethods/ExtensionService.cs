@@ -1,6 +1,7 @@
 ﻿using WebApplication6.DatabaseModels;
+using WebApplication6.Models;
 
-namespace WebApplication6.Models
+namespace WebApplication6.ExtensionMethods
 {
     public static class ExtensionService
     {
@@ -11,7 +12,7 @@ namespace WebApplication6.Models
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="connection_meister"></param>
-        public static void Include(this IServiceCollection sender,string connection_meister)
+        public static void Include(this IServiceCollection sender, string connection_meister)
         {
             sender.AddSqlServer<MeisterContext>(connection_meister);
             sender.AddTransient<IServiceWageTax, ServiceWageTax>();
@@ -21,8 +22,8 @@ namespace WebApplication6.Models
             sender.AddTransient<IServiceAdsPerson, ServiceAdsPerson>();
             sender.AddTransient<IServiceCapability, ServiceCapability>();
         }
-       
-        
+
+
         //**************************************************************************************************************************
 
 

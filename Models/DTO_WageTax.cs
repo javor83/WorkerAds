@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using WebApplication6.Captions;
 using WebApplication6.ValidationErrorMessage;
+using WebApplication6.ExtensionMethods;
 
 namespace WebApplication6.Models
 {

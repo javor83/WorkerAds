@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication6.Models
+namespace WebApplication6.AppAttributes
 {
-    public class UploadFileAttribute:ValidationAttribute
+    public class UploadFileAttribute : ValidationAttribute
     {
         /// <summary>
         /// валидация на файловете по тип - примерно jpeg;jpg;png 
@@ -14,7 +14,7 @@ namespace WebApplication6.Models
         private readonly long max_bytes = 0;
         private bool mRequired = false;
         //*****************************************************
-        public UploadFileAttribute(string  mtype, long _bytes,string mask,string ext,bool  requested):base()
+        public UploadFileAttribute(string mtype, long _bytes, string mask, string ext, bool requested) : base()
         {
             this.mRequired = requested;
             this.mime_type = mtype;
@@ -25,7 +25,7 @@ namespace WebApplication6.Models
 
         public override bool IsValid(object? value)
         {
-           
+
             bool result = false;
             if (this.mRequired)
             {

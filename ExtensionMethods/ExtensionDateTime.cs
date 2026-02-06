@@ -1,4 +1,4 @@
-﻿namespace WebApplication6.Models
+﻿namespace WebApplication6.ExtensionMethods
 {
     /// <summary>
     /// оформление на датата

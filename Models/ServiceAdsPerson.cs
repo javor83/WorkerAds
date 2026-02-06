@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.Build.Framework;
 using WebApplication6.DatabaseModels;
+using WebApplication6.ExtensionMethods;
 
 namespace WebApplication6.Models
 {

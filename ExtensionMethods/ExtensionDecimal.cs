@@ -1,4 +1,4 @@
-﻿namespace WebApplication6.Models
+﻿namespace WebApplication6.ExtensionMethods
 {
     /// <summary>
     /// статично оформление на парите със знак
@@ -8,7 +8,7 @@
         public static string ToMoney(this decimal? value)
         {
             return $"€ {value:F2}";
-                 
+
         }
         public static string ToMoney(this decimal value)
         {

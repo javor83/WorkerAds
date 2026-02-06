@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApplication6.DatabaseModels;
+using WebApplication6.ExtensionMethods;
 
 namespace WebApplication6.Models
 {
@@ -34,7 +35,7 @@ namespace WebApplication6.Models
                     CategoryID = item_cp.WorkCategoryId.Value,
                     Price = item_cp.Price.Value,
                     TaxWageID = item_cp.TaxWageId,
-                    WorkerName = ToFullName.FullName(worker_name.Fname, worker_name.Lname),
+                    WorkerName = worker_name.Fname.IncludeLastName(worker_name.Lname),
                     ListTaxWage = (this as IServiceCapability).ComboWageTax((this as IServiceCapability).GetWageTax()),
                     ListCategory = (this as IServiceCapability).ComboCategory((this as IServiceCapability).GetCategory())
                 };
@@ -133,7 +134,7 @@ namespace WebApplication6.Models
             Worker? item = _context.Workers.Find(worker_id);
             if (item != null)
             {
-                result = ToFullName.FullName(item.Fname, item.Lname);
+                result = item.Fname.IncludeLastName(item.Lname);
             }
 
             return result;

@@ -1,12 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using System.Security.Cryptography.Xml;
-using WebApplication6.Controllers;
-
-namespace WebApplication6.Models
+﻿namespace WebApplication6.ExtensionMethods
 {
-   
-
     /// <summary>
     /// как ще изглежда сайта
     /// </summary>
@@ -29,8 +22,7 @@ namespace WebApplication6.Models
         public const string img_thumbnail_worker = "rounded-circle worker";//
         public const string img_thumbnail_worker_edit = "rounded-circle edit_image";
         public const string js_confirm_delete_taxwage = "return confirm('Изтриване на \"{0}\" ?')";
-        
+
 
     }
 }
-

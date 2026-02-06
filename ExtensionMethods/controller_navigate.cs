@@ -1,6 +1,6 @@
 ﻿using WebApplication6.Controllers;
 
-namespace WebApplication6.Models
+namespace WebApplication6.ExtensionMethods
 {
     /// <summary>
     /// навигация от изгледите към съответния контролер

@@ -1,6 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace WebApplication6.Models
+﻿namespace WebApplication6.ExtensionMethods
 {
     /// <summary>
     /// помощни методи за стринговете
@@ -20,7 +18,7 @@ namespace WebApplication6.Models
             for (int i = 0; i < extensions.Length; i++)
             {
                 dots.Add($".{extensions[i].Trim().ToLower()}");
-                
+
             }
             string result = string.Join(", ", dots.ToArray());
             return result;
@@ -60,6 +58,11 @@ namespace WebApplication6.Models
 
             string result = con_name.Substring(0, con_name.IndexOf("Controller"));
             return result;
+        }
+        //**************************************************************************
+        public static string IncludeLastName(this string sender, string last)
+        {
+            return $"{sender} {last}";
         }
 
         //**************************************************************************

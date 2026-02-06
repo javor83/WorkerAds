@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApplication6.Data;
 using WebApplication6.DatabaseModels;
-using WebApplication6.Models;   
+using WebApplication6.Models;
+using WebApplication6.ExtensionMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 
