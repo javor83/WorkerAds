@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DTO_WorkCategory>
+<vc:manager-subtitle caption="@text_WorkCategory.HeaderWorkCategory"></vc:manager-subtitle>
+<table class="@BootstrapCSS.table">
+    <tr>
+        <th class="@BootstrapCSS.text_center">@text_WorkCategory.LabelWorkCategory</th>
+        <th></th>
+    </tr>
+    @foreach(var k in Model)
+    {
+        <tr>
+            <td>@k.Name</td>
+            <td>
+                <form method="post"
+                    onsubmit="@string.Format(BootstrapCSS.js_confirm_delete_taxwage,k.Name)"
+                      asp-controller="@controller_navigate.WorkCategory"
+                      asp-action="@controller_navigate.WorkCategory_Delete"
+                    asp-antiforgery="true">
+                    <input type="hidden" value="@k.ID" name="id"/>
+                    
+                    <a asp-controller="@controller_navigate.WorkCategory"
+                       asp-route-id="@k.ID"
+                       asp-action="@controller_navigate.WorkCategory_Edit" class="@BootstrapCSS.button_outline">
+                        @text_Label.Edit
+                    </a>
+                    
+                    <input type="submit" class="@BootstrapCSS.button_danger" value="@text_Label.Delete" />
+                </form>
+                </td>
+        </tr>
+    }
+</table>
+
+<div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
+
+    <a asp-action="@controller_navigate.WorkCategory_Create"
+       class="@BootstrapCSS.button_primary @BootstrapCSS.display_inline"
+       asp-controller="@controller_navigate.WorkCategory">
+        @text_Label.Create
+    </a>
+</div>

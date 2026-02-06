@@ -1,0 +1,55 @@
+﻿@model DTO_CapabilityDetails
+<vc:manager-subtitle caption="@string.Format(text_Worker.CapabilityFor, Model.WorkerName)"></vc:manager-subtitle>
+<table class="@BootstrapCSS.table">
+    <tr>
+        <th class="@BootstrapCSS.text_center">@text_WorkCategory.LabelWorkCategory</th>
+        <th class="@BootstrapCSS.text_center">@text_WageTax.LabelWageTaxUnit</th>
+        <th class="@BootstrapCSS.text_center">@text_Worker.Price</th>
+        <th></th>
+    </tr>
+    @foreach (var k in Model.Actions)
+    {
+        <tr>
+            <td>@k.Category</td>
+            <td>@k.TaxWage</td>
+            <td>@k.Price.ToMoney()</td>
+            <td>
+                <form method="post"
+                     asp-action="@controller_navigate.Worker_DeleteCapability"
+                    asp-controller="@controller_navigate.Worker"
+                    asp-antiforgery="true"
+                    onsubmit="@string.Format(BootstrapCSS.js_confirm_delete_taxwage, k.Category)">
+                  
+                   
+                    <input type="hidden" name="id" value="@k.ID"/>
+                    <input type="hidden" name="worker_id" value="@Model.WorkerID" />
+
+                    <a  asp-route-capability_id="@k.ID"
+                        asp-action="@controller_navigate.Worker_EditCapability" 
+                        asp-controller="@controller_navigate.Worker"
+                       class="@BootstrapCSS.button_outline">
+                        @text_Label.Edit
+                    </a>
+                    <input type="submit" value="@text_Label.Delete" class="@BootstrapCSS.button_danger" />
+
+                  </form>
+            </td>
+        </tr>
+    }
+</table>
+<div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
+
+    <a asp-action="@controller_navigate.Worker_Index"
+    asp-controller="@controller_navigate.Worker"
+       class="@BootstrapCSS.button_outline">
+        @text_Worker.BackToWorker
+</a>
+
+    <a 
+        asp-action="@controller_navigate.Worker_EmptyCapability"
+        asp-controller="@controller_navigate.Worker" class="@BootstrapCSS.button_primary"
+        asp-route-worker_id="@Model.WorkerID"
+        >
+        @text_Worker.InsertNewCapability
+    </a>
+</div>

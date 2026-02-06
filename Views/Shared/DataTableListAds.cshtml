@@ -1,0 +1,36 @@
+﻿@model IEnumerable<AdsPerson>
+<vc:manager-subtitle caption="@text_Label.FreeAds"></vc:manager-subtitle>
+<table class="@BootstrapCSS.table">
+    <tr>
+        <th class="@BootstrapCSS.text_center">@text_Worker.WorkerImage</th>
+        <th class="@BootstrapCSS.text_center">@text_Worker.WorkerDetails</th>
+        <th class="@BootstrapCSS.text_center">@text_WorkHour.LabelWorkHour</th>
+    </tr>
+    @foreach (var ads in Model)
+    {
+        <tr>
+            <td class="@BootstrapCSS.text_center">
+                
+                <img src="@ads.Photo.ImgSrc_PreviewWorker()" class="@BootstrapCSS.img_thumbnail_worker" />
+            </td>
+            <td>
+                <div><b>@ads.FullName()</b></div>
+                <div>
+                    <b>@text_Worker.WorkerPhone</b> @ads.Phone
+                </div>
+                <div>
+                    <b>@text_Worker.WorkerEmail</b> @ads.Email
+                </div>
+                <div>
+                    <b>@text_WorkCategory.LabelWorkCategory</b> @ads.WhatToDo()
+                </div>
+                <div>
+                    @ads.AdvText
+                </div>
+            </td>
+            <td class="@BootstrapCSS.text_center">
+                   @ads.EveryDay()
+            </td>
+        </tr>
+    }
+</table>

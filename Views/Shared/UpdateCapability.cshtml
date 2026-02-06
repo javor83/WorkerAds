@@ -1,0 +1,41 @@
+﻿@model DTO_WorkCapability
+<vc:manager-subtitle caption="@string.Format(text_Worker.EditCapabilityToPerson, Model.WorkerName)"></vc:manager-subtitle>
+<form method="post"
+      asp-action="@controller_navigate.Worker_EditCapability"
+      asp-controller="@controller_navigate.Worker">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="@Model.WorkerID" />
+    <input type="hidden" asp-for="WorkerName" />
+    <input type="hidden" asp-for="@Model.ID" />
+    <div class="form-group">
+        <label asp-for="@Model.TaxWageID"></label>
+        <select asp-for="@Model.TaxWageID" asp-items="@Model.ListTaxWage" class="form-control">
+            <option value="">*</option>
+        </select>
+        <span asp-validation-for="@Model.TaxWageID"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.CategoryID"></label>
+        <select asp-for="@Model.CategoryID" asp-items="@Model.ListCategory" class="form-control">
+            <option value="">*</option>
+        </select>
+        <span asp-validation-for="@Model.CategoryID"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Price"></label>
+        <input type="number" asp-for="@Model.Price" class="form-control" max="@valid_Worker.MaxPrice" min="@valid_Worker.MinPrice" step=".01"/>
+        <span asp-validation-for="@Model.Price"></span>
+    </div>
+
+    <div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
+        <a asp-controller="@controller_navigate.Worker"
+           asp-action="@controller_navigate.Worker_Capability"
+           asp-route-id="@Model.WorkerID"
+           class="@BootstrapCSS.button_outline">
+            @text_Label.Cancel
+        </a>
+        <input type="submit" value="@text_Label.Save" class="@BootstrapCSS.button_primary" />
+    </div>
+</form>

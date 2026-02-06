@@ -1,0 +1,47 @@
+﻿@model DTO_InsertWorker
+<vc:manager-subtitle caption="@text_Worker.NewWorker"></vc:manager-subtitle>
+<form method="post"
+        asp-antiforgery="true"
+        asp-controller="@controller_navigate.Worker"
+        asp-action="@controller_navigate.Worker_Create" 
+       enctype="@BootstrapCSS.enc_type_upload">
+
+
+        <div asp-validation-summary="ModelOnly"></div>
+
+
+        <div class="form-group">
+            <label asp-for="@Model.FName"></label>
+            <input type="text" asp-for="@Model.FName" class="form-control"/>
+            <span asp-validation-for="@Model.FName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.LName"></label>
+            <input type="text" asp-for="@Model.LName" class="form-control"/>
+        <span asp-validation-for="@Model.LName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Phone"></label>
+            <input type="text" asp-for="@Model.Phone" class="form-control" />
+            <span asp-validation-for="@Model.Phone"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Email"></label>
+            <input type="text" asp-for="@Model.Email" class="form-control" />
+            <span asp-validation-for="@Model.Email"></span>
+        </div>
+    <div class="form-group">
+        <label asp-for="@Model.Preview"></label>
+        <input type="file" asp-for="@Model.Preview" class="form-control" accept="@BootstrapCSS.image_types.HtmlFileAccept()"/>
+        <span asp-validation-for="@Model.Preview"></span>
+    </div>
+    <div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
+        <a asp-controller="@controller_navigate.Worker"
+            asp-action="@controller_navigate.Worker_Index"
+           class="@BootstrapCSS.button_outline">@text_Label.Cancel</a>
+        <input type="submit" value="@text_Label.Save" class="@BootstrapCSS.button_primary" />
+    </div>
+
+
+    </form>
+

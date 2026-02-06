@@ -1,0 +1,24 @@
+﻿@model DTO_WorkCategory
+<vc:manager-subtitle caption="@text_WorkCategory.NewWorkCategory"></vc:manager-subtitle>
+<form method="post"
+      asp-action="@controller_navigate.WorkCategory_Create"
+      asp-controller="@controller_navigate.WorkCategory"
+    asp-antiforgery="true">
+
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="@Model.ID" />
+    <div class="form-group">
+        <label asp-for="@Model.Name">@text_WorkCategory.LabelWorkCategory</label>
+            <input type="text" asp-for="@Model.Name" class="form-control" />
+        <span asp-validation-for="@Model.Name"></span>
+    </div>
+    <div class="@BootstrapCSS.text_center @BootstrapCSS.margin_top_1">
+        <a asp-action="@controller_navigate.WorkCategory_Index" asp-controller="@controller_navigate.WorkCategory"
+           class="@BootstrapCSS.button_outline">
+            @text_Label.Cancel
+        </a>
+
+        <input type="submit" value="@text_Label.Save" class="@BootstrapCSS.button_primary @BootstrapCSS.display_inline" />
+    </div>
+
+</form>

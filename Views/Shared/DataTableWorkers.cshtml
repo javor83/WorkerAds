@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DTO_WorkerSelect>
+<vc:manager-subtitle caption="@text_Worker.HeaderWorker"></vc:manager-subtitle>
+<table class="@BootstrapCSS.table">
+    <tr>
+        <th class="@BootstrapCSS.text_center">@text_Worker.WorkerImage (@Model.Count())</th>
+        <th class="@BootstrapCSS.text_center">@text_Worker.WorkerDetails</th>
+        <th></th>
+    </tr>
+    @foreach (var k in Model)
+    {
+        <tr>
+            <td>
+                <img src="@k.Photo.ImgSrc_PreviewWorker()" class="@BootstrapCSS.img_thumbnail_worker" />
+            </td>
+            <td>
+               
+                    <div>
+                        <b>@k.FullName()</b>
+                    </div>
+                   <div>
+                    <b>@text_Worker.WorkerPhone</b>  @k.Phone
+                   </div>
+                <div>
+                    <b>@text_Worker.WorkerEmail</b>  @k.Email
+                </div>
+               
+               
+                <ul>
+                    @foreach (var cap in k)
+                    {
+                        <li>@cap.Print()</li>    
+                    }
+                </ul>
+                <div>
+                    <a 
+                        asp-action="@controller_navigate.Worker_Capability"
+                        asp-controller="@controller_navigate.Worker"
+                        asp-route-id="@k.ID"
+                        class="@BootstrapCSS.button_outline">
+                        @text_Worker.Capability
+                    </a>
+                </div>
+            </td>
+            <td>
+                <form method="post"
+                    asp-controller="@controller_navigate.Worker"
+                    asp-action="@controller_navigate.WorkCategory_Delete"
+                    asp-antiforgery="true"
+                    onsubmit="@string.Format(BootstrapCSS.js_confirm_delete_taxwage,k.FullName())"
+                    >
+                    <input type="hidden" name="id" value="@k.ID"/>
+                    <a asp-action="@controller_navigate.Worker_Edit"
+                    asp-controller="@controller_navigate.Worker"
+                    asp-route-id="@k.ID"
+                    class="@BootstrapCSS.button_outline">
+                        @text_Label.Edit
+                    </a>
+                    <input type="submit" value="@text_Label.Delete" class="@BootstrapCSS.button_danger" />
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+<div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
+    <a asp-controller="@controller_navigate.Worker" asp-action="@controller_navigate.Worker_Create"
+    class="@BootstrapCSS.button_primary @BootstrapCSS.display_inline">
+        @text_Label.Create
+    </a>
+</div>

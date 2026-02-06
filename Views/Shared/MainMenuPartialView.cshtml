@@ -1,0 +1,33 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="@controller_navigate.Home" asp-action="@controller_navigate.Home_Index">@text_Label.AppName</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" 
+                    asp-area="" 
+                       asp-controller="@controller_navigate.Home"
+                       asp-action="Index">@text_Label.Ads</a>
+                </li>
+                <li class="nav-item dropdown">
+                    
+                    <a class="nav-link text-dark dropdown-toggle" asp-area="" asp-controller="@controller_navigate.Home" asp-action="@controller_navigate.Home_Index" role="button" data-bs-toggle="dropdown">@text_Label.Admin</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" asp-action="@controller_navigate.WageTax_Index" asp-controller="@controller_navigate.WageTax">@text_WageTax.HeaderWagetax</a></li>
+                        <li><a class="dropdown-item" asp-action="@controller_navigate.WorkCategory_Index" asp-controller="@controller_navigate.WorkCategory">@text_WorkCategory.HeaderWorkCategory</a></li>
+
+                        <li><a class="dropdown-item" asp-action="@controller_navigate.WorkHour_Index" asp-controller="@controller_navigate.WorkHour">@text_WorkHour.HeaderWorkHour</a></li>
+
+                        <li><a class="dropdown-item" asp-action="@controller_navigate.Worker_Index" asp-controller="@controller_navigate.Worker">@text_Worker.HeaderWorker</a></li>
+                        
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DTO_WageTax>
+<vc:manager-subtitle caption="@text_WageTax.HeaderWagetax"></vc:manager-subtitle>
+<table class="@BootstrapCSS.table">
+    <tr>
+        <th class="@BootstrapCSS.text_center">@text_WageTax.LabelWageTaxUnit</th>
+        <th></th>
+    </tr>
+    @foreach (var index in Model)
+    {
+        <tr>
+            <td>@index.Name</td>
+            <td>
+
+                <form method="post" 
+                    onsubmit="@string.Format(BootstrapCSS.js_confirm_delete_taxwage,index.Name)"
+                      asp-controller="@controller_navigate.WageTax"
+                      asp-action="@controller_navigate.WageTax_Delete"
+                    asp-antiforgery="true">
+                    <input type="hidden" name="id" value="@index.ID" />
+                    <a asp-action="@controller_navigate.WageTax_Update"
+                        class="@BootstrapCSS.button_outline" 
+                       asp-controller="@controller_navigate.WageTax"
+                       asp-route-id="@index.ID">
+                        @text_Label.Edit
+                    </a>
+                    <input type="submit" class="@BootstrapCSS.button_danger" value="@text_Label.Delete" />
+                        
+
+                </form>
+            </td>
+        </tr>    
+    }
+</table>
+<div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
+
+    <a asp-action="@controller_navigate.WageTax_Create"
+        class="@BootstrapCSS.button_primary @BootstrapCSS.display_inline" 
+       asp-controller="@controller_navigate.WageTax">
+        @text_Label.Create
+    </a>
+</div>
+

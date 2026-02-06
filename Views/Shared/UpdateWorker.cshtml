@@ -1,0 +1,51 @@
+﻿@model DTO_UpdateWorker
+<vc:manager-subtitle caption="@text_Worker.EditWorker"></vc:manager-subtitle>
+<form method="post"
+    asp-antiforgery="true"
+    asp-controller="@controller_navigate.Worker"
+    asp-action="@controller_navigate.Worker_Edit"
+    enctype="@BootstrapCSS.enc_type_upload">
+    <input type="hidden" asp-for="@Model.ID" />
+    <input type="hidden" asp-for="@Model.Face"/>
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="form-group">
+        <img src="@Model.Face.ImgSrc_PreviewWorker()" class="@BootstrapCSS.img_thumbnail_worker_edit" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.FName">@text_Worker.WorkerFName</label>
+        <input type="text" asp-for="@Model.FName" class="form-control"/>
+        <span asp-validation-for="@Model.FName"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.LName">@text_Worker.WorkerLName</label>
+        <input type="text" asp-for="@Model.LName" class="form-control" />
+        <span asp-validation-for="@Model.LName"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Phone">@text_Worker.WorkerPhone</label>
+        <input type="text" asp-for="@Model.Phone" class="form-control" />
+        <span asp-validation-for="@Model.Phone"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Email">@text_Worker.WorkerEmail</label>
+        <input type="text" asp-for="@Model.Email" class="form-control" />
+        <span asp-validation-for="@Model.Email"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Preview">@text_Worker.WorkerImage</label>
+        <input type="file" asp-for="@Model.Preview" class="form-control" accept="@BootstrapCSS.image_types.HtmlFileAccept()" />
+        <span asp-validation-for="@Model.Preview"></span>
+    </div>
+
+    <div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
+        <a asp-action="@controller_navigate.Worker_Index"
+        asp-controller="@controller_navigate.Worker"
+        class="@BootstrapCSS.button_outline">
+        @text_Label.Cancel
+        </a>
+        <input type="submit" value="@text_Label.Save" class="@BootstrapCSS.button_primary" />
+    </div>
+</form>
