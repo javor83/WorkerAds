@@ -1,6 +1,6 @@
-﻿using WebApplication6.DatabaseModels;
+﻿using WebApplication6.Models;
 
-namespace WebApplication6.Models
+namespace WebApplication6.AppInterface
 {
     /// <summary>
     /// интерфейс за начините на плащане -  CRUD
@@ -23,6 +23,4 @@ namespace WebApplication6.Models
 
         DTO_WageTax To_DTO_WageTax(int id);
     }
-
-   
 }

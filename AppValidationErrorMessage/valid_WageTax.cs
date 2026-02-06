@@ -1,4 +1,4 @@
-﻿namespace WebApplication6.ValidationErrorMessage
+﻿namespace WebApplication6.AppValidationErrorMessage
 {
     /// <summary>
     /// съощеиня в атрибутите за начина на таксуване - ден/линеен метър и т.н

@@ -1,6 +1,6 @@
-﻿using WebApplication6.DatabaseModels;
+﻿using WebApplication6.Models;
 
-namespace WebApplication6.Models
+namespace WebApplication6.AppInterface
 {
     public interface IServiceWorkHours
     {
@@ -17,6 +17,4 @@ namespace WebApplication6.Models
         Task Delete(int id);
 
     }
-
-
 }

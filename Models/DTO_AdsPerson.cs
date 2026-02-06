@@ -7,7 +7,7 @@ namespace WebApplication6.Models
     /// <summary>
     /// как ще изглежда страницата с обяви
     /// </summary>
-    public class AdsPerson
+    public class DTO_AdsPerson
     {
         public required string FName { get; init; }
         public required string LName { get; init; }

@@ -1,7 +1,6 @@
-﻿using System.Reflection;
-using WebApplication6.DatabaseModels;
+﻿using WebApplication6.Models;
 
-namespace WebApplication6.Models
+namespace WebApplication6.AppInterface
 {
     public interface IServiceWorkCategory
     {
@@ -17,6 +16,4 @@ namespace WebApplication6.Models
 
         DTO_WorkCategory To_DTO_WorkCategory(int id);
     }
-
-  
 }

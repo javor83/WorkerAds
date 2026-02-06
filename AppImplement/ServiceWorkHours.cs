@@ -1,16 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using WebApplication6.AppInterface;
 using WebApplication6.DatabaseModels;
+using WebApplication6.Models;
 
-namespace WebApplication6.Models
+namespace WebApplication6.AppImplement
 {
-    
-
-
-
     public class ServiceWorkHours(MeisterContext _context) : IServiceWorkHours
     {
-        
-       
+
+
         //********************************************************************************
         async Task IServiceWorkHours.Insert(DTO_WorkHour sender)
         {
@@ -67,7 +64,7 @@ namespace WebApplication6.Models
             return result;
         }
 
-        
+
 
 
         //********************************************************************************

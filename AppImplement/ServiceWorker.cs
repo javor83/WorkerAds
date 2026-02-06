@@ -1,13 +1,15 @@
-﻿using WebApplication6.DatabaseModels;
+﻿using WebApplication6.AppInterface;
+using WebApplication6.DatabaseModels;
 using WebApplication6.ExtensionMethods;
+using WebApplication6.Models;
 
-namespace WebApplication6.Models
+namespace WebApplication6.AppImplement
 {
     public class ServiceWorker(MeisterContext _context, IWebHostEnvironment appEnvironment) : IServiceWorker
     {
-       
-     
-       
+
+
+
         //********************************************************************************
         async Task IServiceWorker.Update(DTO_UpdateWorker sender)
         {
@@ -142,7 +144,7 @@ namespace WebApplication6.Models
                             new DTO_WorkerSelect_Capability()
                             {
                                 Price = Convert.ToDecimal(worker.Price),
-                                TaxWage = worker.TaxWage ,
+                                TaxWage = worker.TaxWage,
                                 WorkCategory = worker.WorkCategory
                             }
                         );
@@ -175,6 +177,4 @@ namespace WebApplication6.Models
             return result;
         }
     }
-    
-
 }

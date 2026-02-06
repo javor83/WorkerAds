@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using WebApplication6.AppInterface;
 using WebApplication6.DatabaseModels;
 using WebApplication6.ExtensionMethods;
+using WebApplication6.Models;
 
-namespace WebApplication6.Models
+namespace WebApplication6.AppImplement
 {
-
-
     /// <summary>
     /// имплементация на IServiceCapability
     /// </summary>

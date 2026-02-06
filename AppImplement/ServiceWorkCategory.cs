@@ -1,11 +1,13 @@
-﻿using WebApplication6.DatabaseModels;
+﻿using WebApplication6.AppInterface;
+using WebApplication6.DatabaseModels;
+using WebApplication6.Models;
 
-namespace WebApplication6.Models
+namespace WebApplication6.AppImplement
 {
     public class ServiceWorkCategory(MeisterContext _context) : IServiceWorkCategory
     {
-        
-        
+
+
         //*****************************************************************************************
         async Task IServiceWorkCategory.Delete(int id)
         {

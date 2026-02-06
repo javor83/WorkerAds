@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WebApplication6.DatabaseModels;
+﻿using WebApplication6.Models;
 
-namespace WebApplication6.Models
+namespace WebApplication6.AppInterface
 {
     public interface IServiceWorker
     {
@@ -16,6 +15,4 @@ namespace WebApplication6.Models
         DTO_UpdateWorker Find(int id);
 
     }
-
-   
 }

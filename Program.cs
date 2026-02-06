@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApplication6.Data;
-using WebApplication6.DatabaseModels;
-using WebApplication6.Models;
 using WebApplication6.ExtensionMethods;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,22 +8,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 var connection_meister = builder.Configuration.GetConnectionString("meister");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-
-
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 //-------------------------------
 builder.Services.Include(connection_meister);
 //-------------------------------
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services
+    .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
+//-------------------------------
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

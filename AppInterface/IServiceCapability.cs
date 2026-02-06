@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using WebApplication6.DatabaseModels;
+using WebApplication6.Models;
 
-namespace WebApplication6.Models
+namespace WebApplication6.AppInterface
 {
-
-
     /// <summary>
     /// интерфейс за способностите на човека
     /// </summary>
@@ -30,13 +28,4 @@ namespace WebApplication6.Models
         Task UpdateCapability(DTO_WorkCapability sender);
 
     }
-
-
-
-
-
-
-
-
-
 }

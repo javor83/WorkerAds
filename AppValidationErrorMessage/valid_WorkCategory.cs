@@ -1,4 +1,4 @@
-﻿namespace WebApplication6.ValidationErrorMessage
+﻿namespace WebApplication6.AppValidationErrorMessage
 {
     /// <summary>
     /// съобщенията за грешка при работната категория

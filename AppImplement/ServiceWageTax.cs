@@ -1,14 +1,16 @@
-﻿using WebApplication6.DatabaseModels;
+﻿using WebApplication6.AppInterface;
+using WebApplication6.DatabaseModels;
+using WebApplication6.Models;
 
-namespace WebApplication6.Models
+namespace WebApplication6.AppImplement
 {
     /// <summary>
     /// управление на методите за начини на таксуване
     /// </summary>
     public class ServiceWageTax(MeisterContext _context) : IServiceWageTax
     {
-        
-     
+
+
         //*****************************************************************************************
         IEnumerable<DTO_WageTax> IServiceWageTax.Read()
         {
