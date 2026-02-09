@@ -1,0 +1,21 @@
+﻿
+
+namespace WebApplication6.Data
+{
+    public partial class DeclareWorkerFree
+    {
+        public int Id { get; set; }
+
+        public int? HourId { get; set; }
+
+        public int? WorkerCapabilityId { get; set; }
+
+        public string? AdText { get; set; }
+
+        public DateTime? WatchDate { get; set; }
+
+        public virtual WorkStartHour? Hour { get; set; }
+
+        public virtual WorkerCapability? WorkerCapability { get; set; }
+    }
+}

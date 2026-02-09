@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using WebApplication6.Models;
 using WebApplication6.Captions;
 using WebApplication6.ExtensionMethods;
-using WebApplication6.AppInterface;
+using WebApplication6.Interfaces;
 
 namespace WebApplication6.Controllers
 {
@@ -12,9 +12,9 @@ namespace WebApplication6.Controllers
     /// </summary>
     public class WageTaxController : Controller
     {
-        private readonly IServiceWageTax _wage = null;
+        private readonly IWageTaxService _wage = null;
         //******************************************************************************
-        public WageTaxController(IServiceWageTax wage)
+        public WageTaxController(IWageTaxService wage)
         {
             this._wage = wage;
         }
@@ -43,7 +43,7 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult Create()
         {
-            return View(DTO_WageTax.Empty());
+            return View(WageTax.Empty());
         }
         //******************************************************************************
         /// <summary>
@@ -73,7 +73,7 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(DTO_WageTax sender)
+        public async Task<IActionResult> Create(WageTax sender)
         {
             if (ModelState.IsValid)
             {
@@ -110,7 +110,7 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(DTO_WageTax sender)
+        public async Task<IActionResult> Update(WageTax sender)
         {
             if (ModelState.IsValid)
             {

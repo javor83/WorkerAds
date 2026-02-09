@@ -3,7 +3,7 @@ using System.Reflection;
 using WebApplication6.Models;
 using WebApplication6.Captions;
 using WebApplication6.ExtensionMethods;
-using WebApplication6.AppInterface;
+using WebApplication6.Interfaces;
 
 namespace WebApplication6.Controllers
 {
@@ -13,9 +13,9 @@ namespace WebApplication6.Controllers
     public class WorkHourController : Controller
     {
 
-        private IServiceWorkHours _wh = null;
+        private IWorkHoursIService _wh = null;
         //******************************************************************************
-        public WorkHourController(IServiceWorkHours wh)
+        public WorkHourController(IWorkHoursIService wh)
         {
             this._wh = wh;
         }
@@ -45,7 +45,7 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult Create()
         {
-            DTO_WorkHour data = DTO_WorkHour.Empty();
+            WorkHour data = WorkHour.Empty();
 
             return View(data);
         }
@@ -60,7 +60,7 @@ namespace WebApplication6.Controllers
             bool ok = this._wh.Exists(id);
             if (ok)
             {
-                DTO_WorkHour key = this._wh.To_DTO_WorkHour(id);
+                WorkHour key = this._wh.To_DTO_WorkHour(id);
                 return View(key);
             }
             else
@@ -74,7 +74,7 @@ namespace WebApplication6.Controllers
         #region post query
         [HttpPost, ValidateAntiForgeryToken]
        
-        public async Task<IActionResult> Edit(DTO_WorkHour sender)
+        public async Task<IActionResult> Edit(WorkHour sender)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace WebApplication6.Controllers
 
         //******************************************************************************
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(DTO_WorkHour sender)
+        public async Task<IActionResult> Create(WorkHour sender)
         {
             if (ModelState.IsValid)
             {

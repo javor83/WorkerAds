@@ -3,17 +3,17 @@ using System.Threading.Tasks;
 using WebApplication6.Models;
 using WebApplication6.Captions;
 using WebApplication6.ExtensionMethods;
-using WebApplication6.AppInterface;
+using WebApplication6.Interfaces;
 
 namespace WebApplication6.Controllers
 {
     public class WorkerController : Controller
     {
-        private IServiceWorker _worker = null;
-        private IServiceCapability _service_capability = null;
+        private IWorkerService _worker = null;
+        private ICapabilityService _service_capability = null;
 
         //**************************************************************************
-        public WorkerController(IServiceWorker sw, IServiceCapability service_capability)
+        public WorkerController(IWorkerService sw, ICapabilityService service_capability)
         {
             this._worker = sw;
             this._service_capability = service_capability;
@@ -43,9 +43,9 @@ namespace WebApplication6.Controllers
                 {
                     ViewData[text_Label.SuccessApply] = TempData[text_Label.TempData_ok] as string;
                 }
-                IEnumerable<DTO_SelectWorkCapability> list = this._service_capability.CapalityList(id);
+                IEnumerable<SelectWorkCapability> list = this._service_capability.CapalityList(id);
 
-                DTO_CapabilityDetails details = new DTO_CapabilityDetails()
+                CapabilityDetails details = new CapabilityDetails()
                 {
                     Actions = list,
                     WorkerName = worker_name,
@@ -65,7 +65,7 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult EditCapability(int capability_id)
         {
-            DTO_WorkCapability item = this._service_capability.EditCapability(capability_id);
+            WorkCapability item = this._service_capability.EditCapability(capability_id);
 
             if (item == null)
             {
@@ -97,7 +97,7 @@ namespace WebApplication6.Controllers
 
                
 
-                DTO_WorkCapability item = new DTO_WorkCapability()
+                WorkCapability item = new WorkCapability()
                 {
                     WorkerID = worker_id,
                     WorkerName = worker_name,
@@ -129,7 +129,7 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditCapability(DTO_WorkCapability sender)
+        public async Task<IActionResult> EditCapability(WorkCapability sender)
         {
             sender.ListTaxWage = this._service_capability.ComboWageTax(this._service_capability.GetWageTax());
             sender.ListCategory = this._service_capability.ComboCategory(this._service_capability.GetCategory());
@@ -182,7 +182,7 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> EmptyCapability(DTO_WorkCapability sender)
+        public async Task<IActionResult> EmptyCapability(WorkCapability sender)
         {
             
 
@@ -234,7 +234,7 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult Create()
         {
-            DTO_InsertWorker item = DTO_InsertWorker.Empty();
+            InsertWorker item = InsertWorker.Empty();
             return View(item);
         }
         //**************************************************************************
@@ -245,7 +245,7 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult Edit(int id)
         {
-            DTO_UpdateWorker item = this._worker.Find(id);
+            UpdateWorker item = this._worker.Find(id);
             if (item != null)
             {
                 return View(item);
@@ -268,7 +268,7 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(DTO_UpdateWorker sender)
+        public async Task<IActionResult> Edit(UpdateWorker sender)
         {
             
             if (ModelState.IsValid)
@@ -309,7 +309,7 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(DTO_InsertWorker sender)
+        public async Task<IActionResult> Create(InsertWorker sender)
         {
 
             if (ModelState.IsValid)

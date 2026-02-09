@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using WebApplication6.Models;
 using WebApplication6.Captions;
 using WebApplication6.ExtensionMethods;
-using WebApplication6.AppInterface;
+using WebApplication6.Interfaces;
 
 
 namespace WebApplication6.Controllers
@@ -13,9 +13,9 @@ namespace WebApplication6.Controllers
     /// </summary>
     public class WorkCategoryController : Controller
     {
-        private IServiceWorkCategory _category = null;
+        private IWorkCategoryService _category = null;
         //*****************************************************************************
-        public WorkCategoryController(IServiceWorkCategory ct)
+        public WorkCategoryController(IWorkCategoryService ct)
         {
             this._category = ct;//ок
         }
@@ -41,7 +41,7 @@ namespace WebApplication6.Controllers
 
             if (this._category.Exists(id))
             {
-                DTO_WorkCategory ct = this._category.To_DTO_WorkCategory(id);
+                TaxCategory ct = this._category.To_DTO_WorkCategory(id);
                 return View(ct);
             }
             else
@@ -51,7 +51,7 @@ namespace WebApplication6.Controllers
         //*****************************************************************************
         public IActionResult Create()
         {
-            return View(DTO_WorkCategory.Empty());
+            return View(TaxCategory.Empty());
         }
         #endregion
 
@@ -67,7 +67,7 @@ namespace WebApplication6.Controllers
         }
         //*****************************************************************************
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(DTO_WorkCategory sender)
+        public async Task<IActionResult> Edit(TaxCategory sender)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace WebApplication6.Controllers
         }
         //*****************************************************************************
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(DTO_WorkCategory sender)
+        public async Task<IActionResult> Create(TaxCategory sender)
         {
             if (ModelState.IsValid)
             {

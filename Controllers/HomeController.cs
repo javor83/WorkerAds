@@ -1,18 +1,18 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication6.DatabaseModels;
+using WebApplication6.Data;
 using WebApplication6.Models;
-using WebApplication6.AppInterface;
+using WebApplication6.Interfaces;
 
 namespace WebApplication6.Controllers
 {
     public class HomeController : Controller
     {
      
-        private IServiceAdsPerson _ads = null;
+        private IAdsPersonService _ads = null;
        
         //******************************************************************************************
-        public HomeController(IServiceAdsPerson ads)
+        public HomeController(IAdsPersonService ads)
         {
             this._ads = ads;
            

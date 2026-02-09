@@ -1,7 +1,6 @@
-﻿using WebApplication6.AppImplement;
-using WebApplication6.AppInterface;
-using WebApplication6.DatabaseModels;
-using WebApplication6.Models;
+﻿using WebApplication6.Services;
+using WebApplication6.Interfaces;
+using WebApplication6.Data;
 
 namespace WebApplication6.ExtensionMethods
 {
@@ -17,12 +16,12 @@ namespace WebApplication6.ExtensionMethods
         public static void Include(this IServiceCollection sender, string connection_meister)
         {
             sender.AddSqlServer<MeisterContext>(connection_meister);
-            sender.AddTransient<IServiceWageTax, ServiceWageTax>();
-            sender.AddTransient<IServiceWorkCategory, ServiceWorkCategory>();
-            sender.AddTransient<IServiceWorkHours, ServiceWorkHours>();
-            sender.AddTransient<IServiceWorker, ServiceWorker>();
-            sender.AddTransient<IServiceAdsPerson, ServiceAdsPerson>();
-            sender.AddTransient<IServiceCapability, ServiceCapability>();
+            sender.AddTransient<IWageTaxService, ServiceWageTax>();
+            sender.AddTransient<IWorkCategoryService, ServiceWorkCategory>();
+            sender.AddTransient<IWorkHoursIService, ServiceWorkHours>();
+            sender.AddTransient<IWorkerService, ServiceWorker>();
+            sender.AddTransient<IAdsPersonService, ServiceAdsPerson>();
+            sender.AddTransient<ICapabilityService, ServiceCapability>();
         }
 
 
