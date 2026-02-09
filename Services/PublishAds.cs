@@ -7,11 +7,12 @@ namespace WebApplication6.Services
     public class PublishAds : IPublishAdsService
     {
         private readonly MeisterContext _context = null;
+        //***************************************************************************
         public PublishAds(MeisterContext cn)
         {
             this._context = cn;
         }
-
+        //***************************************************************************
         IEnumerable<SelectPublishAdsItem> IPublishAdsService.AdsForWorker(int worker_id)
         {
             IEnumerable<SelectPublishAdsItem> query = from worker in this._context.Workers
@@ -29,5 +30,6 @@ namespace WebApplication6.Services
 
 
         }
+        //***************************************************************************
     }
 }
