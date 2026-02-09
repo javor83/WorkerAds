@@ -30,7 +30,7 @@ namespace WebApplication6.Models
         /// <returns></returns>
         public string Print()
         {
-            return $"{this.WorkCategory} - {this.Price.ToMoney()} / {this.TaxWage}";
+            return this.WorkCategory.IncludeTaxPrint(this.TaxWage,this.Price);
         }
         //************************************************************************************
         public WorkerSelect_Capability()

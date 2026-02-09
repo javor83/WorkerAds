@@ -22,6 +22,8 @@ namespace WebApplication6.ExtensionMethods
             sender.AddTransient<IWorkerService, ServiceWorker>();
             sender.AddTransient<IAdsPersonService, ServiceAdsPerson>();
             sender.AddTransient<ICapabilityService, ServiceCapability>();
+
+            sender.AddTransient<IPublishAdsService, PublishAds>();
         }
 
 

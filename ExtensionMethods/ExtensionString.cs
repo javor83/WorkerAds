@@ -66,6 +66,12 @@
         }
 
         //**************************************************************************
+        public static string IncludeTaxPrint(this string category_name, string tax_Wage, decimal money)
+        {
+            return $"{category_name} - {money.ToMoney()} / {tax_Wage}";
+        }
+
+        //**************************************************************************
         /// <summary>
         /// снимката на работника в изгледа
         /// </summary>
