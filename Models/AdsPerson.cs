@@ -58,7 +58,9 @@ namespace WebApplication6.Models
         /// <returns></returns>
         public string EveryDay()
         {
-            return $"{this.DayName} - {this.Hour:D2}:{this.Minute:D2}";
+
+            return $"{this.DayName} - {this.Hour.PrintableHour(this.Minute)}";
+                
         }
         //********************************************************************************************
     }

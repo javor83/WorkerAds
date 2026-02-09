@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WebApplication6.Captions;
 using WebApplication6.AppValidationErrorMessage;
+using WebApplication6.Captions;
+using WebApplication6.ExtensionMethods;
 
 namespace WebApplication6.Models
 {
@@ -27,7 +28,8 @@ namespace WebApplication6.Models
         //***********************************************************************
         public string Printable()
         {
-            return $"{this.Hour:D2}:{this.Minute:D2}";
+
+            return this.Hour.PrintableHour(this.Minute);
         }
         //***********************************************************************
         public static WorkHour Empty()

@@ -6,7 +6,9 @@ namespace WebApplication6.Interfaces
 {
     public interface IPublishAdsService
     {
-        IEnumerable<SelectPublishAdsItem> AdsForWorker(int worker_id);
+        WorkerAdsList AdsForWorker(int worker_id);
+
+        bool FindWorker(int worker_id);
 
     }
 

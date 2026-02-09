@@ -11,13 +11,50 @@ namespace WebApplication6.Controllers
     {
         private IWorkerService _worker = null;
         private ICapabilityService _service_capability = null;
-
+        private IPublishAdsService _published_ads = null;
         //**************************************************************************
-        public WorkerController(IWorkerService sw, ICapabilityService service_capability)
+        public WorkerController(
+            IWorkerService service_worker,
+            ICapabilityService service_capability,
+            IPublishAdsService service_publish
+            )
         {
-            this._worker = sw;
+            this._worker = service_worker;
+            this._published_ads = service_publish;
             this._service_capability = service_capability;
         }
+
+        #region GET ADS
+        //**************************************************************************
+        /// <summary>
+        /// какви са обявите от този работник
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IActionResult Ads(int id)
+        {
+            var ok = this._published_ads.FindWorker(id);
+            if (ok)
+            {
+                var list = this._published_ads.AdsForWorker(id);
+                return View(list);
+            }
+            else
+                return NotFound();
+        }
+        //**************************************************************************
+        /// <summary>
+        /// нова обява за този работник
+        /// </summary>
+        /// <param name="worker_id"></param>
+        /// <returns></returns>
+        public IActionResult EmptyAds(int worker_id)
+        {
+            var Empty = InsertAdverttisementToWorker.Empty(worker_id);
+            return View(Empty);
+        }
+        //**************************************************************************
+        #endregion
 
         #region GET capability 
         //**************************************************************************
@@ -227,6 +264,8 @@ namespace WebApplication6.Controllers
 
             return View(this._worker.Read());
         }
+        
+
         //**************************************************************************
         /// <summary>
         /// нов работник

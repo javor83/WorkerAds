@@ -6,7 +6,7 @@ using WebApplication6.Data;
 
 namespace WebApplication6.Services
 {
-    public class ServiceAdsPerson(MeisterContext _context) : IAdsPersonService
+    public class AdsPersonService(MeisterContext _context) : IAdsPersonService
     {
 
 

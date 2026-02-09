@@ -24,6 +24,8 @@
         public const string InsertNewCapability = "Добави способност";
         public const string InsertCapabilityToPerson = "Добави способност за {0}";
         public const string EditCapabilityToPerson = "Редактирай способност за {0}";
+        public const string AdsOf = "Публикувани обяви от {0}";
+        public const string Ads = "Обяви";
 
 
 

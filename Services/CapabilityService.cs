@@ -13,7 +13,7 @@ namespace WebApplication6.Services
     /// <param name="_service_category"></param>
     /// <param name="_service_wage_tax"></param>
     /// <param name="_context"></param>
-    public class ServiceCapability(
+    public class CapabilityService(
        IWorkCategoryService _service_category,
        IWageTaxService _service_wage_tax,
        MeisterContext _context) : ICapabilityService

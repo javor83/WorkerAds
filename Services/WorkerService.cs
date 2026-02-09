@@ -6,7 +6,7 @@ using WebApplication6.Data;
 
 namespace WebApplication6.Services
 {
-    public class ServiceWorker(MeisterContext _context, IWebHostEnvironment appEnvironment) : IWorkerService
+    public class WorkerService(MeisterContext _context, IWebHostEnvironment appEnvironment) : IWorkerService
     {
 
 

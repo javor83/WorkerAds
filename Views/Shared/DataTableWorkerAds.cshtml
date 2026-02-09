@@ -1,0 +1,26 @@
+﻿@model WorkerAdsList
+<vc:manager-subtitle caption="@string.Format(text_Worker.AdsOf,Model.WorkerFullName)"></vc:manager-subtitle>
+
+    @foreach (var index in Model.AdvList)
+    {
+        <div class="card mt-2">
+            <div class="card-header"><b>@index.PrintCategoryTax()</b> </div>
+            <div class="card-body">@index.AdvText</div>
+            <div class="card-footer">@index.AdsDate()</div>
+        </div>
+    }
+
+    <div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
+        <a asp-controller="@controller_navigate.Worker"
+        asp-action="@controller_navigate.Worker_Index"
+        class="@BootstrapCSS.button_outline">
+        @text_Worker.BackToWorker
+        </a>
+
+    <a asp-controller="@controller_navigate.Worker"
+       asp-action="@controller_navigate.Worker_AdsEmpty"
+       class="@BootstrapCSS.button_primary">
+        @text_Label.Create
+    </a>
+    </div>
+

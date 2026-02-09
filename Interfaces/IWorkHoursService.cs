@@ -2,7 +2,7 @@
 
 namespace WebApplication6.Interfaces
 {
-    public interface IWorkHoursIService
+    public interface IWorkHoursService
     {
         IEnumerable<WorkHour> Read();
 

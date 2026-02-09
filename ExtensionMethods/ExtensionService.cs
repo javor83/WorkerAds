@@ -16,14 +16,14 @@ namespace WebApplication6.ExtensionMethods
         public static void Include(this IServiceCollection sender, string connection_meister)
         {
             sender.AddSqlServer<MeisterContext>(connection_meister);
-            sender.AddTransient<IWageTaxService, ServiceWageTax>();
-            sender.AddTransient<IWorkCategoryService, ServiceWorkCategory>();
-            sender.AddTransient<IWorkHoursIService, ServiceWorkHours>();
-            sender.AddTransient<IWorkerService, ServiceWorker>();
-            sender.AddTransient<IAdsPersonService, ServiceAdsPerson>();
-            sender.AddTransient<ICapabilityService, ServiceCapability>();
+            sender.AddTransient<IWageTaxService, WageTaxService>();
+            sender.AddTransient<IWorkCategoryService, WorkCategoryService>();
+            sender.AddTransient<IWorkHoursService, WorkHoursService>();
+            sender.AddTransient<IWorkerService, WorkerService>();
+            sender.AddTransient<IAdsPersonService, AdsPersonService>();
+            sender.AddTransient<ICapabilityService, CapabilityService>();
 
-            sender.AddTransient<IPublishAdsService, PublishAds>();
+            sender.AddTransient<IPublishAdsService, PublishAdsService>();
         }
 
 

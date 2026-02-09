@@ -22,8 +22,14 @@ namespace WebApplication6.Models
 
         public required decimal Money { get; set; }
 
+        
+        //********************************************************************************
+        public string AdsDate()
+        {
+            return $"{this.StartDay.OnlyDatePart()} - {this.Hour.PrintableHour(this.Minute)}";   
+        }
 
-
+        //********************************************************************************
 
         public string PrintCategoryTax()
         {
@@ -31,8 +37,8 @@ namespace WebApplication6.Models
             return this.CategoryName.IncludeTaxPrint(this.TaxWage, this.Money);
 
         }
-
-
+       
+        //********************************************************************************
 
 
     }

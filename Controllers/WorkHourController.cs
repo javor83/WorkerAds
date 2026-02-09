@@ -13,9 +13,9 @@ namespace WebApplication6.Controllers
     public class WorkHourController : Controller
     {
 
-        private IWorkHoursIService _wh = null;
+        private IWorkHoursService _wh = null;
         //******************************************************************************
-        public WorkHourController(IWorkHoursIService wh)
+        public WorkHourController(IWorkHoursService wh)
         {
             this._wh = wh;
         }

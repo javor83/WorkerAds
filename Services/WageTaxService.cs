@@ -8,7 +8,7 @@ namespace WebApplication6.Services
     /// <summary>
     /// управление на методите за начини на таксуване
     /// </summary>
-    public class ServiceWageTax(MeisterContext _context) : IWageTaxService
+    public class WageTaxService(MeisterContext _context) : IWageTaxService
     {
 
 

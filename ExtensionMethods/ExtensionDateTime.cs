@@ -15,6 +15,9 @@
             return Convert.ToDateTime(sender).ToString("dd.MMMM.yyyy");
         }
 
-
+        public static string OnlyDatePart(this DateTime sender)
+        {
+            return Convert.ToDateTime(sender).ToString("dd.MMMM.yyyy");
+        }
     }
 }

@@ -4,12 +4,12 @@ using WebApplication6.Models;
 
 namespace WebApplication6.Services
 {
-    public class ServiceWorkHours(MeisterContext _context) : IWorkHoursIService
+    public class WorkHoursService(MeisterContext _context) : IWorkHoursService
     {
 
 
         //********************************************************************************
-        async Task IWorkHoursIService.Insert(WorkHour sender)
+        async Task IWorkHoursService.Insert(WorkHour sender)
         {
             WorkStartHour item = new WorkStartHour()
             {
@@ -21,7 +21,7 @@ namespace WebApplication6.Services
         }
 
         //********************************************************************************
-        async Task IWorkHoursIService.Update(WorkHour sender)
+        async Task IWorkHoursService.Update(WorkHour sender)
         {
             var query = _context.WorkStartHours.Where(x => x.Id == sender.ID).First();
 
@@ -30,9 +30,9 @@ namespace WebApplication6.Services
             await _context.SaveChangesAsync();
         }
         //********************************************************************************
-        async Task IWorkHoursIService.Delete(int id)
+        async Task IWorkHoursService.Delete(int id)
         {
-            bool ok = (this as IWorkHoursIService).Exists(id);
+            bool ok = (this as IWorkHoursService).Exists(id);
             if (ok)
             {
                 var query = _context.WorkStartHours.Where(x => x.Id == id).First();
@@ -42,14 +42,14 @@ namespace WebApplication6.Services
         }
 
         //********************************************************************************
-        bool IWorkHoursIService.Exists(int id)
+        bool IWorkHoursService.Exists(int id)
         {
             bool query = _context.WorkStartHours.Where(x => x.Id == id).Any();
             return query;
         }
 
         //********************************************************************************
-        WorkHour IWorkHoursIService.To_DTO_WorkHour(int id)
+        WorkHour IWorkHoursService.To_DTO_WorkHour(int id)
         {
             WorkHour result = null;
 
@@ -68,7 +68,7 @@ namespace WebApplication6.Services
 
 
         //********************************************************************************
-        IEnumerable<WorkHour> IWorkHoursIService.Read()
+        IEnumerable<WorkHour> IWorkHoursService.Read()
         {
             var query = _context.WorkStartHours.
                 OrderBy(x => x.Shour).

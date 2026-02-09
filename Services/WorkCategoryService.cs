@@ -4,7 +4,7 @@ using WebApplication6.Models;
 
 namespace WebApplication6.Services
 {
-    public class ServiceWorkCategory(MeisterContext _context) : IWorkCategoryService
+    public class WorkCategoryService(MeisterContext _context) : IWorkCategoryService
     {
 
 
