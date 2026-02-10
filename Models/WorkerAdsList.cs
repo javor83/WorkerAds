@@ -1,4 +1,6 @@
-﻿namespace WebApplication6.Models
+﻿using Microsoft.AspNetCore.Routing.Constraints;
+
+namespace WebApplication6.Models
 {
     /// <summary>
     /// име на работника 
@@ -7,9 +9,11 @@
     /// </summary>
     public class WorkerAdsList
     {
-        public string WorkerFullName { get; set; }
+        public required string WorkerFullName { get; set; }
 
-        public IEnumerable<SelectPublishAdsItem> AdvList { get; set; }
+        public required int WorkerID { get; set; }
+
+        public required IEnumerable<SelectPublishAdsItem> AdvList { get; set; }
 
     }
 }

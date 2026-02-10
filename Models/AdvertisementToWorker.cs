@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+using WebApplication6.ExtensionMethods;
 
 namespace WebApplication6.Models
 {
@@ -21,6 +23,34 @@ namespace WebApplication6.Models
         //списък с часовете
         [Required]
         public required IEnumerable<WorkHour> HourList { get; set; }
+
+
+        public IEnumerable<SelectListItem> ComboHours()
+        {
+            var query = from x in this.HourList
+                        select
+                         new SelectListItem()
+                         {
+                             Text = x.Hour.PrintableHour(x.Minute),
+                             Value = x.ID.ToString()
+                         };
+
+            return query;
+        }
+
+        public IEnumerable<SelectListItem> ComboCapability()
+        {
+            var query = from x in this.CapalityList
+                        select
+                         new SelectListItem()
+                         {
+                             Text = x.Category.IncludeTaxPrint(x.TaxWage,Convert.ToDecimal(x.Price)),
+                             Value = x.ID.ToString()
+                         };
+
+            return query;
+        }
+
         //**************************************************************************
         [Required]
         public required string? AdvText { get; set; }
@@ -36,12 +66,16 @@ namespace WebApplication6.Models
         //**************************************************************************
 
 
-        public static AdvertisementToWorker Empty(int worker_id)
+        public required string WorkerFullName { get; set; }
+        //**************************************************************************
+
+
+        public static AdvertisementToWorker Empty(int id,string worker_name)
         {
-            AdvertisementToWorker result = new AdvertisementToWorker()
+            AdvertisementToWorker Empty = new AdvertisementToWorker()
             {
-                ID = worker_id,
-                WorkerID = worker_id,
+                ID = null,
+                WorkerID = id,
 
                 HourID = null,
                 HourList = null,
@@ -50,13 +84,19 @@ namespace WebApplication6.Models
                 WatchDate = DateTime.Today,
 
                 CapabilityID = null,
-                CapalityList = null
+                CapalityList = null,
+                WorkerFullName = worker_name,
+
 
 
 
             };
-            return result;
+            return Empty;
         }
+
+        
+        //**************************************************************************
+       
 
     }
 }

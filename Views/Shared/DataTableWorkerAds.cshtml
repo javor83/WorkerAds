@@ -19,7 +19,8 @@
 
     <a asp-controller="@controller_navigate.Worker"
        asp-action="@controller_navigate.Worker_AdsEmpty"
-       class="@BootstrapCSS.button_primary">
+       class="@BootstrapCSS.button_primary" asp-route-id="@Model.WorkerID"
+        >
         @text_Label.Create
     </a>
     </div>

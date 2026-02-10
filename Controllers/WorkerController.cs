@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebApplication6.Models;
 using WebApplication6.Captions;
 using WebApplication6.ExtensionMethods;
 using WebApplication6.Interfaces;
+using WebApplication6.Models;
 
 namespace WebApplication6.Controllers
 {
@@ -11,7 +12,8 @@ namespace WebApplication6.Controllers
         (
             IWorkerService service_worker,
             ICapabilityService service_capability,
-            IPublishAdsService service_publish
+            IPublishAdsService service_publish,
+            IWorkHoursService service_hours
         ) : Controller
     {
        
@@ -42,10 +44,23 @@ namespace WebApplication6.Controllers
         /// </summary>
         /// <param name="worker_id"></param>
         /// <returns></returns>
-        public IActionResult EmptyAds(int worker_id)
+        public IActionResult EmptyAds(int id)
         {
-            var Empty = AdvertisementToWorker.Empty(worker_id);
-            return View(Empty);
+            string worker_name = service_capability.WorkerName(id);
+            if (worker_name == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                AdvertisementToWorker Empty = AdvertisementToWorker.Empty(id, worker_name);
+                Empty.HourList = service_hours.Read();
+                Empty.CapalityList = service_capability.CapalityList(id);
+                return View(Empty);
+            }
+
+
+               
         }
         //**************************************************************************
         #endregion

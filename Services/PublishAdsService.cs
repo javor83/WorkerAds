@@ -83,7 +83,8 @@ namespace WebApplication6.Services
             var result = new WorkerAdsList()
             {
                 AdvList = list,
-                WorkerFullName = full_name
+                WorkerFullName = full_name,
+                WorkerID = worker_id
             };
 
 
