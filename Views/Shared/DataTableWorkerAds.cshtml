@@ -5,7 +5,12 @@
     {
         <div class="card mt-2">
             <div class="card-header"><b>@index.PrintCategoryTax()</b> </div>
-            <div class="card-body">@index.AdvText</div>
+            <div class="card-body">
+                @index.AdvText
+                <form method="post" asp-antiforgery="true"
+                asp-controller="@controller_navigate.Worker"
+                asp-action=""
+            </div>
             <div class="card-footer">@index.AdsDate()</div>
         </div>
     }
