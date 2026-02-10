@@ -7,22 +7,15 @@ using WebApplication6.Interfaces;
 
 namespace WebApplication6.Controllers
 {
-    public class WorkerController : Controller
-    {
-        private IWorkerService _worker = null;
-        private ICapabilityService _service_capability = null;
-        private IPublishAdsService _published_ads = null;
-        //**************************************************************************
-        public WorkerController(
+    public class WorkerController
+        (
             IWorkerService service_worker,
             ICapabilityService service_capability,
             IPublishAdsService service_publish
-            )
-        {
-            this._worker = service_worker;
-            this._published_ads = service_publish;
-            this._service_capability = service_capability;
-        }
+        ) : Controller
+    {
+       
+        
 
         #region GET ADS
         //**************************************************************************
@@ -33,10 +26,11 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult Ads(int id)
         {
-            var ok = this._published_ads.FindWorker(id);
+            
+            var ok = service_publish.FindWorker(id);
             if (ok)
             {
-                var list = this._published_ads.AdsForWorker(id);
+                var list = service_publish.AdsForWorker(id);
                 return View(list);
             }
             else
@@ -66,8 +60,8 @@ namespace WebApplication6.Controllers
         public IActionResult Capability(int id)
         {
 
-
-            string worker_name = this._service_capability.WorkerName(id);
+            
+            string worker_name = service_capability.WorkerName(id);
             if (worker_name == null)
             {
                 return NotFound();
@@ -80,7 +74,7 @@ namespace WebApplication6.Controllers
                 {
                     ViewData[text_Label.SuccessApply] = TempData[text_Label.TempData_ok] as string;
                 }
-                IEnumerable<SelectWorkCapability> list = this._service_capability.CapalityList(id);
+                IEnumerable<SelectWorkCapability> list = service_capability.CapalityList(id);
 
                 CapabilityDetails details = new CapabilityDetails()
                 {
@@ -102,7 +96,7 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult EditCapability(int capability_id)
         {
-            WorkCapability item = this._service_capability.EditCapability(capability_id);
+            WorkCapability item = service_capability.EditCapability(capability_id);
 
             if (item == null)
             {
@@ -124,7 +118,7 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult EmptyCapability(int worker_id)
         {
-            string worker_name = this._service_capability.WorkerName(worker_id);
+            string worker_name = service_capability.WorkerName(worker_id);
             if (worker_name == null)
             {
                 return NotFound();
@@ -142,8 +136,8 @@ namespace WebApplication6.Controllers
                     Price = 0,
                     CategoryID = null,
                     TaxWageID = null,
-                    ListTaxWage = this._service_capability.ComboWageTax(this._service_capability.GetWageTax()),
-                    ListCategory = this._service_capability.ComboCategory(this._service_capability.GetCategory())
+                    ListTaxWage = service_capability.ComboWageTax(service_capability.GetWageTax()),
+                    ListCategory = service_capability.ComboCategory(service_capability.GetCategory())
 
                 };
                 
@@ -168,13 +162,13 @@ namespace WebApplication6.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> EditCapability(WorkCapability sender)
         {
-            sender.ListTaxWage = this._service_capability.ComboWageTax(this._service_capability.GetWageTax());
-            sender.ListCategory = this._service_capability.ComboCategory(this._service_capability.GetCategory());
+            sender.ListTaxWage = service_capability.ComboWageTax(service_capability.GetWageTax());
+            sender.ListCategory = service_capability.ComboCategory(service_capability.GetCategory());
 
 
             if (ModelState.IsValid)
             {
-                await this._service_capability.UpdateCapability(sender);
+                await service_capability.UpdateCapability(sender);
 
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
                 return RedirectToAction
@@ -202,7 +196,7 @@ namespace WebApplication6.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteCapability(int id,int worker_id)
         {
-            await this._service_capability.DeleteCapabilty(id);
+            await service_capability.DeleteCapabilty(id);
             return RedirectToAction
                    (
                        controller_navigate.Worker_Capability,
@@ -223,12 +217,12 @@ namespace WebApplication6.Controllers
         {
             
 
-            sender.ListTaxWage = this._service_capability.ComboWageTax(this._service_capability.GetWageTax());
-            sender.ListCategory = this._service_capability.ComboCategory(this._service_capability.GetCategory());
+            sender.ListTaxWage = service_capability.ComboWageTax(service_capability.GetWageTax());
+            sender.ListCategory = service_capability.ComboCategory(service_capability.GetCategory());
 
             if (ModelState.IsValid)
             {
-                await this._service_capability.InsertCapability(sender);
+                await service_capability.InsertCapability(sender);
 
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
 
@@ -262,7 +256,7 @@ namespace WebApplication6.Controllers
                 ViewData[text_Label.SuccessApply] = TempData[text_Label.TempData_ok] as string;
             }
 
-            return View(this._worker.Read());
+            return View(service_worker.Read());
         }
         
 
@@ -284,7 +278,8 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult Edit(int id)
         {
-            UpdateWorker item = this._worker.Find(id);
+            
+            UpdateWorker item = service_worker.Find(id);
             if (item != null)
             {
                 return View(item);
@@ -312,7 +307,7 @@ namespace WebApplication6.Controllers
             
             if (ModelState.IsValid)
             {
-                await this._worker.Update(sender);
+                await service_worker.Update(sender);
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
                 return RedirectToAction(controller_navigate.Worker_Index, controller_navigate.Worker);
             }
@@ -332,7 +327,7 @@ namespace WebApplication6.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var x = await this._worker.Delete(id);
+            var x = await service_worker.Delete(id);
             if (x)
             {
                 return RedirectToAction(controller_navigate.Worker_Index, controller_navigate.Worker);
@@ -353,7 +348,7 @@ namespace WebApplication6.Controllers
 
             if (ModelState.IsValid)
             {
-                await this._worker.Insert(sender);
+                await service_worker.Insert(sender);
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
                 return RedirectToAction(controller_navigate.Worker_Index, controller_navigate.Worker);
             }
