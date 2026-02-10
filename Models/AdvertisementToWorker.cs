@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using WebApplication6.AppValidationErrorMessage;
+using WebApplication6.Captions;
 using WebApplication6.ExtensionMethods;
 
 namespace WebApplication6.Models
@@ -9,67 +11,44 @@ namespace WebApplication6.Models
     /// </summary>
     public class AdvertisementToWorker
     {
+       
         //**************************************************************************
-        public required int? ID { get; set;}
+        [Required(AllowEmptyStrings =false,ErrorMessage = valid_WorkerAd.Req_Field)]
+        [Display(Name = text_WorkerAd.StartHour)]
+        //в колко часа
+        public required int? HourID { get; set; }
+        //**************************************************************************
+        [Required(AllowEmptyStrings = false, ErrorMessage = valid_WorkerAd.Req_Field)]
+        [Display(Name = text_WorkerAd.AdvText)]
+        public required string? AdvText { get; set; }
+        //**************************************************************************
+        [Required(AllowEmptyStrings = false, ErrorMessage = valid_WorkerAd.Req_Field)]
+        [Display(Name = text_WorkerAd.StartDay)]
+        public DateTime? WatchDate { get; set; }
+        //**************************************************************************
+        [Required(AllowEmptyStrings = false, ErrorMessage = valid_WorkerAd.Req_Field)]
+        [Display(Name = text_WorkerAd.WorkCategory)]
+        public required int? CapabilityID { get; set; }
+
+
+
+
+        //**************************************************************************
+        public required int? ID { get; set; }
         //**************************************************************************
         //за кого
         [Required]
         public required int? WorkerID { get; set; }
         //**************************************************************************
-        [Required]
-        //в колко часа
-        public required int? HourID { get; set; }
-        //**************************************************************************
         //списък с часовете
-        [Required]
-        public required IEnumerable<WorkHour> HourList { get; set; }
-
-
-        public IEnumerable<SelectListItem> ComboHours()
-        {
-            var query = from x in this.HourList
-                        select
-                         new SelectListItem()
-                         {
-                             Text = x.Hour.PrintableHour(x.Minute),
-                             Value = x.ID.ToString()
-                         };
-
-            return query;
-        }
-
-        public IEnumerable<SelectListItem> ComboCapability()
-        {
-            var query = from x in this.CapalityList
-                        select
-                         new SelectListItem()
-                         {
-                             Text = x.Category.IncludeTaxPrint(x.TaxWage,Convert.ToDecimal(x.Price)),
-                             Value = x.ID.ToString()
-                         };
-
-            return query;
-        }
-
+        
+        public required IEnumerable<WorkHour>? HourList { get; set; }
         //**************************************************************************
-        [Required]
-        public required string? AdvText { get; set; }
+        
+        public required IEnumerable<SelectWorkCapability>? CapalityList { get; set; }
         //**************************************************************************
-        [Required]
-        public DateTime? WatchDate { get; set; }
-        //**************************************************************************
-        [Required]
-        public required int? CapabilityID { get; set; }
-        //**************************************************************************
-        [Required]
-        public required IEnumerable<SelectWorkCapability> CapalityList { get; set; }
-        //**************************************************************************
-
-
         public required string WorkerFullName { get; set; }
         //**************************************************************************
-
-
         public static AdvertisementToWorker Empty(int id,string worker_name)
         {
             AdvertisementToWorker Empty = new AdvertisementToWorker()
@@ -93,10 +72,35 @@ namespace WebApplication6.Models
             };
             return Empty;
         }
-
-        
         //**************************************************************************
-       
+        public IEnumerable<SelectListItem> ComboHours()
+        {
+            var query = from x in this.HourList
+                        select
+                         new SelectListItem()
+                         {
+                             Text = x.Hour.PrintableHour(x.Minute),
+                             Value = x.ID.ToString()
+                         };
+
+            return query;
+        }
+        //**************************************************************************
+        public IEnumerable<SelectListItem> ComboCapability()
+        {
+            var query = from x in this.CapalityList
+                        select
+                         new SelectListItem()
+                         {
+                             Text = x.Category.IncludeTaxPrint(x.TaxWage, Convert.ToDecimal(x.Price)),
+                             Value = x.ID.ToString()
+                         };
+
+            return query;
+        }
+
+        //**************************************************************************
+
 
     }
 }

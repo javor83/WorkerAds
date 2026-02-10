@@ -63,6 +63,31 @@ namespace WebApplication6.Controllers
                
         }
         //**************************************************************************
+
+        [HttpPost,ValidateAntiForgeryToken]
+        public async Task<IActionResult> EmptyAds(AdvertisementToWorker sender)
+        {
+            sender.HourList = service_hours.Read();
+            sender.CapalityList = service_capability.CapalityList(sender.WorkerID.Value);
+
+            if (ModelState.IsValid)
+            {
+                await service_publish.Insert(sender);
+                return RedirectToAction
+                    (
+                        controller_navigate.Worker_Ads,
+                        controller_navigate.Worker,
+                        new { id = sender.WorkerID }
+                    );
+            }
+            else
+            {
+                return View(sender);
+            }
+        }
+
+
+        //**************************************************************************
         #endregion
 
         #region GET capability 

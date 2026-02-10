@@ -39,7 +39,7 @@ namespace WebApplication6.ExtensionMethods
         public static readonly string Worker_EmptyCapability = nameof(WorkerController.EmptyCapability);
         public static readonly string Worker_DeleteCapability = nameof(WorkerController.DeleteCapability);
         public static readonly string Worker_Ads = nameof(WorkerController.Ads);
-        public static readonly string Worker_AdsEmpty = nameof(WorkerController.EmptyAds);
+        public static readonly string Worker_EmptyAds = nameof(WorkerController.EmptyAds);
         
         //---------------------------
     }

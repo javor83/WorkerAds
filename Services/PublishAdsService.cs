@@ -31,7 +31,8 @@ namespace WebApplication6.Services
                 WorkerCapabilityId = sender.CapabilityID
 
             };
-
+            this._context.DeclareWorkerFrees.Add(decl_worker);
+            await this._context.SaveChangesAsync();
         }
 
 
