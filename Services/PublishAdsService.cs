@@ -20,6 +20,20 @@ namespace WebApplication6.Services
             bool result = query != null;
             return result;
         }
+        //***************************************************************************
+        async Task IPublishAdsService.Insert(AdvertisementToWorker sender)
+        {
+            DeclareWorkerFree decl_worker = new DeclareWorkerFree()
+            {
+                WatchDate = sender.WatchDate,
+                AdText = sender.AdvText,
+                HourId = sender.HourID,
+                WorkerCapabilityId = sender.CapabilityID
+
+            };
+
+        }
+
 
         //***************************************************************************
         WorkerAdsList IPublishAdsService.AdsForWorker(int worker_id)

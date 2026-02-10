@@ -44,7 +44,7 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult EmptyAds(int worker_id)
         {
-            var Empty = InsertAdverttisementToWorker.Empty(worker_id);
+            var Empty = AdvertisementToWorker.Empty(worker_id);
             return View(Empty);
         }
         //**************************************************************************
