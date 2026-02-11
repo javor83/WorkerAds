@@ -7,9 +7,17 @@
             <div class="card-header"><b>@index.PrintCategoryTax()</b> </div>
             <div class="card-body">
                 @index.AdvText
-                <form method="post" asp-antiforgery="true"
-                asp-controller="@controller_navigate.Worker"
-                asp-action=""
+                <form method="post"
+                    asp-route-id="@index.ID"
+                    asp-route-worker_id="@Model.WorkerID"
+                    asp-antiforgery="true"
+                    asp-controller="@controller_navigate.Worker"
+                    asp-action="@controller_navigate.Worker_DeleteAds"
+                    onsubmit="@string.Format(BootstrapCSS.js_confirm_delete_taxwage,index.PrintCategoryTax())">
+
+                    <input type="submit" value="@text_Label.Delete" class="@BootstrapCSS.button_danger"/>
+                    
+                </form>
             </div>
             <div class="card-footer">@index.AdsDate()</div>
         </div>
@@ -24,8 +32,7 @@
 
     <a asp-controller="@controller_navigate.Worker"
        asp-action="@controller_navigate.Worker_EmptyAds"
-       class="@BootstrapCSS.button_primary" asp-route-id="@Model.WorkerID"
-        >
+       class="@BootstrapCSS.button_primary" asp-route-id="@Model.WorkerID">
         @text_Label.Create
     </a>
     </div>

@@ -35,6 +35,16 @@ namespace WebApplication6.Services
             await this._context.SaveChangesAsync();
         }
 
+        //***************************************************************************
+        async Task IPublishAdsService.DeleteAds(int id)
+        {
+            DeclareWorkerFree dl = this._context.DeclareWorkerFrees.Find(id);
+            if (dl != null)
+            {
+                this._context.DeclareWorkerFrees.Remove(dl);
+                await this._context.SaveChangesAsync();
+            }
+        }
 
         //***************************************************************************
         WorkerAdsList IPublishAdsService.AdsForWorker(int worker_id)

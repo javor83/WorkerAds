@@ -16,6 +16,8 @@ namespace WebApplication6.Interfaces
 
         Task Insert(AdvertisementToWorker sender);
 
+        Task DeleteAds(int id);
+
     }
 
     

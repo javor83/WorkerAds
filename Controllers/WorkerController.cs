@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using WebApplication6.Captions;
 using WebApplication6.ExtensionMethods;
 using WebApplication6.Interfaces;
@@ -16,31 +14,7 @@ namespace WebApplication6.Controllers
             IWorkHoursService service_hours
         ) : Controller
     {
-        #region POST ADS
-        //**************************************************************************
-
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> EmptyAds(AdvertisementToWorker sender)
-        {
-            sender.HourList = service_hours.Read();
-            sender.CapalityList = service_capability.CapalityList(sender.WorkerID.Value);
-
-            if (ModelState.IsValid)
-            {
-                await service_publish.Insert(sender);
-                return RedirectToAction
-                    (
-                        controller_navigate.Worker_Ads,
-                        controller_navigate.Worker,
-                        new { id = sender.WorkerID }
-                    );
-            }
-            else
-            {
-                return View(sender);
-            }
-        }
-        #endregion
+        
 
 
 
@@ -87,11 +61,62 @@ namespace WebApplication6.Controllers
 
                
         }
-        
+
 
 
         //**************************************************************************
         #endregion
+
+        #region POST ADS
+        //**************************************************************************
+        /// <summary>
+        /// изтриване на обява
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost,ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAds(int id,int worker_id)
+        {
+            await service_publish.DeleteAds(id);
+            return RedirectToAction
+                (
+                  controller_navigate.Worker_Ads,
+                  controller_navigate.Worker,
+                  new { id = worker_id }
+                );
+        }
+        //**************************************************************************
+        /// <summary>
+        /// публикуване на нова обява
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <returns></returns>
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> EmptyAds(AdvertisementToWorker sender)
+        {
+            sender.HourList = service_hours.Read();
+            sender.CapalityList = service_capability.CapalityList(sender.WorkerID.Value);
+
+            if (ModelState.IsValid)
+            {
+                await service_publish.Insert(sender);
+                return RedirectToAction
+                    (
+                        controller_navigate.Worker_Ads,
+                        controller_navigate.Worker,
+                        new { id = sender.WorkerID }
+                    );
+            }
+            else
+            {
+                return View(sender);
+            }
+        }
+        #endregion
+
+
+
+
 
         #region GET capability 
         //**************************************************************************
@@ -402,6 +427,6 @@ namespace WebApplication6.Controllers
         #endregion
 
 
-        //**************************************************************************
+        
     }
 }
