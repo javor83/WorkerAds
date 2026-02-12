@@ -22,7 +22,9 @@
                         </a>
                         <input type="submit" value="@text_Label.Delete" class="@BootstrapCSS.button_danger" />
                     </div>
-                    <div class="card-body">@index.AdvText </div>
+                    <div class="card-body">
+                        <multi-line current-text=" @index.AdvText"></multi-line>
+                    </div>
                     <div class="card-footer">@index.AdsDate()</div>
 
 

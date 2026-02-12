@@ -21,6 +21,19 @@ namespace WebApplication6.Services
             return result;
         }
         //***************************************************************************
+        async Task IPublishAdsService.UpdateAds(AdvertisementToWorker sender)
+        {
+            DeclareWorkerFree decl = this._context.DeclareWorkerFrees.Find(sender.ID);
+            if (decl != null)
+            {
+                decl.AdText = sender.AdvText;
+                decl.WorkerCapabilityId = sender.CapabilityID;
+                decl.HourId = sender.HourID;
+                decl.WatchDate = sender.WatchDate;
+                await this._context.SaveChangesAsync();
+            }
+        }
+        //***************************************************************************
         bool IPublishAdsService.FindAds(int id)
         {
             var item = this._context.DeclareWorkerFrees.Find(id);

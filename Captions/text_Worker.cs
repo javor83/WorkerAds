@@ -26,6 +26,7 @@
         public const string EditCapabilityToPerson = "Редактирай способност за {0}";
         public const string AdsOf = "Публикувани обяви от {0}";
         public const string NewAdOf = "Нова обява от {0}";
+        public const string EditAdOf = "Редактирай обява от {0}";
         public const string Ads = "Обяви";
 
 

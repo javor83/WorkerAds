@@ -31,6 +31,13 @@ namespace WebApplication6.Controllers
             var ok = service_publish.FindWorker(id);
             if (ok)
             {
+                ViewData[text_Label.SuccessApply] = string.Empty;
+
+                if (TempData[text_Label.TempData_ok] != null)
+                {
+                    ViewData[text_Label.SuccessApply] = TempData[text_Label.TempData_ok] as string;
+                }
+
                 var list = service_publish.AdsForWorker(id);
                 return View(list);
             }
@@ -72,6 +79,8 @@ namespace WebApplication6.Controllers
             bool find_service = service_publish.FindAds(id);
             if (find_service)
             {
+               
+
                 AdvertisementToWorker Empty = service_publish.DetailsAd(id);
                 Empty.HourList = service_hours.Read();
                 Empty.CapalityList = service_capability.CapalityList(Convert.ToInt32(Empty.WorkerID));
@@ -84,10 +93,40 @@ namespace WebApplication6.Controllers
         }
 
 
+
         //**************************************************************************
         #endregion
 
         #region POST ADS
+        /// <summary>
+        /// актуализация на обява
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <returns></returns>
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditAds(AdvertisementToWorker sender)
+        {
+            sender.HourList = service_hours.Read();
+            sender.CapalityList = service_capability.CapalityList(Convert.ToInt32(sender.WorkerID));
+
+            if (ModelState.IsValid)
+            {
+
+                await service_publish.UpdateAds(sender);
+                TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
+                return RedirectToAction
+                  (
+                      controller_navigate.Worker_Ads,
+                      controller_navigate.Worker,
+                      new { id = sender.WorkerID }
+                  );
+            }
+            else
+            {
+                return View(sender);
+            }
+
+        }
         //**************************************************************************
         /// <summary>
         /// изтриване на обява
@@ -121,6 +160,7 @@ namespace WebApplication6.Controllers
             if (ModelState.IsValid)
             {
                 await service_publish.Insert(sender);
+                TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
                 return RedirectToAction
                     (
                         controller_navigate.Worker_Ads,
@@ -134,10 +174,6 @@ namespace WebApplication6.Controllers
             }
         }
         #endregion
-
-
-
-
 
         #region GET capability 
         //**************************************************************************
@@ -447,7 +483,5 @@ namespace WebApplication6.Controllers
         }
         #endregion
 
-
-        
     }
 }

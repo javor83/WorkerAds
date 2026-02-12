@@ -22,7 +22,7 @@ namespace WebApplication6.Interfaces
 
         AdvertisementToWorker DetailsAd(int id);
 
-        
+        Task UpdateAds(AdvertisementToWorker sender);
 
     }
 
