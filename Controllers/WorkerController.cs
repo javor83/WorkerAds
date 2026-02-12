@@ -23,7 +23,7 @@ namespace WebApplication6.Controllers
         /// <summary>
         /// какви са обявите от този работник
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">номер на работника</param>
         /// <returns></returns>
         public IActionResult Ads(int id)
         {
@@ -41,7 +41,7 @@ namespace WebApplication6.Controllers
         /// <summary>
         /// нова обява за този работник
         /// </summary>
-        /// <param name="worker_id"></param>
+        /// <param name="worker_id">номер на работника</param>
         /// <returns></returns>
         public IActionResult EmptyAds(int id)
         {
@@ -62,6 +62,19 @@ namespace WebApplication6.Controllers
                
         }
 
+        /// <summary>
+        /// какви са детайлите за тази обява ID
+        /// </summary>
+        /// <param name="id">номер на обявата</param>
+        /// <returns></returns>
+        public IActionResult EditAds(int id)
+        {
+
+            AdvertisementToWorker Empty = AdvertisementToWorker.Empty(id, worker_name);
+            Empty.HourList = service_hours.Read();
+            Empty.CapalityList = service_capability.CapalityList(id);
+            return View(Empty);
+        }
 
 
         //**************************************************************************
@@ -72,7 +85,8 @@ namespace WebApplication6.Controllers
         /// <summary>
         /// изтриване на обява
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">номер на обявата</param>
+        /// <param name="worker_id">към кой работник да се върнем</param>
         /// <returns></returns>
         [HttpPost,ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteAds(int id,int worker_id)
