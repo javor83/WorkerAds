@@ -21,6 +21,46 @@ namespace WebApplication6.Services
             return result;
         }
         //***************************************************************************
+        bool IPublishAdsService.FindAds(int id)
+        {
+            var item = this._context.DeclareWorkerFrees.Find(id);
+            return item != null;
+        }
+        //***************************************************************************
+        AdvertisementToWorker IPublishAdsService.DetailsAd(int id)
+        {
+            AdvertisementToWorker result = (from decl_wfree in this._context.DeclareWorkerFrees
+
+                        join work_hour in this._context.WorkStartHours
+                        on decl_wfree.HourId equals work_hour.Id
+
+                        join worker_capability in this._context.WorkerCapabilities
+                        on decl_wfree.WorkerCapabilityId equals worker_capability.Id
+
+                        join worker in this._context.Workers
+                        on worker_capability.WorkerId equals worker.Id
+
+                        where decl_wfree.Id == id
+                        select new AdvertisementToWorker()
+                        {
+                            AdvText = decl_wfree.AdText,
+                            WatchDate = decl_wfree.WatchDate,
+                            ID = id,
+                            WorkerID = worker.Id,
+                            HourID = work_hour.Id,
+                            CapabilityID = worker_capability.Id,
+                            CapalityList = null,
+                            HourList = null,
+                            WorkerFullName = worker.Fname.IncludeLastName(worker.Lname)
+                        }).First();
+
+
+            return result;
+           
+        }
+
+
+        //***************************************************************************
         async Task IPublishAdsService.Insert(AdvertisementToWorker sender)
         {
             DeclareWorkerFree decl_worker = new DeclareWorkerFree()

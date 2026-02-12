@@ -18,9 +18,15 @@ namespace WebApplication6.Interfaces
 
         Task DeleteAds(int id);
 
+        bool FindAds(int id);
+
+        AdvertisementToWorker DetailsAd(int id);
+
+        
+
     }
 
-    
+
 
 
 

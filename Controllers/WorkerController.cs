@@ -41,7 +41,7 @@ namespace WebApplication6.Controllers
         /// <summary>
         /// нова обява за този работник
         /// </summary>
-        /// <param name="worker_id">номер на работника</param>
+        /// <param name="id">номер на работника</param>
         /// <returns></returns>
         public IActionResult EmptyAds(int id)
         {
@@ -61,7 +61,7 @@ namespace WebApplication6.Controllers
 
                
         }
-
+        //**************************************************************************
         /// <summary>
         /// какви са детайлите за тази обява ID
         /// </summary>
@@ -69,11 +69,18 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult EditAds(int id)
         {
-
-            AdvertisementToWorker Empty = AdvertisementToWorker.Empty(id, worker_name);
-            Empty.HourList = service_hours.Read();
-            Empty.CapalityList = service_capability.CapalityList(id);
-            return View(Empty);
+            bool find_service = service_publish.FindAds(id);
+            if (find_service)
+            {
+                AdvertisementToWorker Empty = service_publish.DetailsAd(id);
+                Empty.HourList = service_hours.Read();
+                Empty.CapalityList = service_capability.CapalityList(Convert.ToInt32(Empty.WorkerID));
+                return View(Empty);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
 

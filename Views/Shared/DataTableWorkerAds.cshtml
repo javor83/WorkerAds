@@ -4,9 +4,7 @@
     @foreach (var index in Model.AdvList)
     {
         <div class="card mt-2">
-            <div class="card-header"><b>@index.PrintCategoryTax()</b> </div>
-            <div class="card-body">
-                @index.AdvText
+
                 <form method="post"
                     asp-route-id="@index.ID"
                     asp-route-worker_id="@Model.WorkerID"
@@ -15,11 +13,22 @@
                     asp-action="@controller_navigate.Worker_DeleteAds"
                     onsubmit="@string.Format(BootstrapCSS.js_confirm_delete_taxwage,index.PrintCategoryTax())">
 
-                    <input type="submit" value="@text_Label.Delete" class="@BootstrapCSS.button_danger"/>
-                    
+                    <div class="card-header">
+                        <b>@index.PrintCategoryTax()</b>
+                        <a asp-controller="@controller_navigate.Worker"
+                           asp-action="@controller_navigate.Worker_EditAds"
+                           asp-route-id="@index.ID" class="@BootstrapCSS.button_outline">
+                            @text_Label.Edit
+                        </a>
+                        <input type="submit" value="@text_Label.Delete" class="@BootstrapCSS.button_danger" />
+                    </div>
+                    <div class="card-body">@index.AdvText </div>
+                    <div class="card-footer">@index.AdsDate()</div>
+
+
                 </form>
-            </div>
-            <div class="card-footer">@index.AdsDate()</div>
+           
+           
         </div>
     }
 
