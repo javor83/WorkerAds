@@ -11,6 +11,16 @@
     color: red;
 }
 
+.see_more {
+    color:darkcyan;
+    font-weight:bold;
+}
+.see_more:hover {
+    color: red;
+    cursor:pointer;
+    text-decoration:underline;
+    font-weight: bold;
+}
 
 img.worker {
     width:100px;

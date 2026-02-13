@@ -34,6 +34,7 @@ namespace WebApplication6.Services
 
                                             select new AdsPerson()
                                             {
+                                                DeclareWorkerFreeID = decl_wfree.Id,
                                                 FName = worker.Fname,
                                                 LName = worker.Lname,
                                                 Phone = worker.Phone,

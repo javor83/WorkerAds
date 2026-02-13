@@ -22,5 +22,6 @@
         public const string SuccessApply = "Промените са приложени успешно !";
         public const string TempData_ok = "ok";
 
+
     }
 }

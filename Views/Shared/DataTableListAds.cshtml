@@ -23,8 +23,19 @@
                 </div>
                 <div>
                     <b>@text_WorkCategory.LabelWorkCategory</b> @ads.WhatToDo()
+
+                   
+
+                    <button data-bs-toggle="collapse" 
+                    class="@BootstrapCSS.ReadMoreLess"
+                    data-bs-target="@string.Format("#demo{0}",ads.DeclareWorkerFreeID)">
+                        @text_WorkCategory.ReadMoreLess
+                    </button>
+                   
                 </div>
-                <div>
+                <div id="@string.Format("demo{0}",ads.DeclareWorkerFreeID)" class="collapse">
+                    
+
                     <multi-line current-text="@ads.AdvText"></multi-line>
                 </div>
             </td>

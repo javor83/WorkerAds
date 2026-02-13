@@ -1,4 +1,6 @@
-﻿namespace WebApplication6.ExtensionMethods
+﻿using System.Configuration;
+
+namespace WebApplication6.ExtensionMethods
 {
     /// <summary>
     /// как ще изглежда сайта
@@ -22,6 +24,10 @@
         public const string img_thumbnail_worker = "rounded-circle worker";//
         public const string img_thumbnail_worker_edit = "rounded-circle edit_image";
         public const string js_confirm_delete_taxwage = "return confirm('Изтриване на \"{0}\" ?')";
+
+
+        public const string ReadMoreLess = "badge bg-info";
+
 
 
     }
