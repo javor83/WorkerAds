@@ -4,12 +4,15 @@ using WebApplication6.Models;
 using WebApplication6.Captions;
 using WebApplication6.ExtensionMethods;
 using WebApplication6.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication6.Controllers
 {
     /// <summary>
     /// контролер за началните работни часове
     /// </summary>
+    /// 
+    [Authorize]
     public class WorkHourController : Controller
     {
 

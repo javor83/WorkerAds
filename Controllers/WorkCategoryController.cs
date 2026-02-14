@@ -4,6 +4,7 @@ using WebApplication6.Models;
 using WebApplication6.Captions;
 using WebApplication6.ExtensionMethods;
 using WebApplication6.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace WebApplication6.Controllers
@@ -11,6 +12,7 @@ namespace WebApplication6.Controllers
     /// <summary>
     /// контролер за категориите работа - вик/ел/мазилка и т.н
     /// </summary>
+    [Authorize]
     public class WorkCategoryController : Controller
     {
         private IWorkCategoryService _category = null;

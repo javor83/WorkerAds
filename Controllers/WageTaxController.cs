@@ -4,12 +4,14 @@ using WebApplication6.Models;
 using WebApplication6.Captions;
 using WebApplication6.ExtensionMethods;
 using WebApplication6.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication6.Controllers
 {
     /// <summary>
     /// контролер за начините на таксуване - ден/л.м/кубик и т.н
     /// </summary>
+    [Authorize]
     public class WageTaxController : Controller
     {
         private readonly IWageTaxService _wage = null;

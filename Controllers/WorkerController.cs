@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication6.Captions;
 using WebApplication6.ExtensionMethods;
 using WebApplication6.Interfaces;
@@ -6,6 +7,8 @@ using WebApplication6.Models;
 
 namespace WebApplication6.Controllers
 {
+
+    [Authorize]
     public class WorkerController
         (
             IWorkerService service_worker,

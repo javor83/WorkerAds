@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using WebApplication6.Data;
 using WebApplication6.Models;
 using WebApplication6.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication6.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
      
@@ -18,6 +20,7 @@ namespace WebApplication6.Controllers
            
         }
         //******************************************************************************************
+        [AllowAnonymous]
         public IActionResult Index()
         {
           
