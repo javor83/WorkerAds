@@ -22,8 +22,14 @@
 - Базата данни се казва MEISTER. Превод от немски - означава Майстор.
 - Отваряте си проекта във Visual Studio 2022.
 - Работим със .NET Core 9.0
-Отваряте appsettings.json и променяте само стойността на Server с името на локалния database server. Всичко друго остава непроменено.
-"meister": "Server=**[име на сървъра]**;Database=MEISTER;Trusted_Connection=True;TrustServerCertificate=True"
+Отваряте appsettings.json и променяте само 
+стойността на Server с името на локалния database server. 
+Всичко друго остава непроменено.
+
+"ConnectionStrings": {
+    "DefaultConnection": "Server=**[име на сървъра]**;Database=MEISTER;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true",
+    "meister": "Server=**[име на сървъра]**;Database=MEISTER;Trusted_Connection=True;TrustServerCertificate=True"
+  }
 
 
 ## Описание на базата данни
