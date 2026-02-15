@@ -1,0 +1,605 @@
+﻿USE [master]
+GO
+/****** Object:  Database [MEISTER]    Script Date: 13.2.2026 г. 16:18:15 ******/
+CREATE DATABASE [MEISTER]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'MEISTER', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\MEISTER.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'MEISTER_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\MEISTER_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [MEISTER] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [MEISTER].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [MEISTER] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [MEISTER] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [MEISTER] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [MEISTER] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [MEISTER] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [MEISTER] SET AUTO_CLOSE ON 
+GO
+ALTER DATABASE [MEISTER] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [MEISTER] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [MEISTER] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [MEISTER] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [MEISTER] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [MEISTER] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [MEISTER] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [MEISTER] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [MEISTER] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [MEISTER] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [MEISTER] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [MEISTER] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [MEISTER] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [MEISTER] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [MEISTER] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [MEISTER] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [MEISTER] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [MEISTER] SET  MULTI_USER 
+GO
+ALTER DATABASE [MEISTER] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [MEISTER] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [MEISTER] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [MEISTER] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [MEISTER] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [MEISTER] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [MEISTER] SET QUERY_STORE = OFF
+GO
+USE [MEISTER]
+GO
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__EFMigrationsHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetRoleClaims](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[RoleId] [nvarchar](450) NOT NULL,
+	[ClaimType] [nvarchar](max) NULL,
+	[ClaimValue] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetRoles](
+	[Id] [nvarchar](450) NOT NULL,
+	[Name] [nvarchar](256) NULL,
+	[NormalizedName] [nvarchar](256) NULL,
+	[ConcurrencyStamp] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AspNetRoles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserClaims](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [nvarchar](450) NOT NULL,
+	[ClaimType] [nvarchar](max) NULL,
+	[ClaimValue] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserLogins](
+	[LoginProvider] [nvarchar](128) NOT NULL,
+	[ProviderKey] [nvarchar](128) NOT NULL,
+	[ProviderDisplayName] [nvarchar](max) NULL,
+	[UserId] [nvarchar](450) NOT NULL,
+ CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY CLUSTERED 
+(
+	[LoginProvider] ASC,
+	[ProviderKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserRoles](
+	[UserId] [nvarchar](450) NOT NULL,
+	[RoleId] [nvarchar](450) NOT NULL,
+ CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUsers](
+	[Id] [nvarchar](450) NOT NULL,
+	[UserName] [nvarchar](256) NULL,
+	[NormalizedUserName] [nvarchar](256) NULL,
+	[Email] [nvarchar](256) NULL,
+	[NormalizedEmail] [nvarchar](256) NULL,
+	[EmailConfirmed] [bit] NOT NULL,
+	[PasswordHash] [nvarchar](max) NULL,
+	[SecurityStamp] [nvarchar](max) NULL,
+	[ConcurrencyStamp] [nvarchar](max) NULL,
+	[PhoneNumber] [nvarchar](max) NULL,
+	[PhoneNumberConfirmed] [bit] NOT NULL,
+	[TwoFactorEnabled] [bit] NOT NULL,
+	[LockoutEnd] [datetimeoffset](7) NULL,
+	[LockoutEnabled] [bit] NOT NULL,
+	[AccessFailedCount] [int] NOT NULL,
+ CONSTRAINT [PK_AspNetUsers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserTokens](
+	[UserId] [nvarchar](450) NOT NULL,
+	[LoginProvider] [nvarchar](128) NOT NULL,
+	[Name] [nvarchar](128) NOT NULL,
+	[Value] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[LoginProvider] ASC,
+	[Name] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[DECLARE_WORKER_FREE]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DECLARE_WORKER_FREE](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[HOUR_ID] [int] NULL,
+	[WORKER_CAPABILITY_ID] [int] NULL,
+	[AD_TEXT] [nvarchar](max) NULL,
+	[WATCH_DATE] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TAX_WAGE]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TAX_WAGE](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CAPTION] [nvarchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WORK_CATEGORY]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WORK_CATEGORY](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CAPTION] [nvarchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WORK_START_HOURS]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WORK_START_HOURS](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SHOUR] [int] NOT NULL,
+	[SMINUTE] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WORKER]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WORKER](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[FNAME] [nvarchar](50) NOT NULL,
+	[LNAME] [nvarchar](50) NOT NULL,
+	[PHONE] [nvarchar](50) NOT NULL,
+	[EMAIL] [nvarchar](100) NOT NULL,
+	[PHOTO] [nvarchar](100) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WORKER_CAPABILITY]    Script Date: 13.2.2026 г. 16:18:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WORKER_CAPABILITY](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[WORKER_ID] [int] NULL,
+	[WORK_CATEGORY_ID] [int] NULL,
+	[PRICE] [decimal](10, 2) NULL,
+	[TAX_WAGE_ID] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'00000000000000_CreateIdentitySchema', N'9.0.12')
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'00dd579e-d0fc-4c41-be81-74b9376f721f', N'yavor83@abv.bg', N'YAVOR83@ABV.BG', N'yavor83@abv.bg', N'YAVOR83@ABV.BG', 0, N'AQAAAAIAAYagAAAAEDadjOGShUPpFUldQP6WQuwf0l/r/niB5i5i7P3TpmlMbG67soWnujEs4PmSP3b1dA==', N'HEEDMIMR4MCSDVH5VNLX5KG45R3NUVYK', N'6fb589d7-2094-465e-989b-1ae1b20fccff', NULL, 0, 0, NULL, 1, 0)
+INSERT [dbo].[AspNetUsers] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'5af976ad-3a40-47de-af24-c375a5872d95', N'PESHO@ABV.BG', N'PESHO@ABV.BG', N'PESHO@ABV.BG', N'PESHO@ABV.BG', 0, N'AQAAAAIAAYagAAAAEFSRbFySuy+HwpLxE7Hj8tbOxOkD1cGp2OwjPT/RdAYF8vH5Rl+7orYoGdLbARUv1g==', N'SV5HMVHSRBPNAXADYBIWKXB2GTIIMUKM', N'0883a27f-9ee7-434d-a482-8deab12ee15b', NULL, 0, 0, NULL, 1, 0)
+INSERT [dbo].[AspNetUsers] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'5e3e37d3-5abc-4f27-9189-da57c0dc7cc0', N'javor.nalbantov@gmail.com', N'JAVOR.NALBANTOV@GMAIL.COM', N'javor.nalbantov@gmail.com', N'JAVOR.NALBANTOV@GMAIL.COM', 0, N'AQAAAAIAAYagAAAAEAfCmED2SdhjWQ9Pc/BQe47Q6CdtjLFEShwRC0qtc3ZYtbUqrBgHkug94V1tUdWXbA==', N'YUCX2TB7A6WRHHIXSMQ7JVY52AE22Z4O', N'3d228b16-0fdb-4b1c-8800-b83bd13c870b', NULL, 0, 0, NULL, 1, 0)
+GO
+SET IDENTITY_INSERT [dbo].[DECLARE_WORKER_FREE] ON 
+
+INSERT [dbo].[DECLARE_WORKER_FREE] ([ID], [HOUR_ID], [WORKER_CAPABILITY_ID], [AD_TEXT], [WATCH_DATE]) VALUES (8, 10, 8, N'"Pizza Lab"
+ Верига пицарии PIZZA LAB с вече над 20 обекта в България и е сред лидерите за най-бързо приготвяне на пици в България. Pizza Lab очаква своите бъдещи колеги на ул. "Академик Андрей Сахаров" 2, Гранд Мол Варна, ниво 2, Pizza Lab
+
+ В Pizza Lab търсим усмихнати и ентусиазирани асистенти с желание за бързо и професионално развитие в нашата новоизрастваща верига от ресторанти.
+С присъединяването Ви към екипа на Pizza Lab ще имате възможността за бърза реализация в нашата компания.
+В Pizza Lab ще имате възможност за развитие в много различни отдели на компанията.
+
+
+
+Какво е нашето предложение?
+
+- Работа с млад и позитивен екип
+- Редовно и справедливо заплащане (до 1300 евро бруто)
+- Безплатна консумация и атрактивни отстъпки
+- Конкурентно възнаграждение, заплащане обвързано с личните резултати и постижения - бонуси
+- Фирмено обучение, което се заплаща
+- Възможността да съчетавате работата с образованието
+- Гъвкаво работно време - 4,6,8,10,12 часови смени
+- Трудови и социални осигуровки
+- Възможност за професионално израстване до 6 месеца
+- Осигурен транспорт след затваряне на обекта', CAST(N'2026-05-01T00:00:00.000' AS DateTime))
+INSERT [dbo].[DECLARE_WORKER_FREE] ([ID], [HOUR_ID], [WORKER_CAPABILITY_ID], [AD_TEXT], [WATCH_DATE]) VALUES (9, 22, 7, N'Фирма "Лиа-Варна" ООД, търси за ПОСТОЯННА работа в Сладкарница "МАРМАЛАД" /Гранд МОЛ ВАРНА, ниво 2/:
+
+БАРМАНИ/КИ
+
+Отговорности на позицията:
+- подготовка, приготвяне и издаване на топли и студени напитки
+- поддържане на необходимата посуда
+- правилна експлоатация на оборудването
+- грижа за хигиената на работното място
+
+Нашето предложение:
+- атрактивно възнаграждение
+- приятна работна атмосфера 
+- работа в мотивиран и приятелски екип
+- работа на смени 2/2
+- дългосрочен трудов ангажимент.', CAST(N'2026-07-02T00:00:00.000' AS DateTime))
+INSERT [dbo].[DECLARE_WORKER_FREE] ([ID], [HOUR_ID], [WORKER_CAPABILITY_ID], [AD_TEXT], [WATCH_DATE]) VALUES (10, 10, 9, N'СТОМАНА ИНДЪСТРИ АД , водещ производител на стомана и широка гама от продукти, включително дебелолистова ламарина, сортов прокат, стоманени сфери и специални профили, представена на Балканите и на международните пазари повече от 70 години
+търси амбициозни кандидати за позицията:
+
+
+Електрошлосер
+
+Отговорности:
+
+- Поддържа в изправност и осигурява нормалната работа на електрооборудването в цеха;
+- Разчита и изготвя електрически схеми;
+- Измерва и изпитва електрически съоръжения и инсталации;
+- Участва в провеждането на плановите и аварийните ремонти на електрооборудването в цеха, като обезопасява ел. съоръженията и отговаря за безопасността на работещите.
+', CAST(N'2026-02-26T00:00:00.000' AS DateTime))
+INSERT [dbo].[DECLARE_WORKER_FREE] ([ID], [HOUR_ID], [WORKER_CAPABILITY_ID], [AD_TEXT], [WATCH_DATE]) VALUES (11, 14, 10, N'Ние ремонтираме всички марки и модели перални. Разполагаме с голяма гама части.
+ Това ни помага да отстраним повредата на електроуредът веднага с едно посещение. Извършваме ремонт на място в домът на клиентите ни.
+
+Ако бойлерът Ви не загрява или тече. Ние ще го поправим. 
+Ремонтираме всички марки и модели бойлери. Разполагаме с части, които носим със себе си и ремонтът става с едно посещение.', CAST(N'2026-02-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[DECLARE_WORKER_FREE] ([ID], [HOUR_ID], [WORKER_CAPABILITY_ID], [AD_TEXT], [WATCH_DATE]) VALUES (12, 15, 11, N'Предлагам 
+
+монтаж на ламиниран паркет в стандартни помещения - 4€ (7,80лв)/м2 
+
+монтаж на PVC первази - 2€ / линеен метър
+
+', CAST(N'2026-03-01T00:00:00.000' AS DateTime))
+INSERT [dbo].[DECLARE_WORKER_FREE] ([ID], [HOUR_ID], [WORKER_CAPABILITY_ID], [AD_TEXT], [WATCH_DATE]) VALUES (13, 10, 12, N'Търсим енергични, креативни и усмихнати хора за позицията:
+
+* сервитьорка с опит
+
+* помощник в кухнята
+
+* готвач
+
+Очакваме:
+
+- умения за работа в екип,
+
+- ангажираност,', CAST(N'2026-03-19T00:00:00.000' AS DateTime))
+INSERT [dbo].[DECLARE_WORKER_FREE] ([ID], [HOUR_ID], [WORKER_CAPABILITY_ID], [AD_TEXT], [WATCH_DATE]) VALUES (14, 15, 13, N'Нашата фирма има три градински центъра в гр.София. Ние сме производител и директен вносител на многогодишни и сезонни растения, което предразполага за повече творчески възможности. Разполагаме с голямо разнообразие и наличности на растения, което значително олеснява изграждането и проектирането на зелени площи. Имаме отговорен и опитен екип за реализация на ландшафтните проекти.
+Основни задачи:
+· Разработване на ландшафтни проекти и цялостната им реализация .
+· Изготвяне на оферти, работа с клиенти и консултирането им относно озеленяването.
+· Осъществяване на екстериорни и интериорни озеленявания.
+· Организация и разпределяне на работните ангажименти на служителите;
+Опит в проектирането и реализацията на озеленявания и поддръжката на градини.
+· Компютърни умения: AutoCAD, MS Office;
+· Шофьорска книжка - категория Б - – задължително условие.
+· Езикови умения: Английски – говоримо / средно ниво - предимство
+Описание и изисквания:
+Търсим да назначим ландшафтен архитект.', CAST(N'2026-04-30T00:00:00.000' AS DateTime))
+SET IDENTITY_INSERT [dbo].[DECLARE_WORKER_FREE] OFF
+GO
+SET IDENTITY_INSERT [dbo].[TAX_WAGE] ON 
+
+INSERT [dbo].[TAX_WAGE] ([ID], [CAPTION]) VALUES (7, N'Ден')
+INSERT [dbo].[TAX_WAGE] ([ID], [CAPTION]) VALUES (8, N'Месец')
+INSERT [dbo].[TAX_WAGE] ([ID], [CAPTION]) VALUES (9, N'Седмица')
+INSERT [dbo].[TAX_WAGE] ([ID], [CAPTION]) VALUES (10, N'Линеен метър')
+INSERT [dbo].[TAX_WAGE] ([ID], [CAPTION]) VALUES (11, N'Кубик')
+INSERT [dbo].[TAX_WAGE] ([ID], [CAPTION]) VALUES (12, N'На повикване')
+INSERT [dbo].[TAX_WAGE] ([ID], [CAPTION]) VALUES (13, N'Квадратен метър')
+SET IDENTITY_INSERT [dbo].[TAX_WAGE] OFF
+GO
+SET IDENTITY_INSERT [dbo].[WORK_CATEGORY] ON 
+
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (10, N'ВиК')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (11, N'Електричество')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (12, N'Отопление')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (13, N'Мебели')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (14, N'Осветление')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (15, N'Лепене на плочки')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (16, N'Озвучаване')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (17, N'Ландшафтен дизайнер')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (18, N'Изрисуване на детайли')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (19, N'Барман')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (20, N'Готвач - топла кухня')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (21, N'Готвач - студена кухня')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (22, N'Майстор - пералня/съдомиялна')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (23, N'Майстор  - бойлер')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (24, N'Груб строеж')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (25, N'Поставяне на ламинат')
+INSERT [dbo].[WORK_CATEGORY] ([ID], [CAPTION]) VALUES (26, N'Лайсни за ламинат')
+SET IDENTITY_INSERT [dbo].[WORK_CATEGORY] OFF
+GO
+SET IDENTITY_INSERT [dbo].[WORK_START_HOURS] ON 
+
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (10, 8, 0)
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (11, 8, 15)
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (12, 8, 30)
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (13, 8, 45)
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (14, 9, 0)
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (15, 9, 15)
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (16, 9, 30)
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (17, 9, 45)
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (18, 10, 0)
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (19, 10, 15)
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (20, 10, 45)
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (21, 10, 30)
+INSERT [dbo].[WORK_START_HOURS] ([ID], [SHOUR], [SMINUTE]) VALUES (22, 11, 0)
+SET IDENTITY_INSERT [dbo].[WORK_START_HOURS] OFF
+GO
+SET IDENTITY_INSERT [dbo].[WORKER] ON 
+
+INSERT [dbo].[WORKER] ([ID], [FNAME], [LNAME], [PHONE], [EMAIL], [PHOTO]) VALUES (4, N'Петя', N'Димитрова', N'0888-111-555', N'петя.дд@abv.bg', N'94539e24-2bef-49e9-bf5c-854b7543e9db.jpg')
+INSERT [dbo].[WORKER] ([ID], [FNAME], [LNAME], [PHONE], [EMAIL], [PHOTO]) VALUES (5, N'Димитър', N'Костов', N'999-66-33-888', N'митко@abv.bg', N'2b767eca-780e-4096-9e7b-3359ecde214c.jpg')
+INSERT [dbo].[WORKER] ([ID], [FNAME], [LNAME], [PHONE], [EMAIL], [PHOTO]) VALUES (6, N'Ивето', N'Попова', N'887--511', N'iveto@aBV.BG', N'264d3460-729d-4922-bd09-cedca8e19b38.jpg')
+SET IDENTITY_INSERT [dbo].[WORKER] OFF
+GO
+SET IDENTITY_INSERT [dbo].[WORKER_CAPABILITY] ON 
+
+INSERT [dbo].[WORKER_CAPABILITY] ([ID], [WORKER_ID], [WORK_CATEGORY_ID], [PRICE], [TAX_WAGE_ID]) VALUES (7, 5, 11, CAST(1900.50 AS Decimal(10, 2)), 8)
+INSERT [dbo].[WORKER_CAPABILITY] ([ID], [WORKER_ID], [WORK_CATEGORY_ID], [PRICE], [TAX_WAGE_ID]) VALUES (8, 5, 21, CAST(1800.73 AS Decimal(10, 2)), 8)
+INSERT [dbo].[WORKER_CAPABILITY] ([ID], [WORKER_ID], [WORK_CATEGORY_ID], [PRICE], [TAX_WAGE_ID]) VALUES (9, 4, 11, CAST(100.50 AS Decimal(10, 2)), 10)
+INSERT [dbo].[WORKER_CAPABILITY] ([ID], [WORKER_ID], [WORK_CATEGORY_ID], [PRICE], [TAX_WAGE_ID]) VALUES (10, 4, 23, CAST(60.00 AS Decimal(10, 2)), 12)
+INSERT [dbo].[WORKER_CAPABILITY] ([ID], [WORKER_ID], [WORK_CATEGORY_ID], [PRICE], [TAX_WAGE_ID]) VALUES (11, 4, 25, CAST(30.50 AS Decimal(10, 2)), 13)
+INSERT [dbo].[WORKER_CAPABILITY] ([ID], [WORKER_ID], [WORK_CATEGORY_ID], [PRICE], [TAX_WAGE_ID]) VALUES (12, 6, 19, CAST(1200.36 AS Decimal(10, 2)), 8)
+INSERT [dbo].[WORKER_CAPABILITY] ([ID], [WORKER_ID], [WORK_CATEGORY_ID], [PRICE], [TAX_WAGE_ID]) VALUES (13, 6, 17, CAST(500.80 AS Decimal(10, 2)), 9)
+SET IDENTITY_INSERT [dbo].[WORKER_CAPABILITY] OFF
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_AspNetRoleClaims_RoleId]    Script Date: 13.2.2026 г. 16:18:15 ******/
+CREATE NONCLUSTERED INDEX [IX_AspNetRoleClaims_RoleId] ON [dbo].[AspNetRoleClaims]
+(
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [RoleNameIndex]    Script Date: 13.2.2026 г. 16:18:15 ******/
+CREATE UNIQUE NONCLUSTERED INDEX [RoleNameIndex] ON [dbo].[AspNetRoles]
+(
+	[NormalizedName] ASC
+)
+WHERE ([NormalizedName] IS NOT NULL)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_AspNetUserClaims_UserId]    Script Date: 13.2.2026 г. 16:18:15 ******/
+CREATE NONCLUSTERED INDEX [IX_AspNetUserClaims_UserId] ON [dbo].[AspNetUserClaims]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_AspNetUserLogins_UserId]    Script Date: 13.2.2026 г. 16:18:15 ******/
+CREATE NONCLUSTERED INDEX [IX_AspNetUserLogins_UserId] ON [dbo].[AspNetUserLogins]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_AspNetUserRoles_RoleId]    Script Date: 13.2.2026 г. 16:18:15 ******/
+CREATE NONCLUSTERED INDEX [IX_AspNetUserRoles_RoleId] ON [dbo].[AspNetUserRoles]
+(
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [EmailIndex]    Script Date: 13.2.2026 г. 16:18:15 ******/
+CREATE NONCLUSTERED INDEX [EmailIndex] ON [dbo].[AspNetUsers]
+(
+	[NormalizedEmail] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UserNameIndex]    Script Date: 13.2.2026 г. 16:18:15 ******/
+CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex] ON [dbo].[AspNetUsers]
+(
+	[NormalizedUserName] ASC
+)
+WHERE ([NormalizedUserName] IS NOT NULL)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[AspNetRoleClaims]  WITH CHECK ADD  CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[AspNetRoles] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetRoleClaims] CHECK CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId]
+GO
+ALTER TABLE [dbo].[AspNetUserClaims]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserClaims] CHECK CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserLogins]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserLogins] CHECK CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[AspNetRoles] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId]
+GO
+ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserTokens]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserTokens] CHECK CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[DECLARE_WORKER_FREE]  WITH CHECK ADD FOREIGN KEY([HOUR_ID])
+REFERENCES [dbo].[WORK_START_HOURS] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[DECLARE_WORKER_FREE]  WITH CHECK ADD FOREIGN KEY([WORKER_CAPABILITY_ID])
+REFERENCES [dbo].[WORKER_CAPABILITY] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[WORKER_CAPABILITY]  WITH CHECK ADD FOREIGN KEY([TAX_WAGE_ID])
+REFERENCES [dbo].[TAX_WAGE] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[WORKER_CAPABILITY]  WITH CHECK ADD FOREIGN KEY([WORK_CATEGORY_ID])
+REFERENCES [dbo].[WORK_CATEGORY] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[WORKER_CAPABILITY]  WITH CHECK ADD FOREIGN KEY([WORKER_ID])
+REFERENCES [dbo].[WORKER] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+USE [master]
+GO
+ALTER DATABASE [MEISTER] SET  READ_WRITE 
+GO
