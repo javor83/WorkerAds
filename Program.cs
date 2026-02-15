@@ -1,7 +1,7 @@
+using GCommon.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using WebApplication6.Data;
-using WebApplication6.ExtensionMethods;
+using GCommon.ExtensionMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 

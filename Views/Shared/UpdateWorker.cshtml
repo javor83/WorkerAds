@@ -1,9 +1,9 @@
-﻿@model UpdateWorker
+﻿@model UpdateWorkerViewModel
 <vc:manager-subtitle caption="@text_Worker.EditWorker"></vc:manager-subtitle>
 <form method="post"
     asp-antiforgery="true"
-    asp-controller="@controller_navigate.Worker"
-    asp-action="@controller_navigate.Worker_Edit"
+      asp-controller="@ControllerNavigateViewModel.Worker"
+      asp-action="@ControllerNavigateViewModel.Worker_Edit"
     enctype="@BootstrapCSS.enc_type_upload">
     <input type="hidden" asp-for="@Model.ID" />
     <input type="hidden" asp-for="@Model.Face"/>
@@ -41,8 +41,8 @@
     </div>
 
     <div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
-        <a asp-action="@controller_navigate.Worker_Index"
-        asp-controller="@controller_navigate.Worker"
+        <a asp-action="@ControllerNavigateViewModel.Worker_Index"
+           asp-controller="@ControllerNavigateViewModel.Worker"
         class="@BootstrapCSS.button_outline">
         @text_Label.Cancel
         </a>

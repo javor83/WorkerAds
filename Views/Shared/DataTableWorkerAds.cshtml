@@ -1,4 +1,4 @@
-﻿@model WorkerAdsList
+﻿@model WorkerAdsListViewModel
 <vc:manager-subtitle caption="@string.Format(text_Worker.AdsOf,Model.WorkerFullName)"></vc:manager-subtitle>
 
     @foreach (var index in Model.AdvList)
@@ -9,14 +9,14 @@
                     asp-route-id="@index.ID"
                     asp-route-worker_id="@Model.WorkerID"
                     asp-antiforgery="true"
-                    asp-controller="@controller_navigate.Worker"
-                    asp-action="@controller_navigate.Worker_DeleteAds"
+              asp-controller="@ControllerNavigateViewModel.Worker"
+              asp-action="@ControllerNavigateViewModel.Worker_DeleteAds"
                     onsubmit="@string.Format(BootstrapCSS.js_confirm_delete_taxwage,index.PrintCategoryTax())">
 
                     <div class="card-header">
                         <b>@index.PrintCategoryTax()</b>
-                        <a asp-controller="@controller_navigate.Worker"
-                           asp-action="@controller_navigate.Worker_EditAds"
+                <a asp-controller="@ControllerNavigateViewModel.Worker"
+                   asp-action="@ControllerNavigateViewModel.Worker_EditAds"
                            asp-route-id="@index.ID" class="@BootstrapCSS.button_outline">
                             @text_Label.Edit
                         </a>
@@ -35,14 +35,14 @@
     }
 
     <div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
-        <a asp-controller="@controller_navigate.Worker"
-        asp-action="@controller_navigate.Worker_Index"
+    <a asp-controller="@ControllerNavigateViewModel.Worker"
+       asp-action="@ControllerNavigateViewModel.Worker_Index"
         class="@BootstrapCSS.button_outline">
         @text_Worker.BackToWorker
         </a>
 
-    <a asp-controller="@controller_navigate.Worker"
-       asp-action="@controller_navigate.Worker_EmptyAds"
+    <a asp-controller="@ControllerNavigateViewModel.Worker"
+       asp-action="@ControllerNavigateViewModel.Worker_EmptyAds"
        class="@BootstrapCSS.button_primary" asp-route-id="@Model.WorkerID">
         @text_Label.Create
     </a>

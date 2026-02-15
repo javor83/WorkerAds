@@ -1,8 +1,8 @@
-﻿@model WorkCapability
+﻿@model WorkCapabilityViewModel
 <vc:manager-subtitle caption="@string.Format(text_Worker.InsertCapabilityToPerson, Model.WorkerName)"></vc:manager-subtitle>
 <form method="post"
-      asp-action="@controller_navigate.Worker_EmptyCapability"
-      asp-controller="@controller_navigate.Worker">
+      asp-action="@ControllerNavigateViewModel.Worker_EmptyCapability"
+      asp-controller="@ControllerNavigateViewModel.Worker">
     <div asp-validation-summary="ModelOnly"></div>
     <input type="hidden" asp-for="@Model.WorkerID" />
     <input type="hidden" asp-for="WorkerName" />
@@ -30,8 +30,8 @@
     </div>
 
     <div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
-        <a asp-controller="@controller_navigate.Worker"
-           asp-action="@controller_navigate.Worker_Capability"
+        <a asp-controller="@ControllerNavigateViewModel.Worker"
+           asp-action="@ControllerNavigateViewModel.Worker_Capability"
            asp-route-id="@Model.WorkerID"
            class="@BootstrapCSS.button_outline">
             @text_Label.Cancel

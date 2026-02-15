@@ -1,11 +1,12 @@
-﻿using WebApplication6.Controllers;
+﻿using GCommon.ExtensionMethods;
+using WebApplication6.Controllers;
 
-namespace WebApplication6.ExtensionMethods
+namespace WebApplication6.Navigation
 {
     /// <summary>
     /// навигация от изгледите към съответния контролер
     /// </summary>
-    public class controller_navigate
+    public class ControllerNavigateViewModel
     {
         //---------------------------
         public static readonly string WageTax = nameof(WageTaxController).Navigate();

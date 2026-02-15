@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WageTax>
+﻿@model IEnumerable<WageTaxViewModel>
 <vc:manager-subtitle caption="@text_WageTax.HeaderWagetax"></vc:manager-subtitle>
 <table class="@BootstrapCSS.table">
     <tr>
@@ -13,13 +13,13 @@
 
                 <form method="post" 
                     onsubmit="@string.Format(BootstrapCSS.js_confirm_delete_taxwage,index.Name)"
-                      asp-controller="@controller_navigate.WageTax"
-                      asp-action="@controller_navigate.WageTax_Delete"
+                      asp-controller="@ControllerNavigateViewModel.WageTax"
+                      asp-action="@ControllerNavigateViewModel.WageTax_Delete"
                     asp-antiforgery="true">
                     <input type="hidden" name="id" value="@index.ID" />
-                    <a asp-action="@controller_navigate.WageTax_Update"
+                    <a asp-action="@ControllerNavigateViewModel.WageTax_Update"
                         class="@BootstrapCSS.button_outline" 
-                       asp-controller="@controller_navigate.WageTax"
+                       asp-controller="@ControllerNavigateViewModel.WageTax"
                        asp-route-id="@index.ID">
                         @text_Label.Edit
                     </a>
@@ -33,9 +33,9 @@
 </table>
 <div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
 
-    <a asp-action="@controller_navigate.WageTax_Create"
+    <a asp-action="@ControllerNavigateViewModel.WageTax_Create"
         class="@BootstrapCSS.button_primary @BootstrapCSS.display_inline" 
-       asp-controller="@controller_navigate.WageTax">
+       asp-controller="@ControllerNavigateViewModel.WageTax">
         @text_Label.Create
     </a>
 </div>

@@ -1,8 +1,8 @@
-﻿@model TaxCategory
+﻿@model TaxCategoryViewModel
 <vc:manager-subtitle caption="@text_WorkCategory.EditWorkCategory"></vc:manager-subtitle>
 <form method="post"
-      asp-action="@controller_navigate.WorkCategory_Edit"
-      asp-controller="@controller_navigate.WorkCategory"
+      asp-action="@ControllerNavigateViewModel.WorkCategory_Edit"
+      asp-controller="@ControllerNavigateViewModel.WorkCategory"
       asp-antiforgery="true">
 
     <div asp-validation-summary="ModelOnly"></div>
@@ -13,7 +13,7 @@
         <span asp-validation-for="@Model.Name"></span>
     </div>
     <div class="@BootstrapCSS.text_center @BootstrapCSS.margin_top_1">
-        <a asp-action="@controller_navigate.WorkCategory_Index" asp-controller="@controller_navigate.WorkCategory"
+        <a asp-action="@ControllerNavigateViewModel.WorkCategory_Index" asp-controller="@ControllerNavigateViewModel.WorkCategory"
            class="@BootstrapCSS.button_outline">
             @text_Label.Cancel
         </a>

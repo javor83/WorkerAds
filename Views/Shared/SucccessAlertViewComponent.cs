@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebApplication6.Models;
+using GCommon.Models;
 
 namespace WebApplication6.Views.Shared
 {

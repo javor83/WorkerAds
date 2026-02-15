@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using GCommon.Captions;
+using GCommon.Contracts;
+using GCommon.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication6.Captions;
-using WebApplication6.ExtensionMethods;
-using WebApplication6.Interfaces;
-using WebApplication6.Models;
+using WebApplication6.Navigation;
+
 
 namespace WebApplication6.Controllers
 {
@@ -62,7 +63,7 @@ namespace WebApplication6.Controllers
             }
             else
             {
-                AdvertisementToWorker Empty = AdvertisementToWorker.Empty(id, worker_name);
+                AdvertisementToWorkerViewModel Empty = AdvertisementToWorkerViewModel.Empty(id, worker_name);
                 Empty.HourList = service_hours.Read();
                 Empty.CapalityList = service_capability.CapalityList(id);
                 return View(Empty);
@@ -84,7 +85,7 @@ namespace WebApplication6.Controllers
             {
                
 
-                AdvertisementToWorker Empty = service_publish.DetailsAd(id);
+                AdvertisementToWorkerViewModel Empty = service_publish.DetailsAd(id);
                 Empty.HourList = service_hours.Read();
                 Empty.CapalityList = service_capability.CapalityList(Convert.ToInt32(Empty.WorkerID));
                 return View(Empty);
@@ -107,7 +108,7 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditAds(AdvertisementToWorker sender)
+        public async Task<IActionResult> EditAds(AdvertisementToWorkerViewModel sender)
         {
             sender.HourList = service_hours.Read();
             sender.CapalityList = service_capability.CapalityList(Convert.ToInt32(sender.WorkerID));
@@ -119,8 +120,8 @@ namespace WebApplication6.Controllers
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
                 return RedirectToAction
                   (
-                      controller_navigate.Worker_Ads,
-                      controller_navigate.Worker,
+                      ControllerNavigateViewModel.Worker_Ads,
+                      ControllerNavigateViewModel.Worker,
                       new { id = sender.WorkerID }
                   );
             }
@@ -143,8 +144,8 @@ namespace WebApplication6.Controllers
             await service_publish.DeleteAds(id);
             return RedirectToAction
                 (
-                  controller_navigate.Worker_Ads,
-                  controller_navigate.Worker,
+                  ControllerNavigateViewModel.Worker_Ads,
+                  ControllerNavigateViewModel.Worker,
                   new { id = worker_id }
                 );
         }
@@ -155,19 +156,20 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> EmptyAds(AdvertisementToWorker sender)
+        public async Task<IActionResult> EmptyAds(AdvertisementToWorkerViewModel sender)
         {
             sender.HourList = service_hours.Read();
             sender.CapalityList = service_capability.CapalityList(sender.WorkerID.Value);
 
             if (ModelState.IsValid)
             {
+                
                 await service_publish.Insert(sender);
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
                 return RedirectToAction
                     (
-                        controller_navigate.Worker_Ads,
-                        controller_navigate.Worker,
+                        ControllerNavigateViewModel.Worker_Ads,
+                        ControllerNavigateViewModel.Worker,
                         new { id = sender.WorkerID }
                     );
             }
@@ -202,9 +204,9 @@ namespace WebApplication6.Controllers
                 {
                     ViewData[text_Label.SuccessApply] = TempData[text_Label.TempData_ok] as string;
                 }
-                IEnumerable<SelectWorkCapability> list = service_capability.CapalityList(id);
+                IEnumerable<SelectWorkCapabilityViewModel> list = service_capability.CapalityList(id);
 
-                CapabilityDetails details = new CapabilityDetails()
+                CapabilityDetailsViewModel details = new CapabilityDetailsViewModel()
                 {
                     Actions = list,
                     WorkerName = worker_name,
@@ -224,7 +226,7 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult EditCapability(int capability_id)
         {
-            WorkCapability item = service_capability.EditCapability(capability_id);
+            WorkCapabilityViewModel item = service_capability.EditCapability(capability_id);
 
             if (item == null)
             {
@@ -256,7 +258,7 @@ namespace WebApplication6.Controllers
 
                
 
-                WorkCapability item = new WorkCapability()
+                WorkCapabilityViewModel item = new WorkCapabilityViewModel()
                 {
                     WorkerID = worker_id,
                     WorkerName = worker_name,
@@ -288,7 +290,7 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditCapability(WorkCapability sender)
+        public async Task<IActionResult> EditCapability(WorkCapabilityViewModel sender)
         {
             sender.ListTaxWage = service_capability.ComboWageTax(service_capability.GetWageTax());
             sender.ListCategory = service_capability.ComboCategory(service_capability.GetCategory());
@@ -301,8 +303,8 @@ namespace WebApplication6.Controllers
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
                 return RedirectToAction
                    (
-                       controller_navigate.Worker_Capability,
-                       controller_navigate.Worker,
+                       ControllerNavigateViewModel.Worker_Capability,
+                       ControllerNavigateViewModel.Worker,
                        new { id = sender.WorkerID }
 
                    );
@@ -327,8 +329,8 @@ namespace WebApplication6.Controllers
             await service_capability.DeleteCapabilty(id);
             return RedirectToAction
                    (
-                       controller_navigate.Worker_Capability,
-                       controller_navigate.Worker,
+                       ControllerNavigateViewModel.Worker_Capability,
+                       ControllerNavigateViewModel.Worker,
                        new { id = worker_id }
 
                    );
@@ -341,7 +343,7 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> EmptyCapability(WorkCapability sender)
+        public async Task<IActionResult> EmptyCapability(WorkCapabilityViewModel sender)
         {
             
 
@@ -356,8 +358,8 @@ namespace WebApplication6.Controllers
 
                 return RedirectToAction
                     (
-                        controller_navigate.Worker_Capability,
-                        controller_navigate.Worker,
+                        ControllerNavigateViewModel.Worker_Capability,
+                        ControllerNavigateViewModel.Worker,
                         new { id = sender.WorkerID }
 
                     );
@@ -395,7 +397,7 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult Create()
         {
-            InsertWorker item = InsertWorker.Empty();
+            InsertWorkerViewModel item = InsertWorkerViewModel.Empty();
             return View(item);
         }
         //**************************************************************************
@@ -407,7 +409,7 @@ namespace WebApplication6.Controllers
         public IActionResult Edit(int id)
         {
             
-            UpdateWorker item = service_worker.Find(id);
+            UpdateWorkerViewModel item = service_worker.Find(id);
             if (item != null)
             {
                 return View(item);
@@ -430,14 +432,14 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(UpdateWorker sender)
+        public async Task<IActionResult> Edit(UpdateWorkerViewModel sender)
         {
             
             if (ModelState.IsValid)
             {
                 await service_worker.Update(sender);
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
-                return RedirectToAction(controller_navigate.Worker_Index, controller_navigate.Worker);
+                return RedirectToAction(ControllerNavigateViewModel.Worker_Index, ControllerNavigateViewModel.Worker);
             }
             else
                 return View(sender);
@@ -458,7 +460,7 @@ namespace WebApplication6.Controllers
             var x = await service_worker.Delete(id);
             if (x)
             {
-                return RedirectToAction(controller_navigate.Worker_Index, controller_navigate.Worker);
+                return RedirectToAction(ControllerNavigateViewModel.Worker_Index, ControllerNavigateViewModel.Worker);
             }
             else
                 return NotFound(id);
@@ -471,14 +473,14 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(InsertWorker sender)
+        public async Task<IActionResult> Create(InsertWorkerViewModel sender)
         {
 
             if (ModelState.IsValid)
             {
                 await service_worker.Insert(sender);
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
-                return RedirectToAction(controller_navigate.Worker_Index, controller_navigate.Worker);
+                return RedirectToAction(ControllerNavigateViewModel.Worker_Index, ControllerNavigateViewModel.Worker);
             }
             else
                 return View(sender);

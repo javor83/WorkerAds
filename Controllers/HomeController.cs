@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication6.Data;
-using WebApplication6.Models;
-using WebApplication6.Interfaces;
+using GCommon.Data;
+
 using Microsoft.AspNetCore.Authorization;
+using GCommon.Contracts;
 
 namespace WebApplication6.Controllers
 {

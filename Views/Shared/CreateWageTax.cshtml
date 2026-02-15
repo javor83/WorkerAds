@@ -1,9 +1,9 @@
 ﻿
-@model WageTax
+@model WageTaxViewModel
 <vc:manager-subtitle caption="@text_WageTax.NewWageTaxUnit"></vc:manager-subtitle>
 <form method="post" 
-      asp-action="@controller_navigate.WageTax_Create"
-      asp-controller="@controller_navigate.WageTax"
+      asp-action="@ControllerNavigateViewModel.WageTax_Create"
+      asp-controller="@ControllerNavigateViewModel.WageTax"
     asp-antiforgery="true">
     <div asp-validation-summary="ModelOnly"></div>
     <input type="hidden" asp-for="@Model.ID" />
@@ -13,7 +13,7 @@
         <span asp-validation-for="@Model.Name"></span>
     </div>
     <div class="@BootstrapCSS.text_center @BootstrapCSS.margin_top_1">
-        <a asp-action="@controller_navigate.WageTax_Index" asp-controller="@controller_navigate.WageTax"
+        <a asp-action="@ControllerNavigateViewModel.WageTax_Index" asp-controller="@ControllerNavigateViewModel.WageTax"
         class="@BootstrapCSS.button_outline">
             @text_Label.Cancel
         </a>

@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Reflection;
-using WebApplication6.Models;
-using WebApplication6.Captions;
-using WebApplication6.ExtensionMethods;
-using WebApplication6.Interfaces;
+﻿using GCommon.Captions;
+using GCommon.Contracts;
+using GCommon.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
+using WebApplication6.Navigation;
 
 namespace WebApplication6.Controllers
 {
@@ -48,7 +48,7 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult Create()
         {
-            WorkHour data = WorkHour.Empty();
+            WorkHourViewModel data = WorkHourViewModel.Empty();
 
             return View(data);
         }
@@ -63,7 +63,7 @@ namespace WebApplication6.Controllers
             bool ok = this._wh.Exists(id);
             if (ok)
             {
-                WorkHour key = this._wh.To_DTO_WorkHour(id);
+                WorkHourViewModel key = this._wh.To_DTO_WorkHour(id);
                 return View(key);
             }
             else
@@ -77,13 +77,13 @@ namespace WebApplication6.Controllers
         #region post query
         [HttpPost, ValidateAntiForgeryToken]
        
-        public async Task<IActionResult> Edit(WorkHour sender)
+        public async Task<IActionResult> Edit(WorkHourViewModel sender)
         {
             if (ModelState.IsValid)
             {
                 await this._wh.Update(sender);
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
-                return RedirectToAction(controller_navigate.WorkHour_Index, controller_navigate.WorkHour);
+                return RedirectToAction(ControllerNavigateViewModel.WorkHour_Index, ControllerNavigateViewModel.WorkHour);
             }
             else
             { 
@@ -94,13 +94,13 @@ namespace WebApplication6.Controllers
 
         //******************************************************************************
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(WorkHour sender)
+        public async Task<IActionResult> Create(WorkHourViewModel sender)
         {
             if (ModelState.IsValid)
             {
                 await this._wh.Insert(sender);
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
-                return RedirectToAction(controller_navigate.WorkHour_Index, controller_navigate.WorkHour);
+                return RedirectToAction(ControllerNavigateViewModel.WorkHour_Index, ControllerNavigateViewModel.WorkHour);
             }
             else
                 return View(sender);
@@ -111,7 +111,9 @@ namespace WebApplication6.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await this._wh.Delete(id);
-            return RedirectToAction(controller_navigate.WorkHour_Index, controller_navigate.WorkHour);
+           
+
+            return RedirectToAction(ControllerNavigateViewModel.WorkHour_Index, ControllerNavigateViewModel.WorkHour);
         }
         #endregion
 
@@ -124,4 +126,6 @@ namespace WebApplication6.Controllers
         //******************************************************************************
 
     }
+
+  
 }

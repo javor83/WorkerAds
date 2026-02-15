@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WorkerSelect>
+﻿@model IEnumerable<WorkerSelectViewModel>
 <vc:manager-subtitle caption="@text_Worker.HeaderWorker"></vc:manager-subtitle>
 <table class="@BootstrapCSS.table">
     <tr>
@@ -32,16 +32,14 @@
                     }
                 </ul>
                 <div>
-                    <a 
-                        asp-action="@controller_navigate.Worker_Capability"
-                        asp-controller="@controller_navigate.Worker"
+                    <a asp-action="@ControllerNavigateViewModel.Worker_Capability"
+                       asp-controller="@ControllerNavigateViewModel.Worker"
                         asp-route-id="@k.ID"
                         class="@BootstrapCSS.button_outline">
                         @text_Worker.Capability
                     </a>
-                    <a 
-                       asp-action="@controller_navigate.Worker_Ads"
-                       asp-controller="@controller_navigate.Worker"
+                    <a asp-action="@ControllerNavigateViewModel.Worker_Ads"
+                       asp-controller="@ControllerNavigateViewModel.Worker"
                        asp-route-id="@k.ID"
                        class="@BootstrapCSS.button_outline">
                         @text_Worker.Ads
@@ -52,14 +50,14 @@
             </td>
             <td>
                 <form method="post"
-                    asp-controller="@controller_navigate.Worker"
-                    asp-action="@controller_navigate.WorkCategory_Delete"
+                      asp-controller="@ControllerNavigateViewModel.Worker"
+                      asp-action="@ControllerNavigateViewModel.WorkCategory_Delete"
                     asp-antiforgery="true"
                     onsubmit="@string.Format(BootstrapCSS.js_confirm_delete_taxwage,k.FullName())"
                     >
                     <input type="hidden" name="id" value="@k.ID"/>
-                    <a asp-action="@controller_navigate.Worker_Edit"
-                    asp-controller="@controller_navigate.Worker"
+                    <a asp-action="@ControllerNavigateViewModel.Worker_Edit"
+                       asp-controller="@ControllerNavigateViewModel.Worker"
                     asp-route-id="@k.ID"
                     class="@BootstrapCSS.button_outline">
                         @text_Label.Edit
@@ -71,7 +69,8 @@
     }
 </table>
 <div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
-    <a asp-controller="@controller_navigate.Worker" asp-action="@controller_navigate.Worker_Create"
+    <a asp-controller="@ControllerNavigateViewModel.Worker" 
+    asp-action="@ControllerNavigateViewModel.Worker_Create"
     class="@BootstrapCSS.button_primary @BootstrapCSS.display_inline">
         @text_Label.Create
     </a>

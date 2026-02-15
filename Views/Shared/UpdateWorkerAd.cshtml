@@ -1,11 +1,11 @@
 ﻿
-@model AdvertisementToWorker
+@model AdvertisementToWorkerViewModel
 
 
 <vc:manager-subtitle caption="@string.Format(@text_Worker.EditAdOf, @Model.WorkerFullName)"></vc:manager-subtitle>
 <form method="post"
-      asp-controller="@controller_navigate.Worker"
-      asp-action="@controller_navigate.Worker_EditAds"
+      asp-controller="@ControllerNavigateViewModel.Worker"
+      asp-action="@ControllerNavigateViewModel.Worker_EditAds"
       asp-antiforgery="true">
     <div asp-validation-summary="ModelOnly"></div>
     <input type="hidden" asp-for="@Model.ID" />
@@ -44,8 +44,8 @@
     </div>
 
     <div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
-        <a asp-controller="@controller_navigate.Worker"
-           asp-action="@controller_navigate.Worker_Ads"
+        <a asp-controller="@ControllerNavigateViewModel.Worker"
+           asp-action="@ControllerNavigateViewModel.Worker_Ads"
            asp-route-id="@Model.WorkerID" class="@BootstrapCSS.button_outline">
             @text_Label.Cancel
         </a>

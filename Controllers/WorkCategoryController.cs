@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using WebApplication6.Models;
-using WebApplication6.Captions;
-using WebApplication6.ExtensionMethods;
-using WebApplication6.Interfaces;
+using GCommon.ExtensionMethods;
 using Microsoft.AspNetCore.Authorization;
+using GCommon.Contracts;
+using GCommon.Captions;
+using GCommon.Models;
+using WebApplication6.Navigation;
 
 
 namespace WebApplication6.Controllers
@@ -43,7 +44,7 @@ namespace WebApplication6.Controllers
 
             if (this._category.Exists(id))
             {
-                TaxCategory ct = this._category.To_DTO_WorkCategory(id);
+                TaxCategoryViewModel ct = this._category.To_DTO_WorkCategory(id);
                 return View(ct);
             }
             else
@@ -53,7 +54,7 @@ namespace WebApplication6.Controllers
         //*****************************************************************************
         public IActionResult Create()
         {
-            return View(TaxCategory.Empty());
+            return View(TaxCategoryViewModel.Empty());
         }
         #endregion
 
@@ -64,12 +65,12 @@ namespace WebApplication6.Controllers
         {
             await this._category.Delete(id);
             return RedirectToAction(
-                   controller_navigate.WorkCategory_Index,
-                   controller_navigate.WorkCategory);
+                   ControllerNavigateViewModel.WorkCategory_Index,
+                   ControllerNavigateViewModel.WorkCategory);
         }
         //*****************************************************************************
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(TaxCategory sender)
+        public async Task<IActionResult> Edit(TaxCategoryViewModel sender)
         {
             if (ModelState.IsValid)
             {
@@ -78,15 +79,15 @@ namespace WebApplication6.Controllers
                 TempData[text_Label.TempData_ok] = text_Label
                     .SuccessApply;
                 return RedirectToAction(
-                      controller_navigate.WorkCategory_Index,
-                      controller_navigate.WorkCategory);
+                      ControllerNavigateViewModel.WorkCategory_Index,
+                      ControllerNavigateViewModel.WorkCategory);
             }
             else
                 return View(sender);
         }
         //*****************************************************************************
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TaxCategory sender)
+        public async Task<IActionResult> Create(TaxCategoryViewModel sender)
         {
             if (ModelState.IsValid)
             {
@@ -95,8 +96,8 @@ namespace WebApplication6.Controllers
 
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
                 return RedirectToAction(
-                    controller_navigate.WorkCategory_Index,
-                    controller_navigate.WorkCategory);
+                    ControllerNavigateViewModel.WorkCategory_Index,
+                    ControllerNavigateViewModel.WorkCategory);
             }
             else
                 return View(sender);

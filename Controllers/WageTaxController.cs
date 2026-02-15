@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using WebApplication6.Models;
-using WebApplication6.Captions;
-using WebApplication6.ExtensionMethods;
-using WebApplication6.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using GCommon.Contracts;
+using GCommon.Captions;
+using GCommon.Models;
+using WebApplication6.Navigation;
 
 namespace WebApplication6.Controllers
 {
@@ -45,7 +44,7 @@ namespace WebApplication6.Controllers
         /// <returns></returns>
         public IActionResult Create()
         {
-            return View(WageTax.Empty());
+            return View(WageTaxViewModel.Empty());
         }
         //******************************************************************************
         /// <summary>
@@ -75,15 +74,15 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(WageTax sender)
+        public async Task<IActionResult> Create(WageTaxViewModel sender)
         {
             if (ModelState.IsValid)
             {
                 await this._wage.Create(sender);
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
                 return RedirectToAction(
-                    nameof(WageTaxController.Index),
-                    nameof(WageTaxController).Navigate()
+                    ControllerNavigateViewModel.WageTax_Index,
+                    ControllerNavigateViewModel.WageTax
                     );
             }
             else
@@ -101,9 +100,8 @@ namespace WebApplication6.Controllers
             await this._wage.Delete(id);
             return RedirectToAction
                 (
-                nameof(WageTaxController.Index),
-                nameof(WageTaxController).Navigate()
-                );
+                ControllerNavigateViewModel.WageTax_Index,
+                ControllerNavigateViewModel.WageTax);
         }
         //******************************************************************************
         /// <summary>
@@ -112,7 +110,7 @@ namespace WebApplication6.Controllers
         /// <param name="sender"></param>
         /// <returns></returns>
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(WageTax sender)
+        public async Task<IActionResult> Update(WageTaxViewModel sender)
         {
             if (ModelState.IsValid)
             {
@@ -120,8 +118,8 @@ namespace WebApplication6.Controllers
                 TempData[text_Label.TempData_ok] = text_Label.SuccessApply;
                 return RedirectToAction
                     (
-                    nameof(WageTaxController.Index),
-                    nameof(WageTaxController).Navigate()
+                    ControllerNavigateViewModel.WageTax_Index,
+                    ControllerNavigateViewModel.WageTax
                     );
             }
             else

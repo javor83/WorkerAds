@@ -1,9 +1,9 @@
-﻿@model InsertWorker
+﻿@model InsertWorkerViewModel
 <vc:manager-subtitle caption="@text_Worker.NewWorker"></vc:manager-subtitle>
 <form method="post"
         asp-antiforgery="true"
-        asp-controller="@controller_navigate.Worker"
-        asp-action="@controller_navigate.Worker_Create" 
+      asp-controller="@ControllerNavigateViewModel.Worker"
+      asp-action="@ControllerNavigateViewModel.Worker_Create"
        enctype="@BootstrapCSS.enc_type_upload">
 
 
@@ -36,8 +36,8 @@
         <span asp-validation-for="@Model.Preview"></span>
     </div>
     <div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
-        <a asp-controller="@controller_navigate.Worker"
-            asp-action="@controller_navigate.Worker_Index"
+        <a asp-controller="@ControllerNavigateViewModel.Worker"
+           asp-action="@ControllerNavigateViewModel.Worker_Index"
            class="@BootstrapCSS.button_outline">@text_Label.Cancel</a>
         <input type="submit" value="@text_Label.Save" class="@BootstrapCSS.button_primary" />
     </div>

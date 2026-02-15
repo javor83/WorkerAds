@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WorkHour>
+﻿@model IEnumerable<WorkHourViewModel>
 
 <vc:manager-subtitle caption="@text_WorkHour.HeaderWorkHour"></vc:manager-subtitle>
 <table class="@BootstrapCSS.table">
@@ -13,16 +13,16 @@
             <td>
                 <form method="post"
                     asp-antiforgery="true"
-                      asp-controller="@controller_navigate.WorkHour"
-                      asp-action="@controller_navigate.WorkHourController_Delete"
+                      asp-controller="@ControllerNavigateViewModel.WorkHour"
+                      asp-action="@ControllerNavigateViewModel.WorkHourController_Delete"
                     onsubmit="@string.Format(BootstrapCSS.js_confirm_delete_taxwage,index.Printable())"
                     >
                     
                     <input type="hidden" name="id" value="@index.ID"/>
 
-                    <a asp-controller="@controller_navigate.WorkHour"
+                    <a asp-controller="@ControllerNavigateViewModel.WorkHour"
                     class="@BootstrapCSS.button_outline"
-                       asp-action="@controller_navigate.WorkHourController_Edit"
+                       asp-action="@ControllerNavigateViewModel.WorkHourController_Edit"
                     asp-route-id="@index.ID">
                         @text_Label.Edit
                     </a>
@@ -36,8 +36,8 @@
 
 </table>
 <div class="@BootstrapCSS.margin_top_1 @BootstrapCSS.text_center">
-    <a asp-controller="@controller_navigate.WorkHour"
-    asp-action="@controller_navigate.WorkHourController_Create"
+    <a asp-controller="@ControllerNavigateViewModel.WorkHour"
+       asp-action="@ControllerNavigateViewModel.WorkHourController_Create"
     class="@BootstrapCSS.button_primary">
         @text_Label.Create
 </a>
