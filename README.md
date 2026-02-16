@@ -14,7 +14,7 @@
 - ExtensionTagHelper - потребителски tag helper. В случая само оформление като многоредов текст - знакът за нов ред преминава като p таг
 - Models - моделите, които се показват в страниците
 - Services - истинското изпълнение на интерфейсите
-- ValidationMessage - съобщенията за валидация при запис към базата
+- ValidationMessage - съобщенията за валидация при запис към базата.
 
 Контролерите и изгледите разчитат на този namespace.
 
@@ -22,9 +22,8 @@
 - Базата данни се казва MEISTER. Превод от немски - означава Майстор.
 - Отваряте си проекта във Visual Studio 2022.
 - Работим със .NET Core 9.0
-Отваряте appsettings.json и променяте само 
-стойността на Server с името на локалния database server. 
-Всичко друго остава непроменено.
+- В папка Captions, файл export_sql.txt съдържа последно попълнените данни в базата. Може те да се ползват
+- Отваряте appsettings.json и променяте само стойността на Server с името на локалния database server. Всичко друго остава непроменено.
 
 "ConnectionStrings": {
     "DefaultConnection": "Server=**[име на сървъра]**;Database=MEISTER;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true",
