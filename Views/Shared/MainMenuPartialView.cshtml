@@ -1,4 +1,4 @@
-﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
     <div class="container-fluid">
         <a class="navbar-brand" asp-area="" asp-controller="@ControllerNavigateViewModel.Home" asp-action="@ControllerNavigateViewModel.Home_Index">@text_Label.AppName</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -8,7 +8,7 @@
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
-                    <a class="nav-link text-dark" 
+                    <a class="nav-link" 
                     asp-area="" 
                        asp-controller="@ControllerNavigateViewModel.Home"
                        asp-action="Index">@text_Label.Ads</a>
@@ -17,7 +17,7 @@
                 {
                     <li class="nav-item dropdown">
                     
-                        <a class="nav-link text-dark dropdown-toggle" asp-area="" asp-controller="@ControllerNavigateViewModel.Home" asp-action="@ControllerNavigateViewModel.Home_Index" role="button" data-bs-toggle="dropdown">@text_Label.Admin</a>
+                        <a class="nav-link  dropdown-toggle" asp-area="" asp-controller="@ControllerNavigateViewModel.Home" asp-action="@ControllerNavigateViewModel.Home_Index" role="button" data-bs-toggle="dropdown">@text_Label.Admin</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" asp-action="@ControllerNavigateViewModel.WageTax_Index" asp-controller="@ControllerNavigateViewModel.WageTax">@text_WageTax.HeaderWagetax</a></li>
                             <li><a class="dropdown-item" asp-action="@ControllerNavigateViewModel.WorkCategory_Index" asp-controller="@ControllerNavigateViewModel.WorkCategory">@text_WorkCategory.HeaderWorkCategory</a></li>

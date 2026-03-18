@@ -26,6 +26,7 @@ namespace GCommon.ExtensionMethods
             sender.AddTransient<ICapabilityService, CapabilityService>();
 
             sender.AddTransient<IPublishAdsService, PublishAdsService>();
+            sender.AddScoped<ILocalProfiles, LocalProfiles>();
         }
 
 

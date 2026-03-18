@@ -18,18 +18,22 @@ builder.Services
     .AddDefaultIdentity<IdentityUser>
     (
     options => 
-        { 
+        {
             options.SignIn.RequireConfirmedAccount = false;
             options.Password.RequireDigit = false;
-            options.Password.RequiredLength = 6;
+            options.Password.RequireNonAlphanumeric = false;
             options.Password.RequireLowercase = false;
             options.Password.RequireUppercase = false;
-            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequiredLength = 3;
 
         }
-    )
+    ).AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+
+
+
 
 var app = builder.Build();
 //-------------------------------
@@ -49,17 +53,23 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 //-----------------------
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseAuthentication(); app.UseAuthorization();
+app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
 //-----------------------
 
 app.MapStaticAssets();
+//---------------------------------
+//от специфичните към общите части
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}")
+    .WithStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
+//---------------------------------
 app.MapRazorPages()
    .WithStaticAssets();
 
