@@ -37,10 +37,12 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 //-------------------------------
-// Configure the HTTP request pipeline.
+//Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
+
 }
 else
 {
@@ -60,10 +62,16 @@ app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
 app.MapStaticAssets();
 //---------------------------------
 //от специфичните към общите части
+
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
+
+
+
+
+
 
 app.MapControllerRoute(
     name: "default",
