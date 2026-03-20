@@ -25,20 +25,19 @@
                 <div>
                     <b>@text_WorkCategory.LabelWorkCategory</b> @ads.WhatToDo()
 
-                   
+                    @*<multi-line current-text="@ads.AdvText"></multi-line>*@
 
-                    <span data-bs-toggle="collapse" 
-                    class="@BootstrapCSS.ReadMoreLess"
-                    data-bs-target="@string.Format("#demo{0}",ads.DeclareWorkerFreeID)">
+                    <a asp-controller="@ControllerNavigateViewModel.Home" 
+                           asp-action="@ControllerNavigateViewModel.Home_Ads" 
+                           asp-route-id="@ads.DeclareWorkerFreeID"
+                    class="@BootstrapCSS.ReadMoreLess">
                         @text_WorkCategory.ReadMoreLess
-                    </span>
-                   
-                </div>
-                <div id="@string.Format("demo{0}",ads.DeclareWorkerFreeID)" class="collapse">
-                   
+                    </a>
 
-                    <multi-line current-text="@ads.AdvText"></multi-line>
+                 
+                   
                 </div>
+                
             </td>
             <td class="@BootstrapCSS.text_center">
                    @ads.EveryDay()

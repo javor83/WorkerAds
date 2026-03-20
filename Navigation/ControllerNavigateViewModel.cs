@@ -17,6 +17,7 @@ namespace WebApplication6.Navigation
         //---------------------------
         public static readonly string Home = nameof(HomeController).Navigate();
         public static readonly string Home_Index = nameof(HomeController.Index);
+        public static readonly string Home_Ads = nameof(HomeController.Ads);
         //---------------------------
         public static readonly string WorkCategory = nameof(WorkCategoryController).Navigate();
         public static readonly string WorkCategory_Index = nameof(WorkCategoryController.Index);

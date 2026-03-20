@@ -28,6 +28,12 @@ namespace WebApplication6.Controllers
             return View(this._ads.Read());
         }
         //******************************************************************************************
+        public IActionResult Ads(int id)
+        {
+            return Json(new { x = id });
+        }
+
+        //******************************************************************************************
        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error(int statusCode)
