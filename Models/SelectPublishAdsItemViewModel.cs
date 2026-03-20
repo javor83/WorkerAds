@@ -9,7 +9,10 @@ namespace GCommon.Models
     {
         public required int ID { get; set; }
 
-        public required string AdvText;
+        public required string AdvText { get; set; }
+
+        public required string AdTitle { get; set; }
+
         public int Hour { get; set; }//за сортиране по час
 
         public int Minute { get; set; }//за сортиране по минута

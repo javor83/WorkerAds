@@ -142,7 +142,8 @@ namespace GCommon.Services
                                                                   CategoryName = work_category.Caption,
                                                                   TaxWage = tax_wage.Caption,
                                                                   Money = Convert.ToDecimal(worker_capability.Price),
-                                                                  StartDay = Convert.ToDateTime(decl_worker_free.WatchDate)
+                                                                  StartDay = Convert.ToDateTime(decl_worker_free.WatchDate),
+                                                                  AdTitle = decl_worker_free.AdTitle
 
                                                               };
 

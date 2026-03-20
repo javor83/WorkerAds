@@ -43,6 +43,7 @@ namespace GCommon.Services
                                                          TaxWage = tax_wage.Caption,
                                                          WorkCategory = work_category.Caption,
                                                          AdvText = decl_wfree.AdText,
+                                                         AdvTitle = decl_wfree.AdTitle,
                                                          DayName = decl_wfree.WatchDate.OnlyDatePart(),
                                                          Hour = hour_value.Shour,
                                                          Minute = hour_value.Sminute

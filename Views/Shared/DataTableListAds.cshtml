@@ -14,6 +14,7 @@
                 <img src="@ads.Photo.ImgSrc_PreviewWorker()" class="@BootstrapCSS.img_thumbnail_worker" />
             </td>
             <td>
+                <p class="text-center"><strong>@ads.AdvTitle</strong></p>
                 <div><b>@ads.FullName()</b></div>
                 <div>
                     <b>@text_Worker.WorkerPhone</b> @ads.Phone
@@ -34,7 +35,7 @@
                    
                 </div>
                 <div id="@string.Format("demo{0}",ads.DeclareWorkerFreeID)" class="collapse">
-                    
+                   
 
                     <multi-line current-text="@ads.AdvText"></multi-line>
                 </div>

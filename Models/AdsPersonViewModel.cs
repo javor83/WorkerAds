@@ -28,6 +28,8 @@ namespace GCommon.Models
 
         public required string AdvText { get; init; }
 
+        public required string AdvTitle { get; init; }
+
         public required decimal Price { get; init; } = 0;
 
         public required string TaxWage { get; init; }
