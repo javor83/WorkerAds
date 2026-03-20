@@ -35,6 +35,7 @@ namespace GCommon.Services
                 decl.WorkerCapabilityId = sender.CapabilityID;
                 decl.HourId = sender.HourID;
                 decl.WatchDate = sender.WatchDate;
+                decl.AdTitle = sender.AdvTitle;
                 await this._context.SaveChangesAsync();
             }
         }
@@ -62,6 +63,7 @@ namespace GCommon.Services
                                                      select new AdvertisementToWorkerViewModel()
                                                      {
                                                          AdvText = decl_wfree.AdText,
+                                                         AdvTitle =decl_wfree.AdTitle,
                                                          WatchDate = decl_wfree.WatchDate,
                                                          ID = id,
                                                          WorkerID = worker.Id,
@@ -86,7 +88,8 @@ namespace GCommon.Services
                 WatchDate = sender.WatchDate,
                 AdText = sender.AdvText,
                 HourId = sender.HourID,
-                WorkerCapabilityId = sender.CapabilityID
+                WorkerCapabilityId = sender.CapabilityID,
+                AdTitle  = sender.AdvTitle
 
             };
             this._context.DeclareWorkerFrees.Add(decl_worker);

@@ -38,6 +38,12 @@
 
 
     <div class="form-group">
+        <label asp-for="@Model.AdvTitle"></label>
+        <input type="text" asp-for="@Model.AdvTitle" class="form-control"/>
+        <span asp-validation-for="@Model.AdvTitle"></span>
+    </div>
+
+    <div class="form-group">
         <label asp-for="@Model.AdvText"></label>
         <textarea asp-for="@Model.AdvText" class="form-control"></textarea>
         <span asp-validation-for="@Model.AdvText"></span>

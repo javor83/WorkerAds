@@ -23,13 +23,18 @@ namespace GCommon.Models
         public required string? AdvText { get; set; }
         //**************************************************************************
         [Required(AllowEmptyStrings = false, ErrorMessage = valid_WorkerAd.Req_Field)]
+        [Display(Name = text_WorkerAd.AdvTitle)]
+        public required string? AdvTitle { get; set; }
+
+        //**************************************************************************
+        [Required(AllowEmptyStrings = false, ErrorMessage = valid_WorkerAd.Req_Field)]
         [Display(Name = text_WorkerAd.StartDay)]
         public DateTime? WatchDate { get; set; }
         //**************************************************************************
         [Required(AllowEmptyStrings = false, ErrorMessage = valid_WorkerAd.Req_Field)]
         [Display(Name = text_WorkerAd.WorkCategory)]
         public required int? CapabilityID { get; set; }
-
+        //**************************************************************************
 
 
 
@@ -60,6 +65,7 @@ namespace GCommon.Models
                 HourList = null,
 
                 AdvText = string.Empty,
+                AdvTitle = string.Empty,
                 WatchDate = DateTime.Today,
 
                 CapabilityID = null,

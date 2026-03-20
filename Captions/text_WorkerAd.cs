@@ -6,6 +6,7 @@
         public const string StartDay = "Начална дата";
 
         public const string AdvText = "Текст на обявата";
+        public const string AdvTitle = "Заглавие на обявата";
         public const string WorkCategory = "Обявата е в категория";
 
 
