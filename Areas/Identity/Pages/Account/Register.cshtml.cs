@@ -124,7 +124,7 @@ namespace WebApplication6.Areas.Identity.Pages.Account
                     //------------------------------
                     //при обикновен потребител , той придобива обикновена роля - User
                     await _userManager.AddToRoleAsync(user, enum_AppRoles.User);
-                    await _userManager.AddToRoleAsync(user, enum_AppRoles.Administrator);
+                    //await _userManager.AddToRoleAsync(user, enum_AppRoles.Administrator);
                     //------------------------------
                     _logger.LogInformation("User created a new account with password.");
 

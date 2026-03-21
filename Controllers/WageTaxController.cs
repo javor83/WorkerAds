@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using GCommon.Contracts;
 using GCommon.Captions;
 using GCommon.Models;
-using WebApplication6.Navigation;
+using GCommon.ExtensionAttributes;
+using GCommon.Navigation;
 
 namespace WebApplication6.Controllers
 {

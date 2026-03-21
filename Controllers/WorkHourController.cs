@@ -1,10 +1,10 @@
 ﻿using GCommon.Captions;
 using GCommon.Contracts;
+using GCommon.ExtensionAttributes;
 using GCommon.Models;
+using GCommon.Navigation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection;
-using WebApplication6.Navigation;
 
 namespace WebApplication6.Controllers
 {
@@ -12,7 +12,7 @@ namespace WebApplication6.Controllers
     /// контролер за началните работни часове
     /// </summary>
     /// 
-    [Authorize]
+    [AuthorizeAdmin()]
     public class WorkHourController : Controller
     {
 

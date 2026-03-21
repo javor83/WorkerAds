@@ -1,15 +1,16 @@
 ﻿using GCommon.Captions;
 using GCommon.Contracts;
+using GCommon.ExtensionAttributes;
 using GCommon.Models;
+using GCommon.Navigation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication6.Navigation;
 
 
 namespace WebApplication6.Controllers
 {
 
-    [Authorize]
+    [AuthorizeAdmin()]
     public class WorkerController
         (
             IWorkerService service_worker,

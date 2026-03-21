@@ -1,7 +1,7 @@
 ﻿using GCommon.ExtensionMethods;
 using WebApplication6.Controllers;
 
-namespace WebApplication6.Navigation
+namespace GCommon.Navigation
 {
     /// <summary>
     /// навигация от изгледите към съответния контролер

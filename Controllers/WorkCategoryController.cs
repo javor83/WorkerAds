@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using GCommon.ExtensionMethods;
-using Microsoft.AspNetCore.Authorization;
+﻿using GCommon.Captions;
 using GCommon.Contracts;
-using GCommon.Captions;
+using GCommon.ExtensionAttributes;
 using GCommon.Models;
-using WebApplication6.Navigation;
+using GCommon.Navigation;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace WebApplication6.Controllers
@@ -13,7 +12,7 @@ namespace WebApplication6.Controllers
     /// <summary>
     /// контролер за категориите работа - вик/ел/мазилка и т.н
     /// </summary>
-    [Authorize]
+    [AuthorizeAdmin()]
     public class WorkCategoryController : Controller
     {
         private IWorkCategoryService _category = null;
