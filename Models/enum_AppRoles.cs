@@ -1,10 +1,10 @@
 ﻿namespace GCommon.Models
 {
-    public enum enum_AppRoles
+    public static class enum_AppRoles
     {
+        public static string Administrator = "Administrator";
 
-        Administrator,
-        User
+        public static string User = "User";
 
 
     }

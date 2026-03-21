@@ -10,7 +10,7 @@ namespace WebApplication6.Controllers
     /// <summary>
     /// контролер за начините на таксуване - ден/л.м/кубик и т.н
     /// </summary>
-    [Authorize]
+    [AuthorizeAdmin()]
     public class WageTaxController : Controller
     {
         private readonly IWageTaxService _wage = null;

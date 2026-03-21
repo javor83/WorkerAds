@@ -61,8 +61,8 @@ namespace GCommon.Services
 
             foreach (var k in registerd)
             {
-                bool is_admin = await (this as ILocalProfiles).CheckInRole(k.Id, enum_AppRoles.Administrator.ToString());
-                bool is_user = await (this as ILocalProfiles).CheckInRole(k.Id, enum_AppRoles.User.ToString());
+                bool is_admin = await (this as ILocalProfiles).CheckInRole(k.Id, enum_AppRoles.Administrator);
+                bool is_user = await (this as ILocalProfiles).CheckInRole(k.Id, enum_AppRoles.User);
                 sb.Append($"User {k.Id} | {k.UserName} admin {is_admin} | User {is_user}").AppendLine();
 
             }
