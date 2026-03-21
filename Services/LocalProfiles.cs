@@ -88,6 +88,46 @@ namespace GCommon.Services
             return result;
         }
         //********************************************************************************
+        async Task<bool> ILocalProfiles.CheckInRole(string user_id, string role_name)
+        {
+            bool result = false;
+            IdentityUser local_user = await this._list.FindByIdAsync(user_id);
+            if (local_user != null)
+            {
+                result = await this._list.IsInRoleAsync(local_user, role_name);
+            }
+            return result;
+        }
+
+        //********************************************************************************
+
+        bool ILocalProfiles.InRoleAdmin()
+        {
+            bool result = false;
+
+            if ((this as ILocalProfiles).IsLogged())
+            {
+                
+                result = this._httpContextAccessor.HttpContext.User.IsInRole(enum_AppRoles.Administrator);
+            }
+
+            return result;
+        }
+        //********************************************************************************
+        bool ILocalProfiles.InRoleUser()
+        {
+            bool result = false;
+
+            if ((this as ILocalProfiles).IsLogged())
+            {
+
+                result = this._httpContextAccessor.HttpContext.User.IsInRole(enum_AppRoles.User);
+            }
+
+            return result;
+        }
+
+        //********************************************************************************
         IQueryable<IdentityUser> ILocalProfiles.Get()
         {
             return this._list.Users;
@@ -161,17 +201,7 @@ namespace GCommon.Services
                 await this._list.RemoveFromRoleAsync(local_user, role_name);
             }
         }
-        //********************************************************************************
-        async Task<bool> ILocalProfiles.CheckInRole(string user_id, string role_name)
-        {
-            bool result = false;
-            IdentityUser local_user = await this._list.FindByIdAsync(user_id);
-            if (local_user != null)
-            {
-                result = await this._list.IsInRoleAsync(local_user, role_name);
-            }
-            return result;
-        }
+       
         //********************************************************************************
 
     }

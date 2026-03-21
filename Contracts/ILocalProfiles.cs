@@ -15,13 +15,17 @@ namespace GCommon.Contracts
         Task<IdentityResult> Delete(string id);
 
         bool IsLogged();
+        Task<bool> CheckInRole(string user_id, string role_name);
+
+        bool InRoleAdmin();
+        bool InRoleUser();
 
 
         Task AssignToRole(string user_id, string role_name);
 
         Task DeleteFromRole(string user_id, string role_name);
 
-        Task<bool> CheckInRole(string user_id, string role_name);
+       
 
         IQueryable<IdentityRole> GetRoles();
 

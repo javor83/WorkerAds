@@ -1,4 +1,7 @@
-﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+﻿@using GCommon.Contracts
+@inject ILocalProfiles log_as
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
     <div class="container-fluid">
         <a class="navbar-brand" asp-area="" asp-controller="@ControllerNavigateViewModel.Home" asp-action="@ControllerNavigateViewModel.Home_Index">@text_Label.AppName</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -13,7 +16,7 @@
                        asp-controller="@ControllerNavigateViewModel.Home"
                        asp-action="Index">@text_Label.Ads</a>
                 </li>
-                @if (User.Identity?.IsAuthenticated ?? false)
+                @if (log_as.InRoleAdmin())
                 {
                     <li class="nav-item dropdown">
                     
