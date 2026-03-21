@@ -1,10 +1,10 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using GCommon.Data;
-
-using Microsoft.AspNetCore.Authorization;
-using GCommon.Models;
 using GCommon.Contracts;
+using GCommon.Data;
+using GCommon.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using System.Runtime.Intrinsics.Arm;
 
 namespace WebApplication6.Controllers
 {
@@ -30,7 +30,16 @@ namespace WebApplication6.Controllers
         //******************************************************************************************
         public IActionResult Ads(int id)
         {
-            return Json(new { x = id });
+            AdsPersonViewModel? item = this._ads.Details(id);
+            if (item != null)
+            {
+                return Json(new { x = item });
+            }
+            else
+            {
+                return NotFound();
+            }
+           
         }
 
         //******************************************************************************************

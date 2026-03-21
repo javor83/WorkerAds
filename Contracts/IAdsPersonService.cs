@@ -9,5 +9,7 @@ namespace GCommon.Contracts
     {
         IEnumerable<AdsPersonViewModel> Read();
 
+        AdsPersonViewModel? Details(int adv_id);
+
     }
 }

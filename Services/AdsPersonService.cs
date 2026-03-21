@@ -8,7 +8,20 @@ namespace GCommon.Services
     public class AdsPersonService(MeisterContext _context) : IAdsPersonService
     {
 
+        //*****************************************************************
+        AdsPersonViewModel? IAdsPersonService.Details(int adv_id)
+        {
+            IEnumerable<AdsPersonViewModel> list = (this as IAdsPersonService).Read();
+            AdsPersonViewModel? result = null;
+            bool ok = list.Any(x => x.DeclareWorkerFreeID == adv_id);
+            if (ok)
+            {
+                result = list.First(x => x.DeclareWorkerFreeID == adv_id);
+            }
+            return result;
 
+
+        }
 
         //*****************************************************************
         IEnumerable<AdsPersonViewModel> IAdsPersonService.Read()
