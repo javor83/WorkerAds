@@ -1,0 +1,29 @@
+﻿@model AdsPersonViewModel
+<vc:manager-subtitle caption="@Model.AdvTitle"></vc:manager-subtitle>
+<table class="@BootstrapCSS.table"> 
+    <tr>
+        <td>@text_Worker.WorkerFName</td>
+        <td>@Model.FullName()</td>
+    </tr>
+    <tr>
+        <td>@text_Worker.WorkerPhone</td>
+        <td>@Model.Phone</td>
+    </tr>
+    <tr>
+        <td>@text_Worker.WorkerEmail</td>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <td>@text_WorkCategory.LabelWorkCategory</td>
+        <td>@Model.WhatToDo()</td>
+    </tr>
+    <tr>
+        <td>@text_WorkHour.LabelWorkHour</td>
+        <td> @Model.EveryDay()</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <multi-line current-text="@Model.AdvText"></multi-line>
+        </td>
+    </tr>
+</table>

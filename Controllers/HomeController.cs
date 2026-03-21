@@ -33,7 +33,7 @@ namespace WebApplication6.Controllers
             AdsPersonViewModel? item = this._ads.Details(id);
             if (item != null)
             {
-                return Json(new { x = item });
+                return View(item);
             }
             else
             {
