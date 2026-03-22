@@ -5,13 +5,16 @@ namespace GCommon.Models
     public class FilterModel
     {
         private int min_page = 1;
-        public const string view_data = "FilterModel_view_data_filter";
+      
 
         public const int ElementsOnPage = 3;
 
 
         public required int TotalPages { get; set; } = 0;
         public required int CurrentPage { get; set; } = 0;
+
+        public required string Keyword { get; set; } = string.Empty;
+
         //******************************************************************************************
 
         public void Validate()

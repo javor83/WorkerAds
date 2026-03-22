@@ -1,8 +1,20 @@
-﻿@model IEnumerable<AdsPersonViewModel>
-@{
+﻿@model DisplayIndexViewModel
+
+<form method="get"
+    asp-controller="@ControllerNavigateViewModel.Home"
+    asp-action="@ControllerNavigateViewModel.Home_Index">
    
 
-     FilterModel filter = ViewData[FilterModel.view_data] as FilterModel;
-}
+    <div class="input-group">
+        <input type="text" name="kw" value="@Model.ApplyFilter.Keyword"  class="form-control" placeholder="@text_Label.Filter">
+        <button class="@BootstrapCSS.button_primary" type="submit">@text_Label.StartFilter</button>
+    </div>
+
+  
+</form>
+
 <partial name="DataTableListAds" model="@Model" />
-<partial name="HomeIndexPager" model="@filter" />
+
+<partial name="HomeIndexPager" model="@Model.ApplyFilter" />
+
+

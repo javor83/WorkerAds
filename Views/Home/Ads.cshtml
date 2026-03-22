@@ -1,2 +1,11 @@
-﻿@model AdsPersonViewModel
-<partial name="DetailsAds" model="@Model" />
+﻿@model DisplayDetailsAdsViewModel
+<partial name="DetailsAds" model="@Model.Data" />
+
+<div class="text-center">
+<a asp-controller="@ControllerNavigateViewModel.Home"
+asp-action="@ControllerNavigateViewModel.Home_Index"
+asp-route-page="@Model.ApplyFilter.CurrentPage"
+asp-route-kw="@Model.ApplyFilter.Keyword" class="@BootstrapCSS.button_outline">
+@text_Label.Ads
+</a>
+</div>

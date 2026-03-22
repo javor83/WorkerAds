@@ -1,6 +1,7 @@
 using GCommon.Contracts;
 using GCommon.Data;
 using GCommon.Models;
+using GCommon.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -22,26 +23,29 @@ namespace WebApplication6.Controllers
         }
         //******************************************************************************************
         
-        public IActionResult Index(int page=1)
+        public IActionResult Index(int page=1,string kw="")
         {
-            int page_count = this._ads.PageCount();
-            FilterModel filter = new FilterModel()
-            {
-                TotalPages = page_count,
-                CurrentPage = page
-            };
-            filter.Validate();
-
-            ViewData[FilterModel.view_data] = filter;
-            return View(this._ads.PagedSet(filter));
+            DisplayIndexViewModel page_count = this._ads.ReadAll(page,kw);
+          
+            return View(page_count);
         }
         //******************************************************************************************
-        public IActionResult Ads(int id)
+        public IActionResult Ads(int id,int page=1,string kw="")
         {
-            AdsPersonViewModel? item = this._ads.Details(id);
-            if (item != null)
+            DisplayDetailsAdsViewModel key = new DisplayDetailsAdsViewModel()
             {
-                return View(item);
+                Data = this._ads.Details(id),
+                ApplyFilter = new FilterModel()
+                {
+                    CurrentPage = page,
+                    Keyword = kw,
+                    TotalPages = 1
+                }
+            };
+          
+            if (key.Data != null)
+            {
+                return View(key);
             }
             else
             {

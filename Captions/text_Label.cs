@@ -14,7 +14,8 @@
         public const string Admin = "Администрация";
         public const string Ads = "Списък обяви";
         public const string FreeAds = "Работни обяви";
-
+        public const string Filter = "Търсене в текста или заглавието на обявата";
+        public const string StartFilter = "Приложи";
 
         //********************************
         public const string Delete = "Изтрий";

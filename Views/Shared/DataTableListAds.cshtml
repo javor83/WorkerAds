@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AdsPersonViewModel>
+﻿@model DisplayIndexViewModel
 <vc:manager-subtitle caption="@text_Label.FreeAds"></vc:manager-subtitle>
 <table class="@BootstrapCSS.table">
     <tr>
@@ -6,7 +6,7 @@
         <th class="@BootstrapCSS.text_center">@text_Worker.WorkerDetails</th>
         <th class="@BootstrapCSS.text_center">@text_WorkHour.LabelWorkHour</th>
     </tr>
-    @foreach (var ads in Model)
+    @foreach (var ads in Model.Data)
     {
         <tr>
             <td class="@BootstrapCSS.text_center">
@@ -25,11 +25,13 @@
                 <div>
                     <b>@text_WorkCategory.LabelWorkCategory</b> @ads.WhatToDo()
 
-                    @*<multi-line current-text="@ads.AdvText"></multi-line>*@
+                    
 
                     <a asp-controller="@ControllerNavigateViewModel.Home" 
                            asp-action="@ControllerNavigateViewModel.Home_Ads" 
                            asp-route-id="@ads.DeclareWorkerFreeID"
+                           asp-route-page="@Model.ApplyFilter.CurrentPage"
+                           asp-route-kw="@Model.ApplyFilter.Keyword"
                     class="@BootstrapCSS.ReadMoreLess">
                         @text_WorkCategory.ReadMoreLess
                     </a>

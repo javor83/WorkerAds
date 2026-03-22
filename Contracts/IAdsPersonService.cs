@@ -1,4 +1,5 @@
 ﻿using GCommon.Models;
+using GCommon.Services;
 
 namespace GCommon.Contracts
 {
@@ -7,12 +8,12 @@ namespace GCommon.Contracts
     /// </summary>
     public interface IAdsPersonService
     {
-        IEnumerable<AdsPersonViewModel> ReadAll();
+      
 
         AdsPersonViewModel? Details(int adv_id);
 
-        int PageCount();
+        
 
-        IEnumerable<AdsPersonViewModel> PagedSet(FilterModel filter);
+        DisplayIndexViewModel ReadAll(int page, string keyword);
     }
 }

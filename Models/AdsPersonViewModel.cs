@@ -12,6 +12,7 @@ namespace GCommon.Models
     {
         public required int DeclareWorkerFreeID { get; set; }
 
+       
 
         public required string FName { get; init; }
         public required string LName { get; init; }
