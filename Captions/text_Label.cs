@@ -6,6 +6,11 @@
     public class text_Label
     {
         public const string AppName = "Намери майстор !";
+
+        public const string NextPage = "Следваща страница";
+
+        public const string PrevPage = "Предходна страница";
+
         public const string Admin = "Администрация";
         public const string Ads = "Списък обяви";
         public const string FreeAds = "Работни обяви";

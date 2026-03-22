@@ -22,10 +22,18 @@ namespace WebApplication6.Controllers
         }
         //******************************************************************************************
         
-        public IActionResult Index()
+        public IActionResult Index(int page=1)
         {
-          
-            return View(this._ads.Read());
+            int page_count = this._ads.PageCount();
+            FilterModel filter = new FilterModel()
+            {
+                TotalPages = page_count,
+                CurrentPage = page
+            };
+            filter.Validate();
+
+            ViewData[FilterModel.view_data] = filter;
+            return View(this._ads.PagedSet(filter));
         }
         //******************************************************************************************
         public IActionResult Ads(int id)

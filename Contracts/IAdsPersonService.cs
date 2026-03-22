@@ -7,9 +7,12 @@ namespace GCommon.Contracts
     /// </summary>
     public interface IAdsPersonService
     {
-        IEnumerable<AdsPersonViewModel> Read();
+        IEnumerable<AdsPersonViewModel> ReadAll();
 
         AdsPersonViewModel? Details(int adv_id);
 
+        int PageCount();
+
+        IEnumerable<AdsPersonViewModel> PagedSet(FilterModel filter);
     }
 }

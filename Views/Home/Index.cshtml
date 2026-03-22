@@ -1,2 +1,8 @@
 ﻿@model IEnumerable<AdsPersonViewModel>
+@{
+   
+
+     FilterModel filter = ViewData[FilterModel.view_data] as FilterModel;
+}
 <partial name="DataTableListAds" model="@Model" />
+<partial name="HomeIndexPager" model="@filter" />
