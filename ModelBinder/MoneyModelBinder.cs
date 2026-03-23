@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using GCommon.ValidationMessage;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Globalization;
 
 namespace GCommon.ModelBinder
@@ -34,13 +35,13 @@ namespace GCommon.ModelBinder
                     }
                     else
                     {
-                        bindingContext.ModelState.AddModelError(bindingContext.ModelName, "Invalid decimal value");
+                        bindingContext.ModelState.AddModelError(bindingContext.ModelName, valid_Worker.Range_Price);
                     }
 
                 }
                 else
                 {
-                    bindingContext.ModelState.AddModelError(bindingContext.ModelName, "Invalid decimal value");
+                    bindingContext.ModelState.AddModelError(bindingContext.ModelName, valid_Worker.Range_Price);
                 }
             }
             return Task.CompletedTask;
