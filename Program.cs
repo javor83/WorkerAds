@@ -2,6 +2,7 @@ using GCommon.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GCommon.ExtensionMethods;
+using GCommon.ModelBinder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +30,16 @@ builder.Services
         }
     ).AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddControllersWithViews();
+
+
+
+builder.Services.AddControllersWithViews
+    (
+        options =>
+        {
+            options.ModelBinderProviders.Insert(0, new DecimalBinderProvider());
+        }
+    );
 
 
 

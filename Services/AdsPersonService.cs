@@ -2,8 +2,6 @@
 using GCommon.Data;
 using GCommon.ExtensionMethods;
 using GCommon.Models;
-using Microsoft.EntityFrameworkCore;
-using static System.Net.WebRequestMethods;
 
 namespace GCommon.Services
 {
@@ -52,6 +50,7 @@ namespace GCommon.Services
                              Photo = worker.Photo,
                              Price = Convert.ToDecimal(worker_capability.Price),
                              TaxWage = tax_wage.Caption,
+                           
                              WorkCategory = work_category.Caption,
                              AdvText = decl_wfree.AdText,
                              AdvTitle = decl_wfree.AdTitle,
@@ -110,6 +109,7 @@ namespace GCommon.Services
                                  Photo = worker.Photo,
                                  Price = Convert.ToDecimal(worker_capability.Price),
                                  TaxWage = tax_wage.Caption,
+                          
                                  WorkCategory = work_category.Caption,
                                  AdvText = decl_wfree.AdText,
                                  AdvTitle = decl_wfree.AdTitle,
@@ -135,11 +135,13 @@ namespace GCommon.Services
                 }
 
             }
+            
 
 
             var filtered = new FilterModel()
             {
                 Keyword = keyword,
+             
                 CurrentPage = page,
                 TotalPages = (int)Math.Ceiling(result_set.Count() / (float)FilterModel.ElementsOnPage)
             };

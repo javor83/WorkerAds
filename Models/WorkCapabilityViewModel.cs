@@ -36,6 +36,9 @@ namespace GCommon.Models
         //*********************************************************************************************
         [Required(ErrorMessage = valid_Worker.Required_Field)]
         [Display(Name = text_Worker.Price)]
+
+        
+
         [Range(valid_Worker.MinPrice,valid_Worker.MaxPrice,ErrorMessage = valid_Worker.Range_Price)]
         public required decimal? Price { get; set; }
        

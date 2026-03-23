@@ -5,6 +5,7 @@ namespace GCommon.Models
     public class FilterModel
     {
         private int min_page = 1;
+
       
 
         public const int ElementsOnPage = 3;
@@ -14,6 +15,10 @@ namespace GCommon.Models
         public required int CurrentPage { get; set; } = 0;
 
         public required string Keyword { get; set; } = string.Empty;
+
+     
+
+        
 
         //******************************************************************************************
 

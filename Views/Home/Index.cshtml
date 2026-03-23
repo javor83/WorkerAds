@@ -3,8 +3,7 @@
 <form method="get"
     asp-controller="@ControllerNavigateViewModel.Home"
     asp-action="@ControllerNavigateViewModel.Home_Index">
-   
-
+    
     <div class="input-group">
         <input type="text" name="kw" value="@Model.ApplyFilter.Keyword"  class="form-control" placeholder="@text_Label.Filter">
         <button class="@BootstrapCSS.button_primary" type="submit">@text_Label.StartFilter</button>

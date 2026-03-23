@@ -25,7 +25,7 @@
 
     <div class="form-group">
         <label asp-for="@Model.Price"></label>
-        <input type="number" asp-for="@Model.Price" class="form-control" max="@valid_Worker.MaxPrice" min="@valid_Worker.MinPrice" step=".01"/>
+        <input type="text" asp-for="@Model.Price" class="form-control"/>
         <span asp-validation-for="@Model.Price"></span>
     </div>
 

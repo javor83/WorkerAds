@@ -1,11 +1,7 @@
 using GCommon.Contracts;
-using GCommon.Data;
 using GCommon.Models;
-using GCommon.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Runtime.Intrinsics.Arm;
 
 namespace WebApplication6.Controllers
 {
@@ -14,17 +10,18 @@ namespace WebApplication6.Controllers
     {
      
         private IAdsPersonService _ads = null;
-       
+        
         //******************************************************************************************
         public HomeController(IAdsPersonService ads)
         {
             this._ads = ads;
-           
+ 
         }
         //******************************************************************************************
-        
-        public IActionResult Index(int page=1,string kw="")
+
+        public IActionResult Index(int page = 1, string kw = "")
         {
+            
             DisplayIndexViewModel page_count = this._ads.ReadAll(page,kw);
           
             return View(page_count);
