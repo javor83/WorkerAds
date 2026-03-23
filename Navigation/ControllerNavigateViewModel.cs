@@ -8,6 +8,8 @@ namespace GCommon.Navigation
     /// </summary>
     public class ControllerNavigateViewModel
     {
+        public static readonly string UserAsk = nameof(UserAskController).Navigate();
+        public static readonly string UserAsk_IncludeAsk = nameof(UserAskController.IncludeAsk);
         //---------------------------
         public static readonly string WageTax = nameof(WageTaxController).Navigate();
         public static readonly string WageTax_Index = nameof(WageTaxController.Index);

@@ -44,15 +44,25 @@
                 
             </td>
             <td class="@BootstrapCSS.text_center">
-                   <form method="post" asp-controller="" asp-action="" asp-antiforgery="true">
+                 
                        @ads.EveryDay()
+                       
+                  
                        @if(login.InRoleUser())
                        {
-                            <div>
-                                <input type="submit" value="@text_Label.AskService" class="@BootstrapCSS.button_danger" />
-                            </div>
+                            <form method="post" 
+                                asp-controller="@ControllerNavigateViewModel.UserAsk" 
+                                asp-action="@ControllerNavigateViewModel.UserAsk_IncludeAsk"
+                                asp-antiforgery="true">
+                                <input type="hidden" value="@ads.DeclareWorkerFreeID" name="id" />
+                                <input type="hidden" value="@Model.ApplyFilter.CurrentPage" name="page" />
+                                <input type="hidden" value="@Model.ApplyFilter.Keyword" name="kw" />
+                                    <div>
+                                        <input type="submit" value="@text_Label.AskService" class="@BootstrapCSS.button_danger" />
+                                    </div>
+                            </form>
                        }
-                   </form>
+                
                    
             </td>
         </tr>
