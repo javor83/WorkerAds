@@ -1,4 +1,6 @@
 ﻿@model DisplayIndexViewModel
+@using GCommon.Contracts
+@inject ILocalProfiles login
 <vc:manager-subtitle caption="@text_Label.FreeAds"></vc:manager-subtitle>
 <table class="@BootstrapCSS.table">
     <tr>
@@ -42,7 +44,16 @@
                 
             </td>
             <td class="@BootstrapCSS.text_center">
-                   @ads.EveryDay()
+                   <form method="post" asp-controller="" asp-action="" asp-antiforgery="true">
+                       @ads.EveryDay()
+                       @if(login.InRoleUser())
+                       {
+                            <div>
+                                <input type="submit" value="@text_Label.AskService" class="@BootstrapCSS.button_danger" />
+                            </div>
+                       }
+                   </form>
+                   
             </td>
         </tr>
     }
