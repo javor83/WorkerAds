@@ -1,5 +1,6 @@
 using GCommon.Contracts;
 using GCommon.Models;
+using GCommon.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -11,17 +12,22 @@ namespace WebApplication6.Controllers
      
         private IAdsPersonService _ads = null;
         
+        private IManageAsk manage_ask = null;
         //******************************************************************************************
-        public HomeController(IAdsPersonService ads)
+        public HomeController(IAdsPersonService ads, IManageAsk manage_ask)
         {
             this._ads = ads;
- 
+            this.manage_ask = manage_ask;
         }
         //******************************************************************************************
 
         public IActionResult Index(int page = 1, string kw = "")
         {
-            
+            ViewData[ManageAsk.SUMMARY_BASKET] = new SummaryManageAsk()
+            {
+                EmptyBasket = this.manage_ask.Empty(),
+                BasketCount = this.manage_ask.Count()
+            };
             DisplayIndexViewModel page_count = this._ads.ReadAll(page,kw);
           
             return View(page_count);

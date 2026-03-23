@@ -18,6 +18,9 @@
         public const string StartFilter = "Приложи";
 
         public const string AskService = "Запитване";
+        public const string AskedService = "Обяви за запитване {0}";
+        public const string EmptyAskService = "Няма обяви за запитване";
+
         //********************************
         public const string Delete = "Изтрий";
 

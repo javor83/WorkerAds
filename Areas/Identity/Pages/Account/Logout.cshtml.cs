@@ -4,10 +4,12 @@
 
 using System;
 using System.Threading.Tasks;
+using GCommon.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.Logging;
 
 namespace WebApplication6.Areas.Identity.Pages.Account
@@ -16,15 +18,18 @@ namespace WebApplication6.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
+        private readonly IManageAsk manage_ask = null;
 
-        public LogoutModel(SignInManager<IdentityUser> signInManager, ILogger<LogoutModel> logger)
+        public LogoutModel(SignInManager<IdentityUser> signInManager, ILogger<LogoutModel> logger,IManageAsk mn)
         {
             _signInManager = signInManager;
             _logger = logger;
+            this.manage_ask = mn;
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
+            this.manage_ask.Clear();
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             if (returnUrl != null)

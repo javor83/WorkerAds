@@ -17,7 +17,13 @@ namespace GCommon.ExtensionMethods
         /// <param name="connection_meister"></param>
         public static void Include(this IServiceCollection sender, string connection_meister)
         {
+            sender.AddHttpContextAccessor();
+            sender.AddDistributedMemoryCache();
             sender.AddSqlServer<MeisterContext>(connection_meister);
+
+
+
+            sender.AddTransient<IManageAsk, ManageAsk>();
             sender.AddTransient<IWageTaxService, WageTaxService>();
             sender.AddTransient<IWorkCategoryService, WorkCategoryService>();
             sender.AddTransient<IWorkHoursService, WorkHoursService>();
@@ -27,6 +33,12 @@ namespace GCommon.ExtensionMethods
 
             sender.AddTransient<IPublishAdsService, PublishAdsService>();
             sender.AddScoped<ILocalProfiles, LocalProfiles>();
+            sender.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(60); // Session expiration
+                options.Cookie.HttpOnly = true;                // Security: Prevent JS access
+                options.Cookie.IsEssential = true;             // Mark as essential for GDPR
+            });
         }
 
 

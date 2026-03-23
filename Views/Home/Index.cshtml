@@ -1,5 +1,9 @@
-﻿@model DisplayIndexViewModel
+﻿@using GCommon.Services
+@model DisplayIndexViewModel
 
+@{
+    var list = ViewData[ManageAsk.SUMMARY_BASKET] as SummaryManageAsk;
+}
 <form method="get"
     asp-controller="@ControllerNavigateViewModel.Home"
     asp-action="@ControllerNavigateViewModel.Home_Index">
@@ -11,6 +15,20 @@
 
   
 </form>
+
+
+@if (list.EmptyBasket)
+{
+    <div>
+        <span class="@list.ClassName()">@text_Label.EmptyAskService</span>
+    </div>
+}
+else
+{
+    <div>
+        <span class="@list.ClassName()">@string.Format(text_Label.AskedService,list.BasketCount)</span>
+    </div>
+}
 
 <partial name="DataTableListAds" model="@Model" />
 
