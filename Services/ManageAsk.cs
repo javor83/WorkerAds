@@ -26,6 +26,25 @@ namespace GCommon.Services
 
         }
         //******************************************************************************
+        ListUserAskViewModel IManageAsk.ShopCardDetails()
+        {
+            ListUserAskViewModel result = new ListUserAskViewModel()
+            {
+                Phone = string.Empty,
+                OrderDetails = string.Empty
+            };
+            var in_card = (this as IManageAsk).Deserialize();
+            result.AddRange(in_card);
+
+            return result;
+        }
+
+       
+
+
+
+
+        //******************************************************************************
         AdsPersonViewModel IManageAsk.DetailsFromDB(int adv_id)
         {
             var result = this._ads.Details(adv_id);

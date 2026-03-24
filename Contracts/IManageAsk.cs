@@ -9,6 +9,11 @@ namespace GCommon.Contracts
         List<AdsPersonViewModel> Deserialize();
 
 
+        ListUserAskViewModel ShopCardDetails();
+
+
+        
+
         AdsPersonViewModel DetailsFromDB(int adv_id);
 
         bool Empty();

@@ -1,9 +1,10 @@
-﻿using System.Configuration;
+﻿using System.Collections;
+using System.Configuration;
 using System.Text.Json;
 
 namespace GCommon.Models
 {
-    public class ListUserAskViewModel
+    public class ListUserAskViewModel:IEnumerable<AdsPersonViewModel>
     {
         private List<AdsPersonViewModel> data = null;
 
@@ -13,6 +14,33 @@ namespace GCommon.Models
             this.Phone = string.Empty;
             this.OrderDetails = string.Empty;
         }
+
+        public int Count()
+        {
+            return this.data.Count();
+        }
+
+        public AdsPersonViewModel Element(int i)
+        {
+            return this.data.ElementAt(i);
+        }
+
+        //****************************************************************
+        public void AddRange(List<AdsPersonViewModel> list)
+        {
+            this.data.AddRange(list);
+        }
+        //****************************************************************
+        public IEnumerator<AdsPersonViewModel> GetEnumerator()
+        {
+            return ((IEnumerable<AdsPersonViewModel>)data).GetEnumerator();
+        }
+        //****************************************************************
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)data).GetEnumerator();
+        }
+
         //****************************************************************
         //записва се при потвърждение на поръчката
         public string Phone { get; set; }

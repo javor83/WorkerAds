@@ -1,7 +1,8 @@
 ﻿using GCommon.Contracts;
 using GCommon.ExtensionAttributes;
-using Microsoft.AspNetCore.Mvc;
+using GCommon.Models;
 using GCommon.Navigation;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication6.Controllers
 {
@@ -18,7 +19,8 @@ namespace WebApplication6.Controllers
         //*********************************************************************
         public IActionResult Index()
         {
-            return Json(this._manage_ask.Deserialize());
+            ListUserAskViewModel list = this._manage_ask.ShopCardDetails();
+            return View(list);
         }
         //*********************************************************************
         [HttpPost,ValidateAntiForgeryToken]

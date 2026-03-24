@@ -1,0 +1,40 @@
+﻿@model  ListUserAskViewModel
+<vc:manager-subtitle caption="@text_UserAsk.OrderedItems"></vc:manager-subtitle>
+
+
+
+<table class="@BootstrapCSS.table">
+    @for (int i = 0;i< Model.Count();i++)
+    {
+
+        <tr class="table-success">
+            <td colspan="2"><b>@Model.Element(i).AdvTitle</b></td>
+        </tr>
+        <tr>
+            <td>@text_Worker.WorkerFName</td>
+            <td>@Model.Element(i).FullName()</td>
+        </tr>
+        <tr>
+            <td>@text_Worker.WorkerPhone</td>
+            <td>@Model.Element(i).Phone</td>
+        </tr>
+        <tr>
+            <td>@text_Worker.WorkerEmail</td>
+            <td>@Model.Element(i).Email</td>
+        </tr>
+        <tr>
+            <td>@text_WorkCategory.LabelWorkCategory</td>
+            <td>@Model.Element(i).WhatToDo()</td>
+        </tr>
+        <tr>
+            <td>@text_WorkHour.LabelWorkHour</td>
+            <td> @Model.Element(i).EveryDay()</td>
+        </tr>
+
+        <tr class="table-primary">
+            <td colspan="2"></td>
+        </tr>
+     
+     
+}
+</table>
