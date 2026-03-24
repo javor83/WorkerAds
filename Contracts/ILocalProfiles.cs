@@ -20,6 +20,8 @@ namespace GCommon.Contracts
         bool InRoleAdmin();
         bool InRoleUser();
 
+        string CurrentUserID();
+
 
         Task AssignToRole(string user_id, string role_name);
 

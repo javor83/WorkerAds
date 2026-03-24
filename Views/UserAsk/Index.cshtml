@@ -1,40 +1,71 @@
-﻿@model  ListUserAskViewModel
+﻿@using GCommon.Services
+@model ToPost
 <vc:manager-subtitle caption="@text_UserAsk.OrderedItems"></vc:manager-subtitle>
+@{
 
+    ListUserAskViewModel ordered_items = ViewData[ManageAsk.ORDERED_ITEMS] as ListUserAskViewModel;
+
+}
 
 
 <table class="@BootstrapCSS.table">
-    @for (int i = 0;i< Model.Count();i++)
+    @foreach (var item in ordered_items)
     {
 
         <tr class="table-success">
-            <td colspan="2"><b>@Model.Element(i).AdvTitle</b></td>
+            <td colspan="2"><b>@item.AdvTitle</b></td>
         </tr>
         <tr>
             <td>@text_Worker.WorkerFName</td>
-            <td>@Model.Element(i).FullName()</td>
+            <td>@item.FullName()</td>
         </tr>
         <tr>
             <td>@text_Worker.WorkerPhone</td>
-            <td>@Model.Element(i).Phone</td>
+            <td>@item.Phone</td>
         </tr>
         <tr>
             <td>@text_Worker.WorkerEmail</td>
-            <td>@Model.Element(i).Email</td>
+            <td>@item.Email</td>
         </tr>
         <tr>
             <td>@text_WorkCategory.LabelWorkCategory</td>
-            <td>@Model.Element(i).WhatToDo()</td>
+            <td>@item.WhatToDo()</td>
         </tr>
-        <tr>
+        <tr style="margin-bottom:10px;">
             <td>@text_WorkHour.LabelWorkHour</td>
-            <td> @Model.Element(i).EveryDay()</td>
+            <td> @item.EveryDay()</td>
         </tr>
 
-        <tr class="table-primary">
-            <td colspan="2"></td>
-        </tr>
+       
      
      
 }
 </table>
+@if (ordered_items.Any())
+{
+    <form 
+        method="post" 
+        asp-action="@ControllerNavigateViewModel.UserAsk_Index" 
+        asp-controller="@ControllerNavigateViewModel.UserAsk" 
+        asp-antiforgery="true">
+        <input type="hidden" asp-for="@Model.ASPNETUSER_ID" />
+        <div asp-validation-summary="All"></div>
+            @foreach (var k in Model.AdvID)
+            {
+            <input type="hidden" name="AdvID[]" value="@k" />
+            }
+        <div class="form-group">
+            <label class="form-label" asp-for="@Model.Phone"></label>
+            <input type="text" asp-for="@Model.Phone" class="form-control" />
+           
+        </div>
+        <div class="form-group">
+            <label class="form-label" asp-for="@Model.OrderDetails"></label>
+            <textarea asp-for="@Model.OrderDetails" class="form-control"></textarea>
+           
+        </div>
+        <div class="text-center form-group @BootstrapCSS.margin_top_1">
+            <input type="submit" class="@BootstrapCSS.button_primary d-inline" value="@text_UserAsk.SendOrder" />
+        </div>
+    </form>
+}

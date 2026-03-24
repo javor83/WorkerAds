@@ -10,7 +10,7 @@ namespace GCommon.Contracts
 
 
         ListUserAskViewModel ShopCardDetails();
-
+        ToPost WhatToPost(ListUserAskViewModel ordered_items);
 
         
 

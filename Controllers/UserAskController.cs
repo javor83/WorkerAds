@@ -2,6 +2,7 @@
 using GCommon.ExtensionAttributes;
 using GCommon.Models;
 using GCommon.Navigation;
+using GCommon.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication6.Controllers
@@ -19,9 +20,32 @@ namespace WebApplication6.Controllers
         //*********************************************************************
         public IActionResult Index()
         {
-            ListUserAskViewModel list = this._manage_ask.ShopCardDetails();
-            return View(list);
+            ListUserAskViewModel ordered_items = this._manage_ask.ShopCardDetails();
+            ViewData[ManageAsk.ORDERED_ITEMS] = ordered_items;
+            ToPost to_post = this._manage_ask.WhatToPost(ordered_items);
+
+            return View(to_post);
         }
+        //*********************************************************************
+        [HttpPost,ValidateAntiForgeryToken]
+        public IActionResult Index(ToPost sender)
+        {
+            ListUserAskViewModel ordered_items = this._manage_ask.ShopCardDetails();
+            ViewData[ManageAsk.ORDERED_ITEMS] = ordered_items;
+
+
+            if (ModelState.IsValid)
+            {
+                return Json(sender);
+            }
+            else
+            {
+               return View(sender);
+            }
+           
+        }
+
+
         //*********************************************************************
         [HttpPost,ValidateAntiForgeryToken]
         public IActionResult IncludeAsk(int id,int page,string kw)

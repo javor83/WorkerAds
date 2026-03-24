@@ -1,6 +1,7 @@
 ﻿using GCommon.Contracts;
 using GCommon.ExtensionMethods;
 using GCommon.Models;
+using System.Configuration;
 
 namespace GCommon.Services
 {
@@ -8,14 +9,17 @@ namespace GCommon.Services
     {
         private const string USER_ASK_KEY = "USER_ASK_KEY";
         public const string SUMMARY_BASKET = "SUMMARY_BASKET";
+        public const string ORDERED_ITEMS = "ORDERED_ITEMS";
 
         private IHttpContextAccessor _context = null;
         private IAdsPersonService _ads;
+        private ILocalProfiles _profile = null;
         //******************************************************************************
-        public ManageAsk(IHttpContextAccessor cn, IAdsPersonService service_ads)
+        public ManageAsk(IHttpContextAccessor cn, IAdsPersonService service_ads,ILocalProfiles lp)
         {
             this._context = cn;
             this._ads = service_ads;
+            this._profile = lp;
         }
         //******************************************************************************
         void IManageAsk.Clear()
@@ -28,19 +32,31 @@ namespace GCommon.Services
         //******************************************************************************
         ListUserAskViewModel IManageAsk.ShopCardDetails()
         {
-            ListUserAskViewModel result = new ListUserAskViewModel()
-            {
-                Phone = string.Empty,
-                OrderDetails = string.Empty
-            };
+          
+           
             var in_card = (this as IManageAsk).Deserialize();
+            var result = new ListUserAskViewModel();
             result.AddRange(in_card);
-
             return result;
         }
+        //******************************************************************************
+        ToPost IManageAsk.WhatToPost(ListUserAskViewModel in_card)
+        {
+             
+            int[] ids = in_card.Select(x => x.DeclareWorkerFreeID).ToArray();
 
+
+
+           var post_data = new ToPost()
+            {
+                OrderDetails = "details",
+                Phone = "phone",
+                ASPNETUSER_ID = this._profile.CurrentUserID(),
+                AdvID = ids
+            };
+            return post_data;
+        }
        
-
 
 
 

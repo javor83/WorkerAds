@@ -1,28 +1,24 @@
-﻿using System.Collections;
+﻿using GCommon.Captions;
+using GCommon.ValidationMessage;
+using System.Collections;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Text.Json;
 
 namespace GCommon.Models
 {
-    public class ListUserAskViewModel:IEnumerable<AdsPersonViewModel>
+
+
+
+    public class ListUserAskViewModel : IEnumerable<AdsPersonViewModel>
     {
-        private List<AdsPersonViewModel> data = null;
+        public List<AdsPersonViewModel> data { get; set; } = new List<AdsPersonViewModel>();
+        //****************************************************************
 
-        public ListUserAskViewModel()
-        {
-            this.data = new List<AdsPersonViewModel>();
-            this.Phone = string.Empty;
-            this.OrderDetails = string.Empty;
-        }
 
-        public int Count()
+        public bool Any()
         {
-            return this.data.Count();
-        }
-
-        public AdsPersonViewModel Element(int i)
-        {
-            return this.data.ElementAt(i);
+            return this.data.Any();
         }
 
         //****************************************************************
@@ -41,24 +37,23 @@ namespace GCommon.Models
             return ((IEnumerable)data).GetEnumerator();
         }
 
-        //****************************************************************
-        //записва се при потвърждение на поръчката
-        public string Phone { get; set; }
-        //****************************************************************
-        //записва се при потвърждение на поръчката
-        public string OrderDetails { get; set; }
+
+
         //****************************************************************
 
 
 
     }
 
-   
 
 
-   
 
-    
+
+
+
+
+
+
 
 
 }

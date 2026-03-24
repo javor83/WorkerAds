@@ -1,7 +1,8 @@
 ﻿using GCommon.Contracts;
-using Microsoft.AspNetCore.Identity;
-using System.Text;
 using GCommon.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using System.Text;
 
 namespace GCommon.Services
 {
@@ -127,6 +128,12 @@ namespace GCommon.Services
             return result;
         }
 
+        //********************************************************************************
+        string ILocalProfiles.CurrentUserID()
+        {
+            string result = this._httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return result;
+        }
         //********************************************************************************
         IQueryable<IdentityUser> ILocalProfiles.Get()
         {
