@@ -1,1 +1,3 @@
-﻿<vc:manager-subtitle caption="@text_Label.Orders"></vc:manager-subtitle>
+﻿@model IEnumerable<ManageOrderItemViewModel>
+<vc:manager-subtitle caption="@text_Label.Orders"></vc:manager-subtitle>
+<partial name="DataTableManageOrderItem" model="@Model" />

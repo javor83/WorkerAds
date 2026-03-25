@@ -1,6 +1,8 @@
 ﻿using GCommon.Contracts;
 using GCommon.Data;
+using GCommon.Models;
 using GCommon.Services;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace GCommon.ExtensionMethods
@@ -21,7 +23,7 @@ namespace GCommon.ExtensionMethods
             sender.AddSqlServer<MeisterContext>(connection_meister);
 
 
-
+            sender.AddTransient<IManageOrders, ManageOrders>();
             sender.AddTransient<IManageAsk, ManageAsk>();
             sender.AddTransient<IWageTaxService, WageTaxService>();
             sender.AddTransient<IWorkCategoryService, WorkCategoryService>();

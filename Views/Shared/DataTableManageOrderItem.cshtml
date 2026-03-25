@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ManageOrderItemViewModel>
+@{
+    var grouped_view = from x in Model
+                group x by x.ID into subgroup
+                select new
+                {
+                    OrderID = subgroup.Key,
+                    List = subgroup.ToList()
+                };
+
+
+  
+}
+<table class="@BootstrapCSS.table">
+    <tr>
+        <th class="text-center">@text_UserAsk.OrderID</th>
+        <th class="text-center">@text_UserAsk.Details</th>
+    </tr>
+    @foreach (var item in grouped_view)
+    {
+       <tr>
+            <td>@item.OrderID</td>
+            <td>
+                @for (var x = 0; x < item.List.Count(); x++)
+                {
+                    if (x == 0)
+                    {
+                        <div>@item.List.ElementAt(x).OrderDate</div>
+                        <div>@item.List.ElementAt(x).Phone</div>
+                        <div>@item.List.ElementAt(x).OrderDetails</div>
+                    }
+                    
+                }
+                <ul>
+                @for (var x = 0;x<item.List.Count();x++)
+                {
+                    
+                    <li>@item.List.ElementAt(x).AdvertisementTitle</li>
+                }
+                </ul>
+            </td>
+       </tr>
+    }
+</table>

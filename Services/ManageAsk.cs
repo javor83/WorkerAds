@@ -1,10 +1,15 @@
 ﻿using GCommon.Contracts;
+using GCommon.Data;
 using GCommon.ExtensionMethods;
 using GCommon.Models;
 
 namespace GCommon.Services
 {
-    public class ManageAsk(IHttpContextAccessor _context, IAdsPersonService _ads, ILocalProfiles _profile) : IManageAsk
+    public class ManageAsk(
+        IHttpContextAccessor _http_context,
+        MeisterContext _context,
+        IAdsPersonService _ads, 
+        ILocalProfiles _profile) : IManageAsk
     {
         private const string USER_ASK_KEY = "USER_ASK_KEY";
         public const string SUMMARY_BASKET = "SUMMARY_BASKET";
@@ -41,10 +46,31 @@ namespace GCommon.Services
         /// <returns></returns>
         async Task IManageAsk.IncludeAsOrder(ManageAskViewModel what_to_post)
         {
-            await _ads.PostOrder(what_to_post);
+            AspnetuserOrder item = new AspnetuserOrder()
+            {
+                OrderDate = DateTime.Now,
+                AspnetusersId = what_to_post.ASPNETUSER_ID,
+                Phone = what_to_post.Phone,
+                OrderDetails = what_to_post.OrderDetails
+            };
+            _context.AspnetuserOrders.Add(item);
+            foreach (var k in what_to_post.AdvID)
+            {
+                ItemsInOrder items_in_order = new ItemsInOrder()
+                {
+
+                    DeclareWorkerFreeId = k,
+                    Order = item
+                };
+                _context.ItemsInOrders.Add(items_in_order);
+            }
+
+            await _context.SaveChangesAsync();
             (this as IManageAsk).Clear();
         }
 
+
+        
 
         //******************************************************************************
         /// <summary>
@@ -76,7 +102,7 @@ namespace GCommon.Services
         {
             List<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
             list.Clear();
-            _context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, list);
+            _http_context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, list);
 
         }
         //******************************************************************************
@@ -91,7 +117,7 @@ namespace GCommon.Services
             if (query != null)
             {
                 list.Remove(query);
-                _context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, list);
+                _http_context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, list);
             }
         }
         //******************************************************************************
@@ -103,15 +129,15 @@ namespace GCommon.Services
         {
             AdsPersonViewModel details_adv = _ads.Details(adv_id);
 
-            bool exists_key = _context.HttpContext.Session.Keys.Contains(ManageAsk.USER_ASK_KEY);
+            bool exists_key = _http_context.HttpContext.Session.Keys.Contains(ManageAsk.USER_ASK_KEY);
             if (exists_key)
             {
-                List<AdsPersonViewModel> empty = _context.HttpContext.Session.GetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY);
+                List<AdsPersonViewModel> empty = _http_context.HttpContext.Session.GetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY);
                 if (empty.Any(x => x.DeclareWorkerFreeID == details_adv.DeclareWorkerFreeID) == false)
                 {
                     //не може да вмъкнеш два пъти една и съща обява
                     empty.Add(details_adv);
-                    _context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, empty);
+                    _http_context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, empty);
                 }
                 
             }
@@ -119,7 +145,7 @@ namespace GCommon.Services
             {
                 List<AdsPersonViewModel> empty = new List<AdsPersonViewModel>();
                 empty.Add(details_adv);
-                _context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, empty);
+                _http_context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, empty);
             }
         }
         //******************************************************************************
@@ -130,16 +156,16 @@ namespace GCommon.Services
         List<AdsPersonViewModel> IManageAsk.Deserialize()
         {
             List<AdsPersonViewModel> result = null;
-            bool exists_key = _context.HttpContext.Session.Keys.Contains(ManageAsk.USER_ASK_KEY);
+            bool exists_key = _http_context.HttpContext.Session.Keys.Contains(ManageAsk.USER_ASK_KEY);
             if (exists_key)
             {
-                result = _context.HttpContext.Session.GetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY);
+                result = _http_context.HttpContext.Session.GetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY);
 
             }
             else
             {
                 result = new List<AdsPersonViewModel>();
-                _context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, result);
+                _http_context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, result);
             }
 
 

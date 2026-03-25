@@ -10,13 +10,16 @@ namespace GCommon.Contracts
         //-----------------------
         List<AdsPersonViewModel> Deserialize();
 
-
        
+
+        
+
         ManageAskViewModel WhatToPost(IEnumerable<AdsPersonViewModel> ordered_items);
 
         Task IncludeAsOrder(ManageAskViewModel what_to_post);
 
        
+
 
         bool Empty();
         int Count();
