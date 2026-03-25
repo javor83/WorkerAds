@@ -1,14 +1,13 @@
 ﻿using GCommon.Contracts;
 using GCommon.Data;
 using GCommon.Services;
-using Microsoft.Extensions.DependencyInjection;
 
 
 namespace GCommon.ExtensionMethods
 {
     public static class ExtensionService
     {
-        // Scaffold-DbContext "Server=DESKTOP-EMOJLLD\SQLEXPRESS;Database=MEISTER;Trusted_Connection=True;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data -force
+        // Scaffold-DbContext "Server=DESKTOP-H09IM5N;Database=MEISTER;Trusted_Connection=True;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data -force
         //**************************************************************************************************************************
         /// <summary>
         /// включва услугите специфични за приложението

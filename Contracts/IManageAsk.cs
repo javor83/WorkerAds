@@ -9,10 +9,10 @@ namespace GCommon.Contracts
         List<AdsPersonViewModel> Deserialize();
 
 
-        ListUserAskViewModel ShopCardDetails();
-        ToPost WhatToPost(ListUserAskViewModel ordered_items);
+        IEnumerable<AdsPersonViewModel> Print();
+        ManageAskViewModel WhatToPost(IEnumerable<AdsPersonViewModel> ordered_items);
 
-        
+        Task IncludeAsOrder(ManageAskViewModel what_to_post);
 
         AdsPersonViewModel DetailsFromDB(int adv_id);
 

@@ -20,23 +20,29 @@ namespace WebApplication6.Controllers
         //*********************************************************************
         public IActionResult Index()
         {
-            ListUserAskViewModel ordered_items = this._manage_ask.ShopCardDetails();
+            var ordered_items = this._manage_ask.Print();
             ViewData[ManageAsk.ORDERED_ITEMS] = ordered_items;
-            ToPost to_post = this._manage_ask.WhatToPost(ordered_items);
+            ManageAskViewModel to_post = this._manage_ask.WhatToPost(ordered_items);
 
             return View(to_post);
         }
         //*********************************************************************
         [HttpPost,ValidateAntiForgeryToken]
-        public IActionResult Index(ToPost sender)
+        public async Task<IActionResult> Index(ManageAskViewModel sender)
         {
-            ListUserAskViewModel ordered_items = this._manage_ask.ShopCardDetails();
+            var ordered_items = this._manage_ask.Print();
             ViewData[ManageAsk.ORDERED_ITEMS] = ordered_items;
 
+            
 
             if (ModelState.IsValid)
             {
-                return Json(sender);
+                await this._manage_ask.IncludeAsOrder(sender);
+                return RedirectToAction
+                    (
+                        ControllerNavigateViewModel.Home_Index,
+                        ControllerNavigateViewModel.Home
+                    );
             }
             else
             {

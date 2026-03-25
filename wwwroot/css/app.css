@@ -11,7 +11,10 @@
     color: red;
 }
 
-
+.textdetails {
+    overflow-y:visible;
+    height:200px; 
+}
 
 img.worker {
     width:100px;

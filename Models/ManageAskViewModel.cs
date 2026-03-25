@@ -1,17 +1,16 @@
 ﻿using GCommon.Captions;
-using GCommon.Models;
 using GCommon.ValidationMessage;
-using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
 namespace GCommon.Models
 {
 
-    public class ToPost
+    public class ManageAskViewModel
     {
         [Required]
         public required string ASPNETUSER_ID { get; set; } = "";
         //****************************************************************
+        [Required]
         public required int[] AdvID { get; set; } = new int[] { };
 
         //****************************************************************

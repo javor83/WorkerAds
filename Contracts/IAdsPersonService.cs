@@ -10,9 +10,11 @@ namespace GCommon.Contracts
     {
       
 
+
+
         AdsPersonViewModel? Details(int adv_id);
 
-        
+        Task PostOrder(ManageAskViewModel what_to_post);
 
         DisplayIndexViewModel ReadAll(int page, string keyword);
     }

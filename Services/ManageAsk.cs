@@ -21,42 +21,31 @@ namespace GCommon.Services
             this._ads = service_ads;
             this._profile = lp;
         }
+       
+       
         //******************************************************************************
-        void IManageAsk.Clear()
-        {
-            List<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
-            list.Clear();
-            this._context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, list);
-
-        }
-        //******************************************************************************
-        ListUserAskViewModel IManageAsk.ShopCardDetails()
-        {
-          
-           
-            var in_card = (this as IManageAsk).Deserialize();
-            var result = new ListUserAskViewModel();
-            result.AddRange(in_card);
-            return result;
-        }
-        //******************************************************************************
-        ToPost IManageAsk.WhatToPost(ListUserAskViewModel in_card)
+        ManageAskViewModel IManageAsk.WhatToPost(IEnumerable<AdsPersonViewModel> in_card)
         {
              
             int[] ids = in_card.Select(x => x.DeclareWorkerFreeID).ToArray();
 
 
 
-           var post_data = new ToPost()
+           var result = new ManageAskViewModel()
             {
-                OrderDetails = "details",
-                Phone = "phone",
+                OrderDetails = string.Empty,
+                Phone = string.Empty,
                 ASPNETUSER_ID = this._profile.CurrentUserID(),
                 AdvID = ids
             };
-            return post_data;
+            return result;
         }
-       
+        //******************************************************************************
+        async Task IManageAsk.IncludeAsOrder(ManageAskViewModel what_to_post)
+        {
+            await this._ads.PostOrder(what_to_post);
+            (this as IManageAsk).Clear();
+        }
 
 
 
@@ -69,20 +58,34 @@ namespace GCommon.Services
         //******************************************************************************
         bool IManageAsk.Empty()
         {
-            List<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
-            bool result = list.Count() == 0;
+            IEnumerable<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
+            bool result = list.Any() == false;
             return result;
         }
         //******************************************************************************
         int IManageAsk.Count()
         {
-            List<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
+            IEnumerable<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
             int result = list.Count();
             return result;
         }
-
         //******************************************************************************
+        void IManageAsk.Clear()
+        {
+            List<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
+            list.Clear();
+            this._context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, list);
 
+        }
+        //******************************************************************************
+        IEnumerable<AdsPersonViewModel> IManageAsk.Print()
+        {
+
+            var result = (this as IManageAsk).Deserialize();
+
+            return result;
+        }
+        //******************************************************************************
         List<AdsPersonViewModel> IManageAsk.Deserialize()
         {
             List<AdsPersonViewModel> result = null;

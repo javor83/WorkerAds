@@ -1,5 +1,6 @@
 ﻿using GCommon.Contracts;
 using GCommon.Data;
+
 using GCommon.ExtensionMethods;
 using GCommon.Models;
 
@@ -12,11 +13,33 @@ namespace GCommon.Services
 
     public class AdsPersonService(MeisterContext _context) : IAdsPersonService
     {
-       
-        
-       
+        //*****************************************************************
+        async Task IAdsPersonService.PostOrder(ManageAskViewModel what_to_post)
+        {
+            AspnetuserOrder item = new AspnetuserOrder()
+            {
+                OrderDate = DateTime.Now,
+                AspnetusersId = what_to_post.ASPNETUSER_ID,
+                Phone = what_to_post.Phone,
+                OrderDetails = what_to_post.OrderDetails
+            };
+            _context.AspnetuserOrders.Add(item);
+            foreach (var k in what_to_post.AdvID)
+            {
+                ItemsInOrder items_in_order = new ItemsInOrder()
+                {
 
-        
+                    DeclareWorkerFreeId = k,
+                    Order = item
+                };
+                _context.ItemsInOrders.Add(items_in_order);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+
+        //*****************************************************************
         AdsPersonViewModel? IAdsPersonService.Details(int adv_id)
         {
             var list = from worker in _context.Workers

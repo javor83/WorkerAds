@@ -19,5 +19,7 @@ public partial class DeclareWorkerFree
 
     public virtual WorkStartHour? Hour { get; set; }
 
+    public virtual ICollection<ItemsInOrder> ItemsInOrders { get; set; } = new List<ItemsInOrder>();
+
     public virtual WorkerCapability? WorkerCapability { get; set; }
 }

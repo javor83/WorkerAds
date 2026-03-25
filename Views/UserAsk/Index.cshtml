@@ -1,9 +1,9 @@
 ﻿@using GCommon.Services
-@model ToPost
+@model ManageAskViewModel
 <vc:manager-subtitle caption="@text_UserAsk.OrderedItems"></vc:manager-subtitle>
 @{
 
-    ListUserAskViewModel ordered_items = ViewData[ManageAsk.ORDERED_ITEMS] as ListUserAskViewModel;
+    IEnumerable<AdsPersonViewModel> ordered_items = ViewData[ManageAsk.ORDERED_ITEMS] as IEnumerable<AdsPersonViewModel>;
 
 }
 
@@ -49,7 +49,7 @@
         asp-controller="@ControllerNavigateViewModel.UserAsk" 
         asp-antiforgery="true">
         <input type="hidden" asp-for="@Model.ASPNETUSER_ID" />
-        <div asp-validation-summary="All"></div>
+        <div asp-validation-summary="ModelOnly"></div>
             @foreach (var k in Model.AdvID)
             {
             <input type="hidden" name="AdvID[]" value="@k" />
@@ -57,12 +57,12 @@
         <div class="form-group">
             <label class="form-label" asp-for="@Model.Phone"></label>
             <input type="text" asp-for="@Model.Phone" class="form-control" />
-           
+            <span asp-validation-for="@Model.Phone"></span>
         </div>
         <div class="form-group">
             <label class="form-label" asp-for="@Model.OrderDetails"></label>
-            <textarea asp-for="@Model.OrderDetails" class="form-control"></textarea>
-           
+            <textarea asp-for="@Model.OrderDetails" class="form-control textdetails"></textarea>
+            <span asp-validation-for="@Model.OrderDetails"></span>
         </div>
         <div class="text-center form-group @BootstrapCSS.margin_top_1">
             <input type="submit" class="@BootstrapCSS.button_primary d-inline" value="@text_UserAsk.SendOrder" />
