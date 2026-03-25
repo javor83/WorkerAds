@@ -13,7 +13,18 @@
     {
 
         <tr class="table-success">
-            <td colspan="2"><b>@item.AdvTitle</b></td>
+            <td>
+                <b>@item.AdvTitle</b>
+                </td>
+            <td>
+               
+                <form method="post" asp-antiforgery="true"
+                asp-controller="@ControllerNavigateViewModel.UserAsk"
+                asp-action="@ControllerNavigateViewModel.UserAsk_RemoveAsk"
+                asp-route-id="@item.DeclareWorkerFreeID">
+                <input type="submit" value="@text_Label.Delete" class="@BootstrapCSS.button_danger"/>
+                </form>
+            </td>
         </tr>
         <tr>
             <td>@text_Worker.WorkerFName</td>

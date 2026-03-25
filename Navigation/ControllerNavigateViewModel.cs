@@ -10,6 +10,7 @@ namespace GCommon.Navigation
     {
         public static readonly string UserAsk = nameof(UserAskController).Navigate();
         public static readonly string UserAsk_IncludeAsk = nameof(UserAskController.IncludeAsk);
+        public static readonly string UserAsk_RemoveAsk = nameof(UserAskController.RemoveAsk);
         public static readonly string UserAsk_Index = nameof(UserAskController.Index);
         //---------------------------
         public static readonly string WageTax = nameof(WageTaxController).Navigate();

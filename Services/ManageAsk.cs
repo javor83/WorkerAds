@@ -46,7 +46,18 @@ namespace GCommon.Services
             await this._ads.PostOrder(what_to_post);
             (this as IManageAsk).Clear();
         }
-
+        //******************************************************************************
+        void IManageAsk.Remove(int adv_id)
+        {
+            List<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
+            var query = list.Where(x => x.DeclareWorkerFreeID == adv_id).First();
+            if (query != null)
+            {
+                list.Remove(query);
+                this._context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, list);
+            }
+        }
+        
 
 
         //******************************************************************************

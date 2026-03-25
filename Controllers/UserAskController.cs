@@ -26,6 +26,11 @@ namespace WebApplication6.Controllers
 
             return View(to_post);
         }
+
+      
+
+      
+
         //*********************************************************************
         [HttpPost,ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(ManageAskViewModel sender)
@@ -49,6 +54,18 @@ namespace WebApplication6.Controllers
                return View(sender);
             }
            
+        }
+        //*********************************************************************
+        //  //void IManageAsk.Remove(int adv_id)
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult RemoveAsk(int id)
+        {
+            this._manage_ask.Remove(id);
+            return RedirectToAction
+                (
+                    ControllerNavigateViewModel.UserAsk_Index,
+                    ControllerNavigateViewModel.UserAsk
+                );
         }
 
 

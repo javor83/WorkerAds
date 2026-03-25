@@ -5,7 +5,9 @@ namespace GCommon.Contracts
     public interface IManageAsk
     {
         void Include(AdsPersonViewModel item);
-
+        void Remove(int adv_id);
+        AdsPersonViewModel DetailsFromDB(int adv_id);
+        //-----------------------
         List<AdsPersonViewModel> Deserialize();
 
 
@@ -14,7 +16,7 @@ namespace GCommon.Contracts
 
         Task IncludeAsOrder(ManageAskViewModel what_to_post);
 
-        AdsPersonViewModel DetailsFromDB(int adv_id);
+       
 
         bool Empty();
         int Count();
