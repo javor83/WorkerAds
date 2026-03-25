@@ -25,11 +25,17 @@
 - Работим със .NET Core 9.0
 - В папка Captions, файл export_sql.txt съдържа последно попълнените данни в базата. Може те да се ползват
 - Отваряте appsettings.json и променяте само стойността на Server с името на локалния database server. Всичко друго остава непроменено.
-
+- Имаме два вида потребители - User и Administrator. 
+- Administator е забит статично. 
+- Акаунтът е admin123@abv.bg с парола pascal
+- Като се създаде нов потребител, автоматично става с права User. 
+- Демо акаунти са user124@abv.bg | парола pascal и user125@abv.bg | парола pascal
 "ConnectionStrings": {
     "DefaultConnection": "Server=**[име на сървъра]**;Database=MEISTER;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true",
     "meister": "Server=**[име на сървъра]**;Database=MEISTER;Trusted_Connection=True;TrustServerCertificate=True"
   }
+
+
 
 
 ## Описание на базата данни
@@ -88,3 +94,13 @@
 3. какво ще се прави **WORKER_CAPABILITY_ID**
 4. текста на обявата **AD_TEXT**
 5. за кой ден ще се работи **WATCH_DATE**
+
+------------
+### Таблица ASPNETUSER_ORDERS
+Тук съхраняваме направените поръчки
+Полетата са
+1. номер на поръчката **ORDER_ID** 
+2. кой потребител **ASPNETUSERS_ID**
+3. телефон **PHONE**
+4. текст за поръчката **ORDER_DETAILS**
+5. дата на поръчката **ORDER_DATE**

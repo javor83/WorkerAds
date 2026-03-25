@@ -6,7 +6,7 @@
     <li class="page-item">
         <a class="page-link" asp-action="@ControllerNavigateViewModel.Home_Index"
            asp-controller="@ControllerNavigateViewModel.Home"
-           asp-route-page="@Model.PreviousPage()">@text_Label.PrevPage</a>
+           asp-route-page="@Model.PreviousPage()" asp-route-kw="@Model.Keyword">@text_Label.PrevPage</a>
     </li>
 
     @for (int i = 1; i <= Model.TotalPages; i++)
@@ -17,7 +17,9 @@
                 <a class="page-link"
                    asp-action="@ControllerNavigateViewModel.Home_Index"
                    asp-controller="@ControllerNavigateViewModel.Home"
-                   asp-route-page="@i">@i</a>
+                   asp-route-page="@i"
+                   asp-route-kw="@Model.Keyword"
+                >@i</a>
             </li>
         }
         else
@@ -25,7 +27,8 @@
             <li class="page-item">
                 <a class="page-link" asp-action="@ControllerNavigateViewModel.Home_Index"
                        asp-controller="@ControllerNavigateViewModel.Home"
-                       asp-route-page="@i">
+                       asp-route-page="@i"
+                       asp-route-kw="@Model.Keyword">
                     @i
                 </a>
             </li>
@@ -38,6 +41,7 @@
     <li class="page-item">
         <a class="page-link" asp-action="@ControllerNavigateViewModel.Home_Index"
            asp-controller="@ControllerNavigateViewModel.Home"
-           asp-route-page="@Model.NextPage()">@text_Label.NextPage</a>
+           asp-route-page="@Model.NextPage()"
+           asp-route-kw="@Model.Keyword">@text_Label.NextPage</a>
     </li>
 </ul>
