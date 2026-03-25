@@ -1,6 +1,7 @@
-﻿@using GCommon.Services
+﻿@using GCommon.Contracts
+@using GCommon.Services
 @model DisplayIndexViewModel
-
+@inject ILocalProfiles logas
 @{
     var list = ViewData[ManageAsk.SUMMARY_BASKET] as SummaryManageAsk;
 }
@@ -17,25 +18,28 @@
 </form>
 
 <div>
-    @if (list.EmptyBasket)
+    @if(logas.InRoleUser())
     {
-            <a asp-controller="@ControllerNavigateViewModel.UserAsk"
-            asp-action="@ControllerNavigateViewModel.UserAsk_Index"
-            class="@list.ClassName()">
+        @if (list.EmptyBasket)
+        {
+                <a asp-controller="@ControllerNavigateViewModel.UserAsk"
+                asp-action="@ControllerNavigateViewModel.UserAsk_Index"
+                class="@list.ClassName()">
     
      
-                @text_Label.EmptyAskService
+                    @text_Label.EmptyAskService
     
-            </a>
-    }else
-    {
-         <a asp-controller="@ControllerNavigateViewModel.UserAsk"
-            asp-action="@ControllerNavigateViewModel.UserAsk_Index"
-            class="@list.ClassName()">
+                </a>
+        }else
+        {
+             <a asp-controller="@ControllerNavigateViewModel.UserAsk"
+                asp-action="@ControllerNavigateViewModel.UserAsk_Index"
+                class="@list.ClassName()">
    
     
-            @string.Format(text_Label.AskedService, list.BasketCount)
-         </a>
+                @string.Format(text_Label.AskedService, list.BasketCount)
+             </a>
+        }
     }
 
    

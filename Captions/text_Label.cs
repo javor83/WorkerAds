@@ -16,6 +16,7 @@
         public const string FreeAds = "Работни обяви";
         public const string Filter = "Търсене в текста или заглавието на обявата";
         public const string StartFilter = "Приложи";
+        public const string Orders = "Поръчки";
 
         public const string AskService = "Запитване";
         public const string AskedService = "Обяви за запитване {0}";

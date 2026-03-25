@@ -8,6 +8,11 @@ namespace GCommon.Navigation
     /// </summary>
     public class ControllerNavigateViewModel
     {
+        
+        //---------------------------
+        public static readonly string Orders = nameof(OrdersController).Navigate();
+        public static readonly string Orders_Index = nameof(OrdersController.Index);
+        //---------------------------
         public static readonly string UserAsk = nameof(UserAskController).Navigate();
         public static readonly string UserAsk_IncludeAsk = nameof(UserAskController.IncludeAsk);
         public static readonly string UserAsk_RemoveAsk = nameof(UserAskController.RemoveAsk);

@@ -20,7 +20,7 @@ namespace WebApplication6.Controllers
         //*********************************************************************
         public IActionResult Index()
         {
-            var ordered_items = this._manage_ask.Print();
+            var ordered_items = this._manage_ask.Deserialize();
             ViewData[ManageAsk.ORDERED_ITEMS] = ordered_items;
             ManageAskViewModel to_post = this._manage_ask.WhatToPost(ordered_items);
 
@@ -35,7 +35,7 @@ namespace WebApplication6.Controllers
         [HttpPost,ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(ManageAskViewModel sender)
         {
-            var ordered_items = this._manage_ask.Print();
+            var ordered_items = this._manage_ask.Deserialize();
             ViewData[ManageAsk.ORDERED_ITEMS] = ordered_items;
 
             
@@ -73,8 +73,8 @@ namespace WebApplication6.Controllers
         [HttpPost,ValidateAntiForgeryToken]
         public IActionResult IncludeAsk(int id,int page,string kw)
         {
-            var item = this._manage_ask.DetailsFromDB(id);
-            this._manage_ask.Include(item);
+           
+            this._manage_ask.Include(id);
 
             return
                 RedirectToAction

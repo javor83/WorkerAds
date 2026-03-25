@@ -1,72 +1,56 @@
 ﻿using GCommon.Contracts;
 using GCommon.ExtensionMethods;
 using GCommon.Models;
-using System.Configuration;
 
 namespace GCommon.Services
 {
-    public class ManageAsk : IManageAsk
+    public class ManageAsk(IHttpContextAccessor _context, IAdsPersonService _ads, ILocalProfiles _profile) : IManageAsk
     {
         private const string USER_ASK_KEY = "USER_ASK_KEY";
         public const string SUMMARY_BASKET = "SUMMARY_BASKET";
         public const string ORDERED_ITEMS = "ORDERED_ITEMS";
 
-        private IHttpContextAccessor _context = null;
-        private IAdsPersonService _ads;
-        private ILocalProfiles _profile = null;
         //******************************************************************************
-        public ManageAsk(IHttpContextAccessor cn, IAdsPersonService service_ads,ILocalProfiles lp)
-        {
-            this._context = cn;
-            this._ads = service_ads;
-            this._profile = lp;
-        }
-       
-       
-        //******************************************************************************
+        /// <summary>
+        /// какво да пратим като поръчка
+        /// обекта в сесията, за кой потребител, телефон, детайлите
+        /// </summary>
+        /// <param name="in_card"></param>
+        /// <returns></returns>
         ManageAskViewModel IManageAsk.WhatToPost(IEnumerable<AdsPersonViewModel> in_card)
         {
-             
+
             int[] ids = in_card.Select(x => x.DeclareWorkerFreeID).ToArray();
 
 
 
-           var result = new ManageAskViewModel()
+            var result = new ManageAskViewModel()
             {
                 OrderDetails = string.Empty,
                 Phone = string.Empty,
-                ASPNETUSER_ID = this._profile.CurrentUserID(),
+                ASPNETUSER_ID = _profile.CurrentUserID(),
                 AdvID = ids
             };
             return result;
         }
         //******************************************************************************
+        /// <summary>
+        /// изпращане на поръчаните услуги , телефон и детайли като поръчка в базата
+        /// </summary>
+        /// <param name="what_to_post"></param>
+        /// <returns></returns>
         async Task IManageAsk.IncludeAsOrder(ManageAskViewModel what_to_post)
         {
-            await this._ads.PostOrder(what_to_post);
+            await _ads.PostOrder(what_to_post);
             (this as IManageAsk).Clear();
         }
-        //******************************************************************************
-        void IManageAsk.Remove(int adv_id)
-        {
-            List<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
-            var query = list.Where(x => x.DeclareWorkerFreeID == adv_id).First();
-            if (query != null)
-            {
-                list.Remove(query);
-                this._context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, list);
-            }
-        }
-        
 
 
         //******************************************************************************
-        AdsPersonViewModel IManageAsk.DetailsFromDB(int adv_id)
-        {
-            var result = this._ads.Details(adv_id);
-            return result;
-        }
-        //******************************************************************************
+        /// <summary>
+        /// има ли поръчани услуги
+        /// </summary>
+        /// <returns></returns>
         bool IManageAsk.Empty()
         {
             IEnumerable<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
@@ -74,6 +58,10 @@ namespace GCommon.Services
             return result;
         }
         //******************************************************************************
+        /// <summary>
+        /// колко са поръчаните услуги
+        /// </summary>
+        /// <returns></returns>
         int IManageAsk.Count()
         {
             IEnumerable<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
@@ -81,61 +69,81 @@ namespace GCommon.Services
             return result;
         }
         //******************************************************************************
+        /// <summary>
+        /// изтриване след логаут преди финализиране на поръчката
+        /// </summary>
         void IManageAsk.Clear()
         {
             List<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
             list.Clear();
-            this._context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, list);
+            _context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, list);
 
         }
         //******************************************************************************
-        IEnumerable<AdsPersonViewModel> IManageAsk.Print()
+        /// <summary>
+        /// изтриване от сесията
+        /// </summary>
+        /// <param name="adv_id"></param>
+        void IManageAsk.Remove(int adv_id)
         {
-
-            var result = (this as IManageAsk).Deserialize();
-
-            return result;
+            List<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
+            var query = list.Where(x => x.DeclareWorkerFreeID == adv_id).First();
+            if (query != null)
+            {
+                list.Remove(query);
+                _context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, list);
+            }
         }
         //******************************************************************************
-        List<AdsPersonViewModel> IManageAsk.Deserialize()
+        /// <summary>
+        /// вмъкване на услуга към сесията
+        /// </summary>
+        /// <param name="item"></param>
+        void IManageAsk.Include(int adv_id)
         {
-            List<AdsPersonViewModel> result = null;
-            bool exists_key = this._context.HttpContext.Session.Keys.Contains(ManageAsk.USER_ASK_KEY);
+            AdsPersonViewModel details_adv = _ads.Details(adv_id);
+
+            bool exists_key = _context.HttpContext.Session.Keys.Contains(ManageAsk.USER_ASK_KEY);
             if (exists_key)
             {
-                result = this._context.HttpContext.Session.GetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY);
-
-            }
-            else
-            {
-                result = new List<AdsPersonViewModel>();
-                this._context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, result);
-            }
-
-
-            return result;
-        }
-        //******************************************************************************
-        void IManageAsk.Include(AdsPersonViewModel item)
-        {
-            bool exists_key = this._context.HttpContext.Session.Keys.Contains(ManageAsk.USER_ASK_KEY);
-            if (exists_key)
-            {
-                List<AdsPersonViewModel> empty = this._context.HttpContext.Session.GetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY);
-                if (empty.Any(x => x.DeclareWorkerFreeID == item.DeclareWorkerFreeID) == false)
+                List<AdsPersonViewModel> empty = _context.HttpContext.Session.GetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY);
+                if (empty.Any(x => x.DeclareWorkerFreeID == details_adv.DeclareWorkerFreeID) == false)
                 {
                     //не може да вмъкнеш два пъти една и съща обява
-                    empty.Add(item);
-                    this._context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, empty);
+                    empty.Add(details_adv);
+                    _context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, empty);
                 }
                 
             }
             else
             {
                 List<AdsPersonViewModel> empty = new List<AdsPersonViewModel>();
-                empty.Add(item);
-                this._context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, empty);
+                empty.Add(details_adv);
+                _context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, empty);
             }
+        }
+        //******************************************************************************
+        /// <summary>
+        /// прочитане на сесията като списъчен обект
+        /// </summary>
+        /// <returns></returns>
+        List<AdsPersonViewModel> IManageAsk.Deserialize()
+        {
+            List<AdsPersonViewModel> result = null;
+            bool exists_key = _context.HttpContext.Session.Keys.Contains(ManageAsk.USER_ASK_KEY);
+            if (exists_key)
+            {
+                result = _context.HttpContext.Session.GetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY);
+
+            }
+            else
+            {
+                result = new List<AdsPersonViewModel>();
+                _context.HttpContext.Session.SetObject<List<AdsPersonViewModel>>(ManageAsk.USER_ASK_KEY, result);
+            }
+
+
+            return result;
         }
         //******************************************************************************
     }
