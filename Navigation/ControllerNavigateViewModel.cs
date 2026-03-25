@@ -12,6 +12,7 @@ namespace GCommon.Navigation
         //---------------------------
         public static readonly string Orders = nameof(OrdersController).Navigate();
         public static readonly string Orders_Index = nameof(OrdersController.Index);
+        public static readonly string Orders_Delete = nameof(OrdersController.Delete);
         //---------------------------
         public static readonly string UserAsk = nameof(UserAskController).Navigate();
         public static readonly string UserAsk_IncludeAsk = nameof(UserAskController.IncludeAsk);

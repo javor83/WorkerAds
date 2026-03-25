@@ -11,23 +11,38 @@
 
   
 }
+
+
 <table class="@BootstrapCSS.table">
     <tr>
-        <th class="text-center">@text_UserAsk.OrderID</th>
         <th class="text-center">@text_UserAsk.Details</th>
+        <th class="text-center"></th>
+       
     </tr>
     @foreach (var item in grouped_view)
     {
        <tr>
-            <td>@item.OrderID</td>
+           
             <td>
                 @for (var x = 0; x < item.List.Count(); x++)
                 {
                     if (x == 0)
                     {
-                        <div>@item.List.ElementAt(x).OrderDate</div>
-                        <div>@item.List.ElementAt(x).Phone</div>
-                        <div>@item.List.ElementAt(x).OrderDetails</div>
+                       
+                        <div>
+                            <b>@text_UserAsk.OrderID</b> @item.OrderID
+                        </div>
+                        <div>
+                            <b>@text_UserAsk.OrderDate</b> @item.List.ElementAt(x).OrderDate.OnlyDatePart()
+                        </div>
+
+                        <div>
+                            <b>@text_UserAsk.Phone</b> @item.List.ElementAt(x).Phone
+                       </div>
+
+                        <div>
+                            <b>@text_UserAsk.Details</b> @item.List.ElementAt(x).OrderDetails
+                        </div>
                     }
                     
                 }
@@ -38,6 +53,18 @@
                     <li>@item.List.ElementAt(x).AdvertisementTitle</li>
                 }
                 </ul>
+            </td>
+            <td class="text-center">
+                <form method="post"
+                      asp-antiforgery="true"
+                      asp-controller="@ControllerNavigateViewModel.Orders"
+                      asp-action="@ControllerNavigateViewModel.Orders_Delete"
+                      asp-route-id="@item.OrderID">
+                   
+                    <input type="submit" value="@text_Label.Delete" class="@BootstrapCSS.button_danger" />
+                </form>
+                
+
             </td>
        </tr>
     }

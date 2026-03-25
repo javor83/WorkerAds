@@ -1,5 +1,6 @@
 ﻿using GCommon.Contracts;
 using GCommon.Data;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 namespace GCommon.Models
@@ -7,7 +8,28 @@ namespace GCommon.Models
     public class ManageOrders(MeisterContext _context) : IManageOrders
     {
 
+        //********************************************************************************
+        /// <summary>
+        /// изтриване поръчка
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        async Task IManageOrders.Delete(int id)
+        {
+            var query = _context.AspnetuserOrders.Where(x => x.OrderId == id).First();
+            if (query != null)
+            {
+                _context.AspnetuserOrders.Remove(query);
+                await _context.SaveChangesAsync();
+            }
+        }
 
+
+        //********************************************************************************
+        /// <summary>
+        /// четене на всички поръчки
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<ManageOrderItemViewModel> IManageOrders.Read()
         {
            var query = from orders in _context.AspnetuserOrders
