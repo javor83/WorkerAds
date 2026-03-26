@@ -1,3 +1,4 @@
+using GCommon.Captions;
 using GCommon.Contracts;
 using GCommon.Models;
 using GCommon.Services;
@@ -23,6 +24,14 @@ namespace WebApplication6.Controllers
 
         public IActionResult Index(int page = 1, string kw = "")
         {
+            
+            ViewData[text_Label.SuccessApply] = string.Empty;
+
+            if (TempData[text_Label.TempData_ok] != null)
+            {
+                ViewData[text_Label.SuccessApply] = TempData[text_Label.TempData_ok] as string;
+            }
+             
             ViewData[ManageAsk.SUMMARY_BASKET] = new SummaryManageAsk()
             {
                 EmptyBasket = this.manage_ask.Empty(),

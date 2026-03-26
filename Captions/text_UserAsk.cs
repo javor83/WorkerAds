@@ -10,6 +10,6 @@ namespace GCommon.Captions
         public const string OrderDate = "Дата на поръчка";
         public const string SendOrder = "Изпрати поръчка";
         public const string OrderID = "Номер поръчка";
-
+        public const string InsertProduct = "Услугата е прибавена";
     }
 }

@@ -1,4 +1,5 @@
-﻿using GCommon.Contracts;
+﻿using GCommon.Captions;
+using GCommon.Contracts;
 using GCommon.ExtensionAttributes;
 using GCommon.Models;
 using GCommon.Navigation;
@@ -37,12 +38,13 @@ namespace WebApplication6.Controllers
         {
             var ordered_items = this._manage_ask.Deserialize();
             ViewData[ManageAsk.ORDERED_ITEMS] = ordered_items;
-
             
+
 
             if (ModelState.IsValid)
             {
                 await this._manage_ask.IncludeAsOrder(sender);
+                
                 return RedirectToAction
                     (
                         ControllerNavigateViewModel.Home_Index,
@@ -75,7 +77,7 @@ namespace WebApplication6.Controllers
         {
            
             this._manage_ask.Include(id);
-
+            TempData[text_Label.TempData_ok] = text_UserAsk.InsertProduct;
             return
                 RedirectToAction
 

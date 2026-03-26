@@ -5,6 +5,9 @@
 @{
     var list = ViewData[ManageAsk.SUMMARY_BASKET] as SummaryManageAsk;
 }
+
+<vc:succcess-alert caption="@ViewData[text_Label.SuccessApply]"></vc:succcess-alert>
+
 <form method="get"
     asp-controller="@ControllerNavigateViewModel.Home"
     asp-action="@ControllerNavigateViewModel.Home_Index">
@@ -44,6 +47,8 @@
 
    
 </div>
+
+
 
 
 <partial name="DataTableListAds" model="@Model" />
