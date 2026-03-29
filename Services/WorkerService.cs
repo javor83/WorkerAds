@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace GCommon.Services
 {
-    public class WorkerService(MeisterContext _context, IWebHostEnvironment appEnvironment) : IWorkerService
+    public class WorkerService(MeisterContext _context, IWebHostEnvironment _web_host_context) : IWorkerService
     {
 
 
@@ -17,7 +17,7 @@ namespace GCommon.Services
             Worker? query = _context.Workers.Find(sender.ID);
             if (query != null)
             {
-                var wwwroot = appEnvironment.WebRootPath;
+                var wwwroot = _web_host_context.WebRootPath;
 
                 query.Fname = sender.FName;
                 query.Lname = sender.LName;
@@ -72,7 +72,7 @@ namespace GCommon.Services
         //********************************************************************************
         async Task IWorkerService.Insert(InsertWorkerViewModel sender)
         {
-            var wwwroot = appEnvironment.WebRootPath;
+            var wwwroot = _web_host_context.WebRootPath;
 
             string save_as = sender.Preview.Upload(wwwroot, BootstrapCSS.worker_folder);
 

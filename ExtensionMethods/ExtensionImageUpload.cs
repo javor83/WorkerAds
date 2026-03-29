@@ -18,7 +18,10 @@ namespace GCommon.ExtensionMethods
 
                 using (var input_stream = sender.OpenReadStream())
                 {
-                    input_stream.CopyTo(x);
+                    if (input_stream != null)
+                    {
+                        input_stream.CopyTo(x);
+                    }
                 }
             }
 
