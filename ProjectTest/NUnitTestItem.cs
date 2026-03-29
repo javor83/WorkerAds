@@ -24,27 +24,27 @@ public class NUnitTestItem
     {
         // Define a unique name for the in-memory database per test run
         var services = new ServiceCollection();
-        services.AddHttpContextAccessor();
-        services.AddDistributedMemoryCache();
+        //services.AddHttpContextAccessor();
+        //services.AddDistributedMemoryCache();
         // Add DB Context
         services.AddDbContext<MeisterContext>(options => options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
-        services.AddTransient<IManageOrders, ManageOrders>();
-        services.AddTransient<IManageAsk, ManageAsk>();
+        //services.AddTransient<IManageOrders, ManageOrders>();
+        //services.AddTransient<IManageAsk, ManageAsk>();
                 services.AddTransient<IWageTaxService, WageTaxService>();
-        services.AddTransient<IWorkCategoryService, WorkCategoryService>();
-        services.AddTransient<IWorkHoursService, WorkHoursService>();
+        //services.AddTransient<IWorkCategoryService, WorkCategoryService>();
+        //services.AddTransient<IWorkHoursService, WorkHoursService>();
                 services.AddTransient<IWorkerService, WorkerService>();
-        services.AddTransient<IAdsPersonService, AdsPersonService>();
-        services.AddTransient<ICapabilityService, CapabilityService>();
+        //services.AddTransient<IAdsPersonService, AdsPersonService>();
+        //services.AddTransient<ICapabilityService, CapabilityService>();
 
-        services.AddTransient<IPublishAdsService, PublishAdsService>();
-        services.AddScoped<ILocalProfiles, LocalProfiles>();
-        services.AddSession(options =>
-        {
-            options.IdleTimeout = TimeSpan.FromMinutes(60); // Session expiration
-            options.Cookie.HttpOnly = true;                // Security: Prevent JS access
-            options.Cookie.IsEssential = true;             // Mark as essential for GDPR
-        });
+        //services.AddTransient<IPublishAdsService, PublishAdsService>();
+        //services.AddScoped<ILocalProfiles, LocalProfiles>();
+        //services.AddSession(options =>
+        //{
+        //    options.IdleTimeout = TimeSpan.FromMinutes(60); // Session expiration
+        //    options.Cookie.HttpOnly = true;                // Security: Prevent JS access
+        //    options.Cookie.IsEssential = true;             // Mark as essential for GDPR
+        //});
 
         //-------------------------------------
         var serviceProvider = services.BuildServiceProvider();
