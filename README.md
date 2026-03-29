@@ -30,7 +30,7 @@
 - Акаунтът е admin123@abv.bg с парола pascal
 - Като се създаде нов потребител, автоматично става с права User. 
 - Демо акаунти са user124@abv.bg | парола pascal и user125@abv.bg | парола pascal
-
+- Направете си папка за тестовете C:\Test\wwwroot\worker
 
 "ConnectionStrings": {
     "DefaultConnection": "Server=**[име на сървъра]**;Database=MEISTER;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true",
