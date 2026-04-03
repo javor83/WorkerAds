@@ -84,7 +84,7 @@ public class NUnitTestItem
         _context.Dispose();
     }
     //**********************************************************************************
-    #region TEST SERVICE IWageTaxService / WageTaxService
+    #region TEST SERVICE IWorkerService / WorkerService
 
     [Test]
     public async Task WorkerService_Create()
@@ -114,7 +114,132 @@ public class NUnitTestItem
     //**********************************************************************************
     #endregion
 
-    #region TEST SERVICE IWorkerService / WorkerService
+
+
+    #region TEST SERVICE IWageTaxService / WageTaxService
+
+    /*
+     *  public interface IWageTaxService
+    {
+
+
+        
+
+       
+
+
+        Task Update(WageTaxViewModel entity);
+
+       
+
+
+        
+
+       
+    }
+     */
+    //**********************************************************************************
+    [Test]
+    public async Task TaskService_Read()
+    {
+        await this._tax_service.Create
+                    (
+                        new WageTaxViewModel()
+                        {
+                            Name = "Test service 1"
+                        }
+                    );
+        await this._tax_service.Create
+                     (
+                         new WageTaxViewModel()
+                         {
+                             Name = "Test service 2"
+                         }
+                     );
+        await this._tax_service.Create
+                     (
+                         new WageTaxViewModel()
+                         {
+                             Name = "Test service 3"
+                         }
+                     );
+        IEnumerable<WageTaxViewModel> elements = this._tax_service.Read();
+        int old_count = elements.Count();
+
+      
+
+        Assert.That(old_count == 3, "read elements");
+
+    }
+    //**********************************************************************************
+    [Test]
+    public async Task TaskService_Delete()
+    {
+        await this._tax_service.Create
+                    (
+                        new WageTaxViewModel()
+                        {
+                            Name = "Test service 1"
+                        }
+                    );
+        await this._tax_service.Create
+                     (
+                         new WageTaxViewModel()
+                         {
+                             Name = "Test service 2"
+                         }
+                     );
+        await this._tax_service.Create
+                     (
+                         new WageTaxViewModel()
+                         {
+                             Name = "Test service 3"
+                         }
+                     );
+        IEnumerable<WageTaxViewModel> elements = this._tax_service.Read();
+        int old_count = elements.Count();
+
+        await this._tax_service.Delete(1);
+
+        IEnumerable<WageTaxViewModel> elements_del = this._tax_service.Read();
+        int new_count = elements_del.Count();
+
+        Assert.That(new_count == 2, "element deleted");
+
+    }
+
+    //**********************************************************************************
+
+    [Test]
+    public async Task TaskService_To_DTO_WageTax()
+    {
+        await this._tax_service.Create
+                    (
+                        new WageTaxViewModel()
+                        {
+                            Name = "Test service 1"
+                        }
+                    );
+        await this._tax_service.Create
+                     (
+                         new WageTaxViewModel()
+                         {
+                             Name = "Test service 2"
+                         }
+                     );
+        await this._tax_service.Create
+                     (
+                         new WageTaxViewModel()
+                         {
+                             Name = "Test service 3"
+                         }
+                     );
+
+        WageTaxViewModel result = this._tax_service.To_DTO_WageTax(1);
+
+        Assert.NotNull(result);
+    }
+
 
     //**********************************************************************************
     [Test]
