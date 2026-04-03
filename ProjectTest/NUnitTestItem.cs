@@ -50,10 +50,19 @@ public class NUnitTestItem
         var serviceProvider = services.BuildServiceProvider();
         //-------------------------------------
         this._web_host_service = new Mock<IWebHostEnvironment>();
-        
+
         // Setup the paths and environment name
-        this._web_host_service.Setup(m => m.WebRootPath).Returns(@"C:\Test\wwwroot");
-        this._web_host_service.Setup(m => m.ContentRootPath).Returns(@"C:\Test");
+
+        string wwwroot_folder = @"C:\Test\wwwroot";
+        if (Directory.Exists(wwwroot_folder) == false)
+        {
+            Directory.CreateDirectory(wwwroot_folder);
+        }
+
+        string test_folder = Path.GetDirectoryName(wwwroot_folder);
+
+        this._web_host_service.Setup(m => m.WebRootPath).Returns(wwwroot_folder);
+        this._web_host_service.Setup(m => m.ContentRootPath).Returns(test_folder);
         this._web_host_service.Setup(m => m.EnvironmentName).Returns("Development");
         //-------------------------------------
         this._upload_service = new Mock<IFormFile>();
@@ -68,21 +77,19 @@ public class NUnitTestItem
         //-------------------------------------
 
     }
-
-
-
     //**********************************************************************************
     [TearDown]
     public void TearDown()
     {
         _context.Dispose();
     }
-
     //**********************************************************************************
+    #region TEST SERVICE IWageTaxService / WageTaxService
+
     [Test]
     public async Task WorkerService_Create()
     {
-        
+
 
         Assert.DoesNotThrowAsync
             (
@@ -104,6 +111,10 @@ public class NUnitTestItem
             );
 
     }
+    //**********************************************************************************
+    #endregion
+
+    #region TEST SERVICE IWorkerService / WorkerService
 
     //**********************************************************************************
     [Test]
@@ -152,7 +163,10 @@ public class NUnitTestItem
              );
 
 
-       
+
     }
-    //**********************************************************************************
+
+    #endregion
+
+    
 }
