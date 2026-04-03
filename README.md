@@ -31,6 +31,7 @@
 - Като се създаде нов потребител, автоматично става с права User. 
 - Демо акаунти са user124@abv.bg | парола pascal и user125@abv.bg | парола pascal
 - Направете си папка за тестовете C:\Test\wwwroot\worker
+- Копирайте файла demo.jpg от папка Captions в папка C:\Test. При тест за вмъкване на работник, този файл служи за демо файл за качване
 
 "ConnectionStrings": {
     "DefaultConnection": "Server=**[име на сървъра]**;Database=MEISTER;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true",

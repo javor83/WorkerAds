@@ -30,10 +30,10 @@ public class NUnitTestItem
         services.AddDbContext<MeisterContext>(options => options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
         //services.AddTransient<IManageOrders, ManageOrders>();
         //services.AddTransient<IManageAsk, ManageAsk>();
-        services.AddTransient<IWageTaxService, WageTaxService>();//GOTOVO
+        services.AddTransient<IWageTaxService, WageTaxService>();//DONE
         //services.AddTransient<IWorkCategoryService, WorkCategoryService>();
         //services.AddTransient<IWorkHoursService, WorkHoursService>();
-                services.AddTransient<IWorkerService, WorkerService>();
+        services.AddTransient<IWorkerService, WorkerService>();//DONE
         //services.AddTransient<IAdsPersonService, AdsPersonService>();
         //services.AddTransient<ICapabilityService, CapabilityService>();
 
@@ -58,6 +58,7 @@ public class NUnitTestItem
         {
             Directory.CreateDirectory(wwwroot_folder);
         }
+       
 
         string test_folder = Path.GetDirectoryName(wwwroot_folder);
 
@@ -65,9 +66,24 @@ public class NUnitTestItem
         this._web_host_service.Setup(m => m.ContentRootPath).Returns(test_folder);
         this._web_host_service.Setup(m => m.EnvironmentName).Returns("Development");
         //-------------------------------------
+        //благодаря ти Google Gemini :)
+        string demo_image = "demo.jpg";
+        byte[] demo_image_bytes = File.ReadAllBytes($"C:/Test/{demo_image}");
+
+        
+
+        var ms = new MemoryStream(demo_image_bytes);
+        
+        ms.Position = 0;
+
         this._upload_service = new Mock<IFormFile>();
-        this._upload_service.Setup(f => f.Length).Returns(100 * 1024); // 100 kb
-        this._upload_service.Setup(f => f.FileName).Returns("filename.jpg");
+        this._upload_service.Setup(f => f.Length).Returns(demo_image_bytes.Length); // 200 kb
+        this._upload_service.Setup(f => f.FileName).Returns(demo_image);
+        this._upload_service.Setup(f => f.ContentType).Returns("image/jpeg");
+        this._upload_service.Setup(f => f.OpenReadStream()).Returns(ms);
+      
+
+
         //-------------------------------------
         this._context = serviceProvider.GetRequiredService<MeisterContext>();
         //-------------------------------------
@@ -84,39 +100,131 @@ public class NUnitTestItem
         _context.Dispose();
     }
     //**********************************************************************************
-    #region TEST SERVICE IWorkerService / WorkerService
+    #region DONE - TEST SERVICE IWorkerService / WorkerService
+
+
+    
+    //**********************************************************************************
+    [Test]
+    public async Task WorkerService_Update()
+    {
+        await this._worker_service.Insert
+            (
+                new InsertWorkerViewModel()
+                {
+                    Email = "email",
+                    FName = "fname",
+                    LName = "lname",
+                    Phone = "phone",
+                    Preview = this._upload_service.Object,
+                    ID = null
+                }
+            );
+
+        UpdateWorkerViewModel demo = this._worker_service.Find(1);
+        demo.Phone = "999-999";
+        await this._worker_service.Update(demo);
+
+        var list = this._worker_service.Read();
+        Assert.IsTrue(list.First().Phone == "999-999");
+    }
+    //**********************************************************************************
+    [Test]
+    public async Task WorkerService_Delete()
+    {
+        await this._worker_service.Insert
+            (
+                new InsertWorkerViewModel()
+                {
+                    Email = "email",
+                    FName = "fname",
+                    LName = "lname",
+                    Phone = "phone",
+                    Preview = this._upload_service.Object,
+                    ID = null
+                }
+            );
+
+        var x = await this._worker_service.Delete(1);
+        Assert.IsTrue(x);
+    }
+
+    //**********************************************************************************
+    [Test]
+    public async Task WorkerService_Find()
+    {
+        await this._worker_service.Insert
+              (
+                  new InsertWorkerViewModel()
+                  {
+                      Email = "email",
+                      FName = "fname",
+                      LName = "lname",
+                      Phone = "phone",
+                      Preview = this._upload_service.Object,
+                      ID = null
+                  }
+              );
+
+
+
+        var count = this._worker_service.Find(1);
+
+
+        Assert.IsTrue(count!=null);
+    }
+    //**********************************************************************************
 
     [Test]
-    public async Task WorkerService_Create()
+    public async Task WorkerService_Read()
     {
+        await this._worker_service.Insert
+               (
+                   new InsertWorkerViewModel()
+                   {
+                       Email = "email",
+                       FName = "fname",
+                       LName = "lname",
+                       Phone = "phone",
+                       Preview = this._upload_service.Object,
+                       ID = null
+                   }
+               );
+       
 
+        var list = this._worker_service.Read();
+      
+        bool count = list.Count() == 1;
 
-        Assert.DoesNotThrowAsync
-            (
-             async () =>
-             {
-                 await this._worker_service.Insert
-                 (
-                     new InsertWorkerViewModel()
-                     {
-                         Email = "email",
-                         FName = "fname",
-                         LName = "lname",
-                         Phone = "phone",
-                         Preview = this._upload_service.Object,
-                         ID = 0
-                     }
-                 );
-             }
-            );
+        Assert.IsTrue(count);
+    }
+
+    //**********************************************************************************
+    [Test]
+    public async Task WorkerService_Insert()
+    {
+        await this._worker_service.Insert
+                (
+                    new InsertWorkerViewModel()
+                    {
+                        Email = "email",
+                        FName = "fname",
+                        LName = "lname",
+                        Phone = "phone",
+                        Preview = this._upload_service.Object,
+                        ID = 0
+                    }
+                );
+        var list =  this._worker_service.Read();
+        bool count = list.Count() == 1;
+
+        Assert.IsTrue(count);
 
     }
     //**********************************************************************************
     #endregion
 
-
-
-    #region TEST SERVICE IWageTaxService / WageTaxService
+    #region DONE - TEST SERVICE IWageTaxService / WageTaxService
 
     
 
