@@ -30,7 +30,7 @@ public class NUnitTestItem
         services.AddDbContext<MeisterContext>(options => options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
         //services.AddTransient<IManageOrders, ManageOrders>();
         //services.AddTransient<IManageAsk, ManageAsk>();
-                services.AddTransient<IWageTaxService, WageTaxService>();
+        services.AddTransient<IWageTaxService, WageTaxService>();//GOTOVO
         //services.AddTransient<IWorkCategoryService, WorkCategoryService>();
         //services.AddTransient<IWorkHoursService, WorkHoursService>();
                 services.AddTransient<IWorkerService, WorkerService>();
@@ -118,26 +118,48 @@ public class NUnitTestItem
 
     #region TEST SERVICE IWageTaxService / WageTaxService
 
-    /*
-     *  public interface IWageTaxService
+    
+
+    [Test]
+    public async Task TaskService_Update()
     {
+        await this._tax_service.Create
+                  (
+                      new WageTaxViewModel()
+                      {
+                          Name = "Test service 1"
+                      }
+                  );
+        await this._tax_service.Create
+                     (
+                         new WageTaxViewModel()
+                         {
+                             Name = "Test service 2"
+                         }
+                     );
+        await this._tax_service.Create
+                     (
+                         new WageTaxViewModel()
+                         {
+                             Name = "Test service 3"
+                         }
+                     );
+        IEnumerable<WageTaxViewModel> elements = this._tax_service.Read();
 
+        await this._tax_service.Update
+            (
+                 new WageTaxViewModel()
+                 {
+                     Name = "UPDATED 3",
+                     ID = 3
+                 }
+            );
 
-        
+        IEnumerable<WageTaxViewModel> UPDATED_elements = this._tax_service.Read();
+        bool result = UPDATED_elements.Where(x => x.ID == 3).First().Name == "UPDATED 3";
+        Assert.IsTrue(result);
 
-       
-
-
-        Task Update(WageTaxViewModel entity);
-
-       
-
-
-        
-
-       
     }
-     */
     //**********************************************************************************
     [Test]
     public async Task TaskService_Read()
