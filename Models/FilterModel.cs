@@ -6,8 +6,8 @@ namespace GCommon.Models
     {
         private int min_page = 1;
 
-      
 
+        
         public const int ElementsOnPage = 3;
 
 
@@ -16,9 +16,34 @@ namespace GCommon.Models
 
         public required string Keyword { get; set; } = string.Empty;
 
-     
 
-        
+
+        public int[] XPage()
+        {
+            List<int> result = new List<int>();
+            int max_page_count = 3;
+            if (this.CurrentPage + max_page_count - 1 <= this.TotalPages)
+            {
+                for (int i = this.CurrentPage; i <= this.CurrentPage + max_page_count - 1; i++)
+                {
+                    result.Add(i);
+
+                }
+
+
+            }
+            else
+            {
+                for (int i = this.TotalPages - max_page_count + 1; i <= this.TotalPages; i++)
+                {
+                    result.Add(i);
+
+                }
+            }
+            return result.ToArray();
+
+        }
+             
 
         //******************************************************************************************
 

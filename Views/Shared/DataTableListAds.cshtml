@@ -1,6 +1,7 @@
 ﻿@model DisplayIndexViewModel
 @using GCommon.Contracts
 @inject ILocalProfiles login
+@inject IManageAsk manage_ask
 <vc:manager-subtitle caption="@text_Label.FreeAds"></vc:manager-subtitle>
 <table class="@BootstrapCSS.table">
     <tr>
@@ -48,7 +49,7 @@
                        @ads.EveryDay()
                        
                   
-                       @if(login.InRoleUser())
+                @if (login.InRoleUser() && (manage_ask.Contains(ads.DeclareWorkerFreeID) == false))
                        {
                             <form method="post" 
                                 asp-controller="@ControllerNavigateViewModel.UserAsk" 

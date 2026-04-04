@@ -10,8 +10,8 @@ namespace GCommon.Contracts
         //-----------------------
         List<AdsPersonViewModel> Deserialize();
 
-       
 
+        bool Contains(int adv_id);
         
 
         ManageAskViewModel WhatToPost(IEnumerable<AdsPersonViewModel> ordered_items);

@@ -68,9 +68,25 @@ namespace GCommon.Services
             await _context.SaveChangesAsync();
             (this as IManageAsk).Clear();
         }
+        //******************************************************************************
+        /// <summary>
+        /// дали количката съдържа услуга номер Adv_id
+        /// идеята е да не се показва бутон Запитване ако е вече в количката
+        /// </summary>
+        /// <param name="adv_id"></param>
+        /// <returns></returns>
+        bool IManageAsk.Contains(int adv_id)
+        {
+            bool result = false;
 
+            IEnumerable<AdsPersonViewModel> list = (this as IManageAsk).Deserialize();
+            result = list.Any(x=>x.DeclareWorkerFreeID == adv_id) == true;
+            return result;
 
-        
+           
+
+        }
+
 
         //******************************************************************************
         /// <summary>

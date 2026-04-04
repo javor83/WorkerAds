@@ -1,5 +1,7 @@
 ﻿@model FilterModel
-
+@{
+    int[] list = Model.XPage();
+}
 
 <ul class="pagination justify-content-center" style="margin:20px 0">
 
@@ -8,8 +10,8 @@
            asp-controller="@ControllerNavigateViewModel.Home"
            asp-route-page="@Model.PreviousPage()" asp-route-kw="@Model.Keyword">@text_Label.PrevPage</a>
     </li>
-
-    @for (int i = 1; i <= Model.TotalPages; i++)
+   
+    @foreach (int i in list)
     {
         if (i == Model.CurrentPage)
         {
@@ -18,8 +20,7 @@
                    asp-action="@ControllerNavigateViewModel.Home_Index"
                    asp-controller="@ControllerNavigateViewModel.Home"
                    asp-route-page="@i"
-                   asp-route-kw="@Model.Keyword"
-                >@i</a>
+                   asp-route-kw="@Model.Keyword">@i</a>
             </li>
         }
         else
