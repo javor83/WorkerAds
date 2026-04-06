@@ -2,7 +2,8 @@
 @{
     int[] list = Model.XPage();
 }
-
+@if(list.Any())
+{
 <ul class="pagination justify-content-center" style="margin:20px 0">
 
     <li class="page-item">
@@ -46,3 +47,4 @@
            asp-route-kw="@Model.Keyword">@text_Label.NextPage</a>
     </li>
 </ul>
+}

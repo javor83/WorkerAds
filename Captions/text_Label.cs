@@ -14,6 +14,7 @@
         public const string Admin = "Администрация";
         public const string Ads = "Списък обяви";
         public const string FreeAds = "Работни обяви";
+       
         public const string Filter = "Търсене в текста или заглавието на обявата";
         public const string StartFilter = "Приложи";
         public const string Orders = "Поръчки";
@@ -21,7 +22,7 @@
         public const string AskService = "Запитване";
         public const string AskedService = "Обяви за запитване {0}";
         public const string EmptyAskService = "Няма обяви за запитване";
-
+        public const string EmptyFilteredAds = "Няма обяви по този филтър";
         //********************************
         public const string Delete = "Изтрий";
 

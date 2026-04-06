@@ -2,6 +2,10 @@
 @using GCommon.Contracts
 @inject ILocalProfiles login
 @inject IManageAsk manage_ask
+
+
+@if(Model.Data.Any())
+{
 <vc:manager-subtitle caption="@text_Label.FreeAds"></vc:manager-subtitle>
 <table class="@BootstrapCSS.table">
     <tr>
@@ -69,3 +73,7 @@
         </tr>
     }
 </table>
+}else
+{
+    <vc:manager-subtitle caption="@text_Label.EmptyFilteredAds"></vc:manager-subtitle>
+}

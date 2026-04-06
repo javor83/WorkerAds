@@ -86,7 +86,7 @@ namespace GCommon.Services
         /// <returns></returns>
         DisplayIndexViewModel IAdsPersonService.ReadAll(int page, string keyword)
         {
-
+            
             var result_set = from worker in _context.Workers
                             
                              join worker_capability in _context.WorkerCapabilities
