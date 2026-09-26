@@ -4,14 +4,14 @@
 @inject IManageAsk manage_ask
 
 
-@if(Model.Data.Any())
+@if (Model.Data.Any())
 {
-<vc:manager-subtitle caption="@text_Label.FreeAds"></vc:manager-subtitle>
+    <vc:manager-subtitle caption="@Localizer["FreeAds"].Value"></vc:manager-subtitle>
 <table class="@BootstrapCSS.table">
     <tr>
-        <th class="@BootstrapCSS.text_center">@text_Worker.WorkerImage</th>
-        <th class="@BootstrapCSS.text_center">@text_Worker.WorkerDetails</th>
-        <th class="@BootstrapCSS.text_center">@text_WorkHour.LabelWorkHour</th>
+        <th class="@BootstrapCSS.text_center">@Localizer["WorkerImage"].Value</th>
+        <th class="@BootstrapCSS.text_center">@Localizer["WorkerDetails"].Value</th>
+        <th class="@BootstrapCSS.text_center">@Localizer["LabelWorkHour"].Value</th>
     </tr>
     @foreach (var ads in Model.Data)
     {
@@ -24,13 +24,13 @@
                 <p class="text-center"><strong>@ads.AdvTitle</strong></p>
                 <div><b>@ads.FullName()</b></div>
                 <div>
-                    <b>@text_Worker.WorkerPhone</b> @ads.Phone
+                    <b>@Localizer["WorkerPhone"].Value</b> @ads.Phone
                 </div>
                 <div>
-                    <b>@text_Worker.WorkerEmail</b> @ads.Email
+                        <b>@Localizer["WorkerEmail"].Value</b> @ads.Email
                 </div>
                 <div>
-                    <b>@text_WorkCategory.LabelWorkCategory</b> @ads.WhatToDo()
+                    <b>@Localizer["LabelWorkCategory"].Value</b> @ads.WhatToDo()
 
                     
 
@@ -40,7 +40,7 @@
                            asp-route-page="@Model.ApplyFilter.CurrentPage"
                            asp-route-kw="@Model.ApplyFilter.Keyword"
                     class="@BootstrapCSS.ReadMoreLess">
-                        @text_WorkCategory.ReadMoreLess
+                        @Localizer["ReadMoreLess"].Value
                     </a>
 
                  
@@ -63,7 +63,7 @@
                                 <input type="hidden" value="@Model.ApplyFilter.CurrentPage" name="page" />
                                 <input type="hidden" value="@Model.ApplyFilter.Keyword" name="kw" />
                                     <div>
-                                        <input type="submit" value="@text_Label.AskService" class="@BootstrapCSS.button_danger" />
+                                        <input type="submit" value="@Localizer["AskService"].Value" class="@BootstrapCSS.button_danger" />
                                     </div>
                             </form>
                        }
@@ -75,5 +75,5 @@
 </table>
 }else
 {
-    <vc:manager-subtitle caption="@text_Label.EmptyFilteredAds"></vc:manager-subtitle>
+    <vc:manager-subtitle caption="@Localizer["EmptyFilteredAds"].Value"></vc:manager-subtitle>
 }

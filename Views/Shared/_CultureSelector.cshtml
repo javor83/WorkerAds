@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+@{
+    // Retrieve the current culture feature from the HTTP context
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+
+    // Build the list of supported cultures with their native names (e.g., English, Български, Español)
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem
+        {
+            Value = c.Name,
+            Text = c.NativeName
+        })
+        .ToList();
+
+    // Preserve current URL path and query string to redirect back seamlessly
+    
+    var returnUrl = 
+        
+        string.IsNullOrEmpty(Context.Request.Path)
+        ? "~/"
+        : $"~{Context.Request.Path}{Context.Request.QueryString}"
+        
+        ;
+        
+       
+}
+
+<form asp-controller="Culture"
+      asp-action="SetLanguage"
+      asp-route-returnUrl="@returnUrl"
+      method="post"
+      class="d-inline-block">
+
+    <select name="culture"
+            onchange="this.form.submit();"
+            asp-for="@requestCulture.RequestCulture.UICulture.Name"
+            asp-items="cultureItems"
+            class="form-select form-select-sm">
+    </select>
+</form>

@@ -47,6 +47,8 @@ builder.Services.AddControllersWithViews
 
 var app = builder.Build();
 //-------------------------------
+app.AppLocalize();
+
 
 app.UseSession();
 //Configure the HTTP request pipeline.

@@ -9,7 +9,7 @@
     <li class="page-item">
         <a class="page-link" asp-action="@ControllerNavigateViewModel.Home_Index"
            asp-controller="@ControllerNavigateViewModel.Home"
-           asp-route-page="@Model.PreviousPage()" asp-route-kw="@Model.Keyword">@text_Label.PrevPage</a>
+           asp-route-page="@Model.PreviousPage()" asp-route-kw="@Model.Keyword">@Localizer["String1"].Value</a>
     </li>
    
     @foreach (int i in list)
@@ -44,7 +44,7 @@
         <a class="page-link" asp-action="@ControllerNavigateViewModel.Home_Index"
            asp-controller="@ControllerNavigateViewModel.Home"
            asp-route-page="@Model.NextPage()"
-           asp-route-kw="@Model.Keyword">@text_Label.NextPage</a>
+           asp-route-kw="@Model.Keyword">@Localizer["String2"].Value</a>
     </li>
 </ul>
 }
