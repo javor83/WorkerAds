@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AskedService" xml:space="preserve">
-    <value>Обяви за запитване {0} (EN)</value>
+    <value>REQUESTED ADS {0}</value>
   </data>
   <data name="EmptyAskService" xml:space="preserve">
-    <value>Няма обяви за запитване (EN)</value>
+    <value>No requested ads</value>
   </data>
   <data name="String1" xml:space="preserve">
     <value>Searching in title or the main text</value>
