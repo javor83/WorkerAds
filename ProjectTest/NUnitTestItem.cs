@@ -7,8 +7,7 @@ using GCommon.Services;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
-
-
+using WebApplication6.Data;
 
 public class NUnitTestItem
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace GCommon.Data;
+namespace WebApplication6.Data;
 
 public partial class MeisterContext : DbContext
 {
@@ -44,11 +44,9 @@ public partial class MeisterContext : DbContext
     public virtual DbSet<WorkerCapability> WorkerCapabilities { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-                
+    { 
+
     }
-
-
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -126,7 +124,7 @@ public partial class MeisterContext : DbContext
 
         modelBuilder.Entity<AspnetuserOrder>(entity =>
         {
-            entity.HasKey(e => e.OrderId).HasName("PK__ASPNETUS__460A9464614C9C78");
+            entity.HasKey(e => e.OrderId).HasName("PK__ASPNETUS__460A9464955E0411");
 
             entity.ToTable("ASPNETUSER_ORDERS");
 
@@ -144,12 +142,12 @@ public partial class MeisterContext : DbContext
 
             entity.HasOne(d => d.Aspnetusers).WithMany(p => p.AspnetuserOrders)
                 .HasForeignKey(d => d.AspnetusersId)
-                .HasConstraintName("FK__ASPNETUSE__ASPNE__5441852A");
+                .HasConstraintName("FK__ASPNETUSE__ASPNE__6754599E");
         });
 
         modelBuilder.Entity<DeclareWorkerFree>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__DECLARE___3214EC27427B64E4");
+            entity.HasKey(e => e.Id).HasName("PK__DECLARE___3214EC2706EFAF4A");
 
             entity.ToTable("DECLARE_WORKER_FREE");
 
@@ -167,17 +165,17 @@ public partial class MeisterContext : DbContext
             entity.HasOne(d => d.Hour).WithMany(p => p.DeclareWorkerFrees)
                 .HasForeignKey(d => d.HourId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__DECLARE_W__HOUR___59FA5E80");
+                .HasConstraintName("FK__DECLARE_W__HOUR___6D0D32F4");
 
             entity.HasOne(d => d.WorkerCapability).WithMany(p => p.DeclareWorkerFrees)
                 .HasForeignKey(d => d.WorkerCapabilityId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__DECLARE_W__WORKE__5AEE82B9");
+                .HasConstraintName("FK__DECLARE_W__WORKE__6E01572D");
         });
 
         modelBuilder.Entity<ItemsInOrder>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ITEMS_IN__3214EC273C992B6E");
+            entity.HasKey(e => e.Id).HasName("PK__ITEMS_IN__3214EC27C55FE621");
 
             entity.ToTable("ITEMS_IN_ORDER");
 
@@ -188,17 +186,17 @@ public partial class MeisterContext : DbContext
             entity.HasOne(d => d.DeclareWorkerFree).WithMany(p => p.ItemsInOrders)
                 .HasForeignKey(d => d.DeclareWorkerFreeId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__ITEMS_IN___DECLA__5BE2A6F2");
+                .HasConstraintName("FK__ITEMS_IN___DECLA__6EF57B66");
 
             entity.HasOne(d => d.Order).WithMany(p => p.ItemsInOrders)
                 .HasForeignKey(d => d.OrderId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__ITEMS_IN___ORDER__5CD6CB2B");
+                .HasConstraintName("FK__ITEMS_IN___ORDER__6FE99F9F");
         });
 
         modelBuilder.Entity<TaxWage>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TAX_WAGE__3214EC27CC8B343C");
+            entity.HasKey(e => e.Id).HasName("PK__TAX_WAGE__3214EC2748485B81");
 
             entity.ToTable("TAX_WAGE");
 
@@ -210,7 +208,7 @@ public partial class MeisterContext : DbContext
 
         modelBuilder.Entity<WorkCategory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__WORK_CAT__3214EC278FA9E74B");
+            entity.HasKey(e => e.Id).HasName("PK__WORK_CAT__3214EC27D6ABE81B");
 
             entity.ToTable("WORK_CATEGORY");
 
@@ -222,7 +220,7 @@ public partial class MeisterContext : DbContext
 
         modelBuilder.Entity<WorkStartHour>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__WORK_STA__3214EC27C07F0013");
+            entity.HasKey(e => e.Id).HasName("PK__WORK_STA__3214EC272E84BFC6");
 
             entity.ToTable("WORK_START_HOURS");
 
@@ -233,7 +231,7 @@ public partial class MeisterContext : DbContext
 
         modelBuilder.Entity<Worker>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__WORKER__3214EC27ECB03D14");
+            entity.HasKey(e => e.Id).HasName("PK__WORKER__3214EC275E0D050F");
 
             entity.ToTable("WORKER");
 
@@ -257,7 +255,7 @@ public partial class MeisterContext : DbContext
 
         modelBuilder.Entity<WorkerCapability>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__WORKER_C__3214EC27FE28748C");
+            entity.HasKey(e => e.Id).HasName("PK__WORKER_C__3214EC2752D79523");
 
             entity.ToTable("WORKER_CAPABILITY");
 
@@ -272,17 +270,17 @@ public partial class MeisterContext : DbContext
             entity.HasOne(d => d.TaxWage).WithMany(p => p.WorkerCapabilities)
                 .HasForeignKey(d => d.TaxWageId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__WORKER_CA__TAX_W__5DCAEF64");
+                .HasConstraintName("FK__WORKER_CA__TAX_W__70DDC3D8");
 
             entity.HasOne(d => d.WorkCategory).WithMany(p => p.WorkerCapabilities)
                 .HasForeignKey(d => d.WorkCategoryId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__WORKER_CA__WORK___5EBF139D");
+                .HasConstraintName("FK__WORKER_CA__WORK___71D1E811");
 
             entity.HasOne(d => d.Worker).WithMany(p => p.WorkerCapabilities)
                 .HasForeignKey(d => d.WorkerId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__WORKER_CA__WORKE__5FB337D6");
+                .HasConstraintName("FK__WORKER_CA__WORKE__72C60C4A");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -5,6 +5,7 @@ using GCommon.Services;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
+using WebApplication6.Data;
 
 
 namespace GCommon.ExtensionMethods
@@ -25,6 +26,7 @@ namespace GCommon.ExtensionMethods
 
         extension(IServiceCollection sender)
         {
+            // Scaffold-DbContext "Server=localhost\SQLEXPRESS;Database=MEISTER;Trusted_Connection=True;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data -force
             // Scaffold-DbContext "Server=DESKTOP-H09IM5N;Database=MEISTER;Trusted_Connection=True;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data -force
             //**************************************************************************************************************************
             /// <summary>

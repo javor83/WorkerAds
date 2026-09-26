@@ -3,6 +3,7 @@ using GCommon.Contracts;
 using GCommon.Data;
 using GCommon.Models;
 using Microsoft.AspNetCore.Hosting;
+using WebApplication6.Data;
 
 namespace GCommon.Services
 {

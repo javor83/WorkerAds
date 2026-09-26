@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WebApplication6.Data;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GCommon.Services
@@ -29,7 +30,7 @@ namespace GCommon.Services
         //*****************************************************************************************
         async Task IWorkCategoryService.Insert(Models.TaxCategoryViewModel sender)
         {
-            var tc = new Data.WorkCategory()
+            var tc = new WorkCategory()
             {
                 Caption = sender.Name.Trim()
             };

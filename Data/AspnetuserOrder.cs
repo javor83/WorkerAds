@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GCommon.Data;
+namespace WebApplication6.Data;
 
 public partial class AspnetuserOrder
 {
