@@ -1,14 +1,6 @@
 ﻿using GCommon.Contracts;
-using GCommon.Data;
 using GCommon.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using WebApplication6.Data;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GCommon.Services
 {

@@ -1,11 +1,5 @@
 ﻿using GCommon.Contracts;
-using GCommon.Data;
 using GCommon.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebApplication6.Data;
 
 namespace GCommon.Services

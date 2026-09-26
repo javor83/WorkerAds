@@ -1,7 +1,4 @@
 ﻿using GCommon.Contracts;
-using GCommon.Data;
-using Microsoft.EntityFrameworkCore;
-using System.Text.Json;
 using WebApplication6.Data;
 
 namespace GCommon.Models
