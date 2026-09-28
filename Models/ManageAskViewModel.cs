@@ -16,12 +16,12 @@ namespace GCommon.Models
         //****************************************************************
         //записва се при потвърждение на поръчката
         [Required(ErrorMessage = @valid_UserAsk.Phone, AllowEmptyStrings = false)]
-        [Display(Name = text_UserAsk.Phone)]
+        [Display(Name = "Phone")]
         public required string Phone { get; set; } = "";
         //****************************************************************
         //записва се при потвърждение на поръчката
         [Required(ErrorMessage = @valid_UserAsk.Details, AllowEmptyStrings = false)]
-        [Display(Name = text_UserAsk.Details)]
+        [Display(Name = "Details")]
         public required string OrderDetails { get; set; } = "";
         //****************************************************************
     }
