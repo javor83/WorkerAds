@@ -26,6 +26,30 @@ namespace GCommon.ExtensionMethods
 
         extension(IServiceCollection sender)
         {
+            public void Languages()
+            {
+                var supportedCultures = new CultureInfo[]
+                {
+                    new CultureInfo("en-us"), // English
+                    new CultureInfo("bg-bg"), // Bulgarian
+                };
+                sender.Configure<RequestLocalizationOptions>(options =>
+                {
+                    options.DefaultRequestCulture = new RequestCulture("en-us");
+
+                    // Formatting for numbers, dates, currency
+                    options.SupportedCultures = supportedCultures;
+
+                    // UI string translations (populates LocOptions.Value.SupportedUICultures)
+                    options.SupportedUICultures = supportedCultures;
+                });
+
+                // 1. локализация като услуга в "Resources" папка
+                sender.AddLocalization(options => options.ResourcesPath = "Resources");
+            }
+
+
+
             // Scaffold-DbContext "Server=localhost\SQLEXPRESS;Database=MEISTER;Trusted_Connection=True;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data -force
             // Scaffold-DbContext "Server=DESKTOP-H09IM5N;Database=MEISTER;Trusted_Connection=True;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data -force
             //**************************************************************************************************************************
@@ -59,39 +83,10 @@ namespace GCommon.ExtensionMethods
                     options.Cookie.IsEssential = true;             // Mark as essential for GDPR
                 });
                 //-------------------------------------------------------------------
-                var supportedCultures = new CultureInfo[]
-                 {
-                    new CultureInfo("en-us"), // English
-                    new CultureInfo("bg-bg"), // Bulgarian
-                 };
-                sender.Configure<RequestLocalizationOptions>(options =>
-                {
-                    options.DefaultRequestCulture = new RequestCulture("bg-bg");
-
-                    // Formatting for numbers, dates, currency
-                    options.SupportedCultures = supportedCultures;
-
-                    // UI string translations (populates LocOptions.Value.SupportedUICultures)
-                    options.SupportedUICultures = supportedCultures;
-                });
-
-                // 1. локализация като услуга в "Resources" папка
-                sender.AddLocalization(options => options.ResourcesPath = "Resources");
+               
 
 
-                sender.
-                    AddControllersWithViews().
-                    //2. локализация
-                    AddViewLocalization().//за view-тата
-                                          //------------------------------------------
-                                          //освободи за работа с shared resources
-                                          //AddDataAnnotationsLocalization(options =>
-                                          //{
-                                          //    options.DataAnnotationLocalizerProvider = (type, factory) => factory.Create(typeof(SharedResource));
-                                          //})
-                                          //------------------------------------------
-                                          //така работим с локализациите за конкретен модел
-                     AddDataAnnotationsLocalization();
+               
             }
         }
 

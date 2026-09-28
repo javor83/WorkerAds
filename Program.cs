@@ -1,8 +1,9 @@
 using GCommon.Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using GCommon.ExtensionMethods;
 using GCommon.ModelBinder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +32,7 @@ builder.Services
     ).AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-
+builder.Services.Languages();
 
 builder.Services.AddControllersWithViews
     (
@@ -39,7 +40,20 @@ builder.Services.AddControllersWithViews
         {
             options.ModelBinderProviders.Insert(0, new DecimalBinderProvider());
         }
-    );
+    ).
+    //2. локализация
+    AddViewLocalization().//за view-тата
+                            //------------------------------------------
+                            //освободи за работа с shared resources
+                            //AddDataAnnotationsLocalization(options =>
+                            //{
+                            //    options.DataAnnotationLocalizerProvider = (type, factory) => factory.Create(typeof(SharedResource));
+                            //})
+                            //------------------------------------------
+                            //така работим с локализациите за конкретен модел
+    AddDataAnnotationsLocalization();
+
+
 
 
 

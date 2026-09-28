@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="A" xml:space="preserve">
+    <value>YAVOR BG</value>
+  </data>
   <data name="Details" xml:space="preserve">
-    <value>Детайли за поръчката</value>
+    <value>Детайли за поръчкатаBG</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Телефон</value>
+    <value>ТелефонBG</value>
   </data>
 </root>
